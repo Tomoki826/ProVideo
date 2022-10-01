@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ username }}&nbsp;のマイページ
+{% endblock %}
+
+{% block main %}
+
+<!-- 背景画像を表示 -->
+<div>
+<main class="container-fluid py-5">
+
+<!-- 検索ウィンドウの情報を表示 -->
+{% include "search_form.html" %}
+
+<!-- ページ送りの情報を表示 -->
+{% include "page.html" %}
+
+<!-- 映画のムービー情報を表示 -->
+<table class="result">
+<tbody>
+
+{% for value in data %}
+<div class="movie-info">
+<tr class="index-row">
+
+<!-- ポスター画像を表示 -->
+<td class="image-info">
+{% if not value['pos_path'] == None %}
+<img class="image" src="https://www.themoviedb.org/t/p/w500{{ value['pos_path'] }}" alt="{{ value['title'] }}" oncontextmenu="return false;">
+{% else %}
+<div class="no-image" oncontextmenu="return false;"><img class="icon" src="/static/material_noimage.png" alt="no image" oncontextmenu="return false;"></div>
+{% endif %}
+</td>
+
+<!-- 映画概要を表示 -->
+<td class="description" colspan="2">
+    <!-- タイトルを表示 -->
+    <p class="title">{{ value['title'] }}</p>
+    <!-- 公開日などを表示 -->
+    <div class="sub-info">
+    <p class="text">公開日 {{ value['rel_date'] }}&nbsp;&nbsp;</p>
+    <p class="text">
+    {% if value['vote_count'] == 0 %}
+    評価なし
+    {% else %}
+    評価 {{ value['vote_average'] }}&nbsp;({{ value['vote_count'] }}件) / 10点中
+    {% endif %}
+    &nbsp;</p>
+    <p class="text">注目度 {{ value['popularity'] }}</p>
+    </div>
+    <!-- あらすじを表示 -->
+    <p class="outline-title"><br>あらすじ</p>
+    {% if value['words'] < 350 %}
+    <p class="outline-text">{{ value['overview'] }}</p>
+    {% else %}
+    <p id="readmore{{ value['id'] }}" class="outline-text onhidden">{{ value['overview'] }}</p>
+    <p class="readmore-button-box">
+        <a href="#readmore{{ value['id'] }}" onclick="return showMore(this);">続きを読む</a>
+    </p>
+    {% endif %}
+</td></tr>
+
+
+<!-- お気に入り・配信情報を表示 -->
+<div class="detail-row">
+    <tr id="load-point-{{ value['id'] }}" class="provider-cell" value="unloaded">
+    <!-- お気に入りを表示 -->
+    <td class="favorite" rowspan="5">
+    <button type="button" id="favorite-heart" value="{{ value['id'] }}">
+    <img class="liked-heart" src="/static/material_favorite.png">
+    </button>
+    &nbsp;<span class="text">お気に入り</span>
+    </td>
+        <td class="replace1" colspan="2"></td></tr>
+        <tr class="replace2"><td colspan="2"></td></tr>
+        <tr class="replace3"><td colspan="2"><img class="preloader" src="/static/material_preloader.gif"></td></tr>
+        <tr class="replace4"><td colspan="2"></td></tr>
+        <tr class="replace5"><td colspan="2"></td></tr>
+        <tr class="replace6"><td colspan="3"></td></tr>
+    <tr class="bottom-row"><td colspan="3"></td></tr>
+</div>
+</div>
+{% endfor %}
+
+</tbody>
+</table>
+
+<!-- ページ送りの情報を表示 -->
+
+{% if total_results > 3 %}
+{% include "page.html" %}
+{% endif %}
+
+</main>
+</div>
+
+{% endblock %}
