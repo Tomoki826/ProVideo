@@ -1,3 +1,6 @@
 # APIキーを格納するファイル
 # テンプレート・取得方法は同じパスの".env.sample"を参照
 .env
+
+# Flaskのセッションフォルダー
+flask_session/
