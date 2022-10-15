@@ -11,6 +11,7 @@ from TMDB_api import TMDB
 from os.path import join, dirname
 from dotenv import load_dotenv
 
+
 # アプリを構成開始
 app = Flask(__name__)
 
