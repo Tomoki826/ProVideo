@@ -2,8 +2,9 @@ import os
 import datetime
 
 # from cs50 import SQL
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, flash, redirect, render_template, request, session, url_for
-from flask_session import Session
+# from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from TMDB_api import TMDB
@@ -21,9 +22,10 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # セッションをPCファイルに保管する (クッキーは使用しない)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///provideo.db"
+#Session(app)
 
-db = SQL("sqlite:///provideo.db")
+db = SQLAlchemy(app)
 
 # APIの環境変数が存在するか？
 # (APIキーのテンプレート・取得方法は".env.sample"を参照)
@@ -33,6 +35,7 @@ api_key = os.environ.get("API_KEY")
 if not api_key:
     raise RuntimeError("API_KEY not set")
 
+# リクエスト後の処理
 @app.after_request
 def after_request(response):
     # キャッシュしないように設定
@@ -289,3 +292,6 @@ def load_information():
         prov_info = {}
 
     return (prov_info)
+
+if __name__ == "__main__":
+    app.run()

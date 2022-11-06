@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テストフォーム</title>
+</head>
+<body>
+    <h1>サンプルフォームです。</h1>
+    <form action="/sampleform" method="POST">
+        <input name="data1"></input>
+        <button type="submit">送信</button>
+    </form>
+    <form action="/gameresult" method="POST">
+        <input type="radio" name="janken" value="0" checked>グー</input>
+        <input type="radio" name="janken" value="1" >チョキ</input>
+        <input type="radio" name="janken" value="2" >パー</input>
+        <button type="submit">送信</button>
+    </form>
+</body>
+</html>
+</html>
