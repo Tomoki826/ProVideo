@@ -1,10 +1,17 @@
 from flask import Blueprint, render_template, request
 from random import randint
 
+# じゃんけんモジュールを作成
 janken_module = Blueprint("janken", __name__)
 
-@janken_module.route('/gameresult', methods=['POST'])
-def game_result():
+# じゃんけん選択画面
+@janken_module.get('/sampleform')
+def sample_form():
+    return render_template('sampleform.html')
+
+# じゃんけん表示画面
+@janken_module.post('/sampleform')
+def janken_result():
     # ジャンケンの手を文字列の数字0~2で受け取る
     hands = {
         '0': 'グー',
@@ -27,5 +34,9 @@ def game_result():
         judgement = 'win'
     else:
         judgement = 'lose'
-    print(f'じゃんけん開始: enemy_hand: {enemy_hand}, player_hand: {player_hand}, judgement: {judgement}')
-    return f'相手： {enemy_hand_ja}, あなた: {player_hand_ja}, 判定：{janken_mapping[judgement]}'
+    result = {
+            'enemy_hand_ja': enemy_hand_ja,
+            'player_hand_ja': player_hand_ja,
+            'judgement': janken_mapping[judgement],
+    }
+    return render_template('janken_result.html', result=result)
