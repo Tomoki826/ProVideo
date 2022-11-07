@@ -1,0 +1,17 @@
+@charset "utf-8";
+body {
+    background-color: #FFFFFF;
+    font-family:Verdana, "MSPゴシック", sans-serif;
+    font-size: 100%;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1;
+}
+footer {
+    background-color: #000000;
+    text-align: center;
+    padding: 20px 0px;
+}

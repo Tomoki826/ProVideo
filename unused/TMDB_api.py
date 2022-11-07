@@ -1,4 +1,4 @@
-# import requests
+from flask import request
 import json
 
 class TMDB:
@@ -14,7 +14,7 @@ class TMDB:
     def _json_by_get_request(self, url, params={}):
         params['language'] = self.language
         params['region'] = self.region
-        res = requests.get(url, headers=self.headers_, params=params)
+        res = request.get(url, headers=self.headers_, params=params)
         return json.loads(res.text)
 
     # キーワードに部分一致する映画タイトルを取得

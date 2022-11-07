@@ -17,7 +17,7 @@ from testapp.janken import janken_module
 app.register_blueprint(janken_module)
 """
 
-# sqlite
+# SQLを設定
 db = SQLAlchemy(app)
 from main.models import database
 
