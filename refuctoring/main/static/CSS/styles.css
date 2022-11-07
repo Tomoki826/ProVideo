@@ -1,7 +1,13 @@
 @charset "utf-8";
+html {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 body {
     background-color: #FFFFFF;
-    font-family:Verdana, "MSPゴシック", sans-serif;
+    font-family: "游ゴシック", "YuGothic", "メイリオ", meiryo, sans-serif;
     font-size: 100%;
     display: flex;
     flex-flow: column;
@@ -10,8 +16,29 @@ body {
 main {
     flex: 1;
 }
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+    padding: 10px 10px;
+}
+header > #title_content {
+    display: table;
+}
+#title_content > #title_logo {
+    display: table-cell;
+    width: 200px;
+    padding: 5px 5px;
+}
+#title_content > #title_descript {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 15px 10px 10px 10px;
+    color: #e5e5e5;
+    font-size: 15px;
+}
 footer {
     background-color: #000000;
     text-align: center;
-    padding: 20px 0px;
+    padding: 20px 0;
 }
