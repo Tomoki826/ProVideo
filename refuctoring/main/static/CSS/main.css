@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     width: 95%;
     max-width: 1800px;
     margin: 0 auto;
@@ -46,17 +46,19 @@
     display: table;
     background-color: #FFFFFF;
     border-bottom: 3px solid #E7E7E7;
-    width: 580px;
+    width: 590px;
     height: 300px;
-    margin: 0 10px 10px 10px;
+    margin: 0 0 10px 0;
 }
 .videos_container > .leftside {
     display: table-cell;
     width: 160px;
     padding: 8px 10px 0 10px;
+    margin: 0;
     vertical-align: middle;
 }
 .videos_container > .leftside > .poster {
+    width: 160px;
     height: 240px;
 }
 .videos_container > .leftside > .poster > img {
@@ -82,8 +84,6 @@
 }
 .videos_container > .description {
     display: table-cell;
-    width: 390px;
-    height: 280px;
     padding: 8px 10px 8px 0;
     vertical-align: middle;
 }
