@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # 設定ファイル
-app.config.from_object('main.modules.config')
+app.config.from_object('main.models.config')
 
 # モジュールを導入
 """
@@ -19,7 +19,7 @@ app.register_blueprint(janken_module)
 
 # SQLを設定
 db = SQLAlchemy(app)
-from main.models import database
+from main.models.database import Users
 
 import os;
 if os.path.exists('./instance/database.db') == False:
@@ -27,5 +27,15 @@ if os.path.exists('./instance/database.db') == False:
         db.drop_all()
         db.create_all()
 
+# APIの環境変数が存在するか？
+# (APIキーのテンプレート・取得方法は".env.sample"を参照)
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+api_key = os.environ.get("API_KEY")
+if not api_key:
+    raise RuntimeError("API_KEY not set")
+
 # views.pyの内容を読み込み(ホームページ)
-import main.modules.views
+import main.models.index

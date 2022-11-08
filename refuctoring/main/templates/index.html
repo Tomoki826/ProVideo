@@ -5,5 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<p>OK牧場</p>
+<div id="search_title">
+    「カイジ」の検索結果 (全3件　1~3件目)
+</div>
+<div id="page_container">
+    <ul>
+        <li id="pages">1</li>
+        <li id="pages">2</li>
+        <li id="current_page">3</li>
+        <li id="pages">4</li>
+        <li id="pages">5</li>
+    </ul>
+</div>
+<p>{{ data }}</p>
 {% endblock %}

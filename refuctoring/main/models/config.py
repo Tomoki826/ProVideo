@@ -1,3 +1,6 @@
+# テンプレートを自動で読み込むか
+TEMPLATES_AUTO_RELOAD = True
+
 # デバッグモードなのか
 DEBUG = True
 

@@ -4,14 +4,17 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+    font-size: 100%;
 }
 body {
-    background-color: #FFFFFF;
-    font-family: "游ゴシック", "YuGothic", "メイリオ", meiryo, sans-serif;
-    font-size: 100%;
+    background-color: #F5F5F5;
     display: flex;
     flex-flow: column;
+    min-width: 100vh;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 main {
     flex: 1;
@@ -19,23 +22,24 @@ main {
 header {
     display: flex;
     justify-content: space-between;
-    background-color: #000000;
-    padding: 10px 10px;
+    background-color: #FFFFFF;
+    border-bottom: 3px solid #E7E7E7;
 }
 header > #title_content {
     display: table;
 }
 #title_content > #title_logo {
-    display: table-cell;
     width: 200px;
-    padding: 5px 5px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 12px 3px 20px;
 }
 #title_content > #title_descript {
     display: table-cell;
     vertical-align: middle;
-    padding: 15px 10px 10px 10px;
-    color: #e5e5e5;
+    color: #000000;
     font-size: 15px;
+    padding-top: 5px;
 }
 footer {
     background-color: #000000;
