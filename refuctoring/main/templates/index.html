@@ -7,24 +7,24 @@
 {% block content %}
 <!--検索結果一覧-->
 <div id="search_title">
-    「カイジ」の検索結果 (全3件  1~3件目)
+    {% set value_1 = data['current_page'] * 20 %}
+    {% if data['total_results'] < value_1 %}
+        「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件目)
+    {% else %}
+        「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件目)
+    {% endif %}
 </div>
 <!--ページ送り-->
-<div id="page_container">
-    <ul>
-        <li id="pages">1</li>
-        <li id="pages">2</li>
-        <li id="current_page">3</li>
-        <li id="pages">4</li>
-        <li id="pages">5</li>
-    </ul>
-</div>
+{% with data = data %}
+{% include "pagemove.html" %}
+{% endwith %}
 <!--映画情報-->
 <div id="contents_container">
+    {% for item in data['results'] %}
     <div class="videos_container">
         <div class="leftside">
             <div class="poster">
-                <img src="https://www.themoviedb.org/t/p/w500{{data['results'][0]['poster_path']}}" alt="test" oncontextmenu="return false;"/>
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="test" oncontextmenu="return false;"/>
             </div>
             <div class="favorite">
                 <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
@@ -32,122 +32,32 @@
             </div>
         </div>
         <div class="description">
-            <div class="title">カイジ2～人生奪回ゲーム～</div>
-            <div class="details">公開日: 2011年11月05日  ジャンル: スリラー, ドラマ</div>
+            <div class="title">{{item['title']}}</div>
+            <div class="details">{{item['release_date']}}<br/>{{item['genre']}}</div>
             <div class="providers">
                 <div class="subscription">
                     <div class="heading">サブスクリプション</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
+                    <div class="icons"></div>
                 </div>
                 <div class="rental">
                     <div class="heading">レンタル可能</div>
-                    <div class="icons">情報なし</div>
+                    <div class="icons"></div>
                 </div>
                 <div class="buy">
                     <div class="heading">購入可能</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
+                    <div class="icons"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="videos_container">
-        <div class="leftside">
-            <div class="poster">
-                <img src="https://www.themoviedb.org/t/p/w500{{data['results'][0]['poster_path']}}" alt="test" oncontextmenu="return false;"/>
-            </div>
-            <div class="favorite">
-                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
-                <div class="heading">お気に入り</div>
-            </div>
-        </div>
-        <div class="description">
-            <div class="title">カイジ2～人生奪回ゲーム～</div>
-            <div class="details">公開日: 2011年11月05日  ジャンル: スリラー, ドラマ</div>
-            <div class="providers">
-                <div class="subscription">
-                    <div class="heading">サブスクリプション</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
-                </div>
-                <div class="rental">
-                    <div class="heading">レンタル可能</div>
-                    <div class="icons">情報なし</div>
-                </div>
-                <div class="buy">
-                    <div class="heading">購入可能</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="videos_container">
-        <div class="leftside">
-            <div class="poster">
-                <img src="https://www.themoviedb.org/t/p/w500{{data['results'][0]['poster_path']}}" alt="test" oncontextmenu="return false;"/>
-            </div>
-            <div class="favorite">
-                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
-                <div class="heading">お気に入り</div>
-            </div>
-        </div>
-        <div class="description">
-            <div class="title">カイジ2～人生奪回ゲーム～</div>
-            <div class="details">公開日: 2011年11月05日  ジャンル: スリラー, ドラマ</div>
-            <div class="providers">
-                <div class="subscription">
-                    <div class="heading">サブスクリプション</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
-                </div>
-                <div class="rental">
-                    <div class="heading">レンタル可能</div>
-                    <div class="icons">情報なし</div>
-                </div>
-                <div class="buy">
-                    <div class="heading">購入可能</div>
-                    <div class="icons">
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                        <img src="../static/images/netflix.webp" alt="netflix" oncontextmenu="return false;"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    {% endfor %}
 </div>
 <p>{{ data }}</p>
+{% endblock %}
+
+<!--ページ送り-->
+{% block page_move %}
+    {% with data = data %}
+    {% include "pagemove.html" %}
+    {% endwith %}
 {% endblock %}
