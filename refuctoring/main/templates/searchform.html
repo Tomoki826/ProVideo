@@ -1,0 +1,16 @@
+<form class="search_form" action="{{ url_for('index') }}" method="POST">
+    <div><input id="box" name="keywords" type="text" placeholder="キーワードから探す" /></div>
+    <div>
+        <div class="search_option">
+            <div class="radio_button">
+                <input type="radio" class="radio_choice" name="search_type" value="3" id="multi">
+                <label for="multi">すべて</label>
+                <input type="radio" class="radio_choice" name="search_type" value="1" id="movies">
+                <label for="movies">映画</label>
+                <input type="radio" class="radio_choice" name="search_type" value="2" id="tvshows">
+                <label for="tvshows">テレビ番組</label>
+            </div>
+            <input id="button" type="submit" value="検索" />
+        </div>
+    </div>
+</form>

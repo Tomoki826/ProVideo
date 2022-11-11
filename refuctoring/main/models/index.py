@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import request, render_template
 from main import app, api_key
 from main.models.TMDB import TMDB
 from main.models.genre import Genre
@@ -6,11 +6,16 @@ from main.models.enum import Search
 import datetime, re
 
 # 映画・ドラマの検索ページ
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def index():
+       if request.method == 'GET':
+              keywords = "テスト"
+              page = 1
+       if request.method == 'POST':
+              keywords = request.form.get('keywords')
+              page = 1
+       
        # TMDBで検索する
-       keywords = "銀魂"
-       page = 1
        search_type = Search.MOVIES
        if (search_type == Search.MOVIES):
               soup = TMDB(api_key).search_movies(keywords, page)
@@ -20,12 +25,12 @@ def index():
               soup = TMDB(api_key).search_multi(keywords, page)
        elif (search_type == Search.SENSITIVE):
               soup = TMDB(api_key).search_multi(keywords, page, True)
-       # 検索エラーチェック
-       if 'errors' in soup or soup['results'] == [] or soup['total_results'] <= 0:
-              return render_template("index.html", data={}, error=True)
        # 検索結果の整理
        data = soup
        data = result_arrangement(keywords, page, data)
+       # 検索エラーチェック
+       if 'errors' in soup or soup['results'] == [] or soup['total_results'] <= 0:
+              return render_template("index.html", data=data, error=True)
        # 検索結果を表示
        return render_template("index.html", data=data, error=False)
 
