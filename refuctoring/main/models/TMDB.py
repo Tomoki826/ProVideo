@@ -42,3 +42,9 @@ class TMDB:
             params['include_adult'] = 'false'
         url = f'{self.base_url_}search/multi'
         return self._json_by_get_request(url, params)
+    
+    # 注目の映画を取得
+    def discover_movie(self, page):
+        params = {'page': page}
+        url = f'{self.base_url_}discover/movie'
+        return self._json_by_get_request(url, params)
