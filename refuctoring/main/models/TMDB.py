@@ -32,7 +32,7 @@ class TMDB:
         url = f'{self.base_url_}search/tv'
         return self._json_by_get_request(url, params)
 
-    # キーワードに部分一致するテレビ番組・映画・タレントをまとめて取得
+    # キーワードに部分一致するテレビ番組・映画・人物をまとめて取得
     def search_multi(self, with_keywords, page, adult=False):
         params = {'query': with_keywords}
         params['page'] = page
@@ -43,8 +43,25 @@ class TMDB:
         url = f'{self.base_url_}search/multi'
         return self._json_by_get_request(url, params)
     
+    # 人物を取得
+    def search_person(self, with_keywords, page, adult=False):
+        params = {'query': with_keywords}
+        params['page'] = page
+        if adult:
+            params['include_adult'] = 'true'
+        else:
+            params['include_adult'] = 'false'
+        url = f'{self.base_url_}search/person'
+        return self._json_by_get_request(url, params)
+
     # 注目の映画を取得
     def discover_movie(self, page):
         params = {'page': page}
         url = f'{self.base_url_}discover/movie'
+        return self._json_by_get_request(url, params)
+    
+    # 注目のテレビ・配信番組を取得
+    def discover_tvshows(self, page):
+        params = {'page': page}
+        url = f'{self.base_url_}discover/tv'
         return self._json_by_get_request(url, params)

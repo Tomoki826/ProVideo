@@ -1,5 +1,9 @@
 <form class="search_form" action="{{ url_for('search') }}" method="GET">
-    <div><input id="box" name="keywords" type="text" placeholder="キーワードから探す" value='{{ data['keywords'] }}' required/></div>
+    <!--ページ番号-->
+    <input type="hidden" name="page" value="1">
+    <!--キーワード-->
+    <div><input id="box" name="keywords" type="text" placeholder="キーワードから探す" value="{{ data['keywords'] }}" required/></div>
+    <!--ラジオボタン-->
     <div>
         <div class="search_option">
             <div class="radio_button">
@@ -20,7 +24,13 @@
                 {% else %}
                     <input type="radio" class="radio_choice" name="search_type" value="2" id="tvshows">
                 {% endif %}
-                <label for="tvshows">テレビ番組</label>
+                <label for="tvshows">テレビ・配信番組</label>
+                {% if data['search_type-btn'] == 4 %}
+                    <input type="radio" class="radio_choice" name="search_type" value="4" id="person" checked>
+                {% else %}
+                    <input type="radio" class="radio_choice" name="search_type" value="4" id="person">
+                {% endif %}
+                <label for="person">人物</label>
             </div>
             <input id="button" type="submit" value="検索" />
         </div>

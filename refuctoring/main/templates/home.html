@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-検索
+ホーム
 {% endblock %}
 
 {% block content %}
@@ -18,29 +18,9 @@
 
 <!--コンテンツ部分-->
 <main>
-<div id="search_title">
-    <!--検索結果-->
-    {% if data['total_results'] <= 0 %}
-        「{{ data['keywords'] }}」の検索結果 なし
-    {% else %}
-        {% with value = data['current_page'] * 20 %}
-            {% if data['total_results'] <= 20 %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件)
-            {% elif data['total_results'] < value %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件目)
-            {% else %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件目)
-            {% endif %}
-        {% endwith %}
-    {% endif %}
-</div>
+<div id="search_title">ProVideoで 今話題の映画</div>
 
-<!--ページ送り-->
-{% with data = data %}
-{% include "pagemove.html" %}
-{% endwith %}
-
-<!--映像・人物情報-->
+<!--映画情報-->
 <div id="contents_container">
     {% for item in data['results'] %}
     <div class="videos_container">
@@ -54,10 +34,7 @@
             </div>
         </div>
         <div class="description">
-            <div class="name">
-                <div class="type">{{item['media_type']}}</div>
-                <div class="title">{{item['title']}}</div>
-            </div>
+            <div class="title">{{item['title']}}</div>
             <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
             <div class="providers">
                 <div class="subscription">
@@ -78,17 +55,43 @@
     {% endfor %}
 </div>
 
-<p>{{ data }}</p>
-<p>{{ soup }}</p>
+<div id="search_title">ProVideoで 今話題のテレビ・配信番組</div>
+
+<!--テレビ・配信情報-->
+<div id="contents_container">
+    {% for item in data2['results'] %}
+    <div class="videos_container">
+        <div class="leftside">
+            <div class="poster">
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="test" oncontextmenu="return false;"/>
+            </div>
+            <div class="favorite">
+                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
+                <div class="heading">お気に入り</div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="title">{{item['title']}}</div>
+            <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
+            <div class="providers">
+                <div class="subscription">
+                    <div class="heading">サブスクリプション</div>
+                    <div class="icons"></div>
+                </div>
+                <div class="rental">
+                    <div class="heading">レンタル可能</div>
+                    <div class="icons"></div>
+                </div>
+                <div class="buy">
+                    <div class="heading">購入可能</div>
+                    <div class="icons"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 </main>
-
-<!--フッター-->
-<footer id="foot_page">
-    <!--ページ送り-->
-    {% with data = data %}
-    {% include "pagemove.html" %}
-    {% endwith %}
-</footer>
 
 {% endblock %}
