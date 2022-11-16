@@ -1,9 +1,37 @@
+{% if data['max_page'] >= 2 %}
 <div id="page_container">
     <ul>
-        <li id="pages">1</li>
-        <li id="pages">2</li>
-        <li id="current_page">3</li>
-        <li id="pages">4</li>
-        <li id="pages">5</li>
+        <!--少ないページ数のとき-->
+        {% if data['max_page'] <= 7 %}
+            {% with page_range = data['max_page'] + 1 %}
+            {% for i in range(1, page_range) %}
+                {% if i == data['current_page'] %}
+                    <li id="current_page" value="{{ i }}">{{ i }}</li>
+                {% else %}
+                    <li id="pages" value="{{ i }}">{{ i }}</li>
+                {% endif %}
+            {% endfor %}
+            {% endwith %}
+        {% else %}
+        <!--多いページ数のとき-->
+            {% with page_value = data['max_page'] - 3 %}
+            {% if data['current_page'] <= 4 %}
+                {% for i in range(1, 6) %}
+                    {% if i == data['current_page'] %}
+                        <li id="current_page" value="{{ i }}">{{ i }}</li>
+                    {% else %}
+                        <li id="pages" value="{{ i }}">{{ i }}</li>
+                    {% endif %}
+                {% endfor %}
+                <li id="dots">...</li>
+                <li id="pages" value="{{ data['max_page'] }}">{{ data['max_page'] }}</li>
+            {% elif page_value <= data['current_page'] %}
+            
+            {% else %}
+
+            {% endif %}
+            {% endwith %}
+        {% endif %}
     </ul>
 </div>
+{% endif %}

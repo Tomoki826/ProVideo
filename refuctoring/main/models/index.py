@@ -65,9 +65,10 @@ def search():
 # 検索情報をフォーマットする
 def result_arrangement(search_type, page, in_data, keywords=''):
        data = {}
-       data['current_page'] = page
-       data['total_results'] = in_data['total_results']
        data['keywords'] = keywords
+       data['current_page'] = page
+       data['max_page'] = (in_data['total_results'] - 1) // 20 + 1
+       data['total_results'] = in_data['total_results']
        # 検索タイプ
        data['search_type'] = search_type
        if search_type == Search.MOVIES or search_type == Search.TVSHOWS or search_type == Search.MULTI or search_type == Search.SENSITIVE:

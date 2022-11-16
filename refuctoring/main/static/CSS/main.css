@@ -28,9 +28,11 @@
     border-radius: 50%;
 }
 #page_container > ul > #pages {
+    cursor: pointer;
     background-color: #E9E9E9;
 }
 #page_container > ul > #current_page {
+    cursor: pointer;
     background-color: #EEDA29;
 }
 #contents_container {
