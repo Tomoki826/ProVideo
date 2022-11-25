@@ -44,42 +44,70 @@
 <div id="contents_container">
     {% for item in data['results'] %}
     <div class="videos_container">
-        <div class="leftside">
-            <div class="poster">
-                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="test" oncontextmenu="return false;"/>
-            </div>
-            <div class="favorite">
-                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
-                <div class="heading">お気に入り</div>
-            </div>
-        </div>
-        <div class="description">
-            <div class="name">
-                <div class="type">{{item['media_type']}}</div>
-                <div class="title">{{item['title']}}</div>
-            </div>
-            <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
-            <div class="providers">
-                <div class="subscription">
-                    <div class="heading">サブスクリプション</div>
-                    <div class="icons"></div>
+        {% if item['videos'] == false %}
+            <div class="leftside">
+                <div class="poster">
+                    <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
                 </div>
-                <div class="rental">
-                    <div class="heading">レンタル可能</div>
-                    <div class="icons"></div>
-                </div>
-                <div class="buy">
-                    <div class="heading">購入可能</div>
-                    <div class="icons"></div>
+                <div class="favorite">
+                    <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
+                    <div class="heading">お気に入り</div>
                 </div>
             </div>
-        </div>
+            <div class="description">
+                <div class="name">
+                    <div class="type">{{item['media_type']}}</div>
+                    <div class="title">{{item['title']}}</div>
+                </div>
+                <div class="details">{{item['department']}}<br/>{{item['gender']}}</div>
+                <div class="providers">
+                    <div class="heading">{{item['known_videos']}}</div>
+                    <div class="videos">
+                        {% for item2 in item['known_for'] %}
+                            <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="leftside">
+                <div class="poster">
+                    <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+                </div>
+                <div class="favorite">
+                    <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
+                    <div class="heading">お気に入り</div>
+                </div>
+            </div>
+            <div class="description">
+                <div class="name">
+                    <div class="type">{{item['media_type']}}</div>
+                    <div class="title">{{item['title']}}</div>
+                </div>
+                <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
+                <div class="providers">
+                    <div class="subscription">
+                        <div class="heading">サブスクリプション</div>
+                        <div class="icons"></div>
+                    </div>
+                    <div class="rental">
+                        <div class="heading">レンタル可能</div>
+                        <div class="icons"></div>
+                    </div>
+                    <div class="buy">
+                        <div class="heading">購入可能</div>
+                        <div class="icons"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
 
 <p>{{ data }}</p>
 <p>{{ soup }}</p>
+<p>{{ soup2 }}</p>
 
 </main>
 

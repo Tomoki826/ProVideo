@@ -66,6 +66,13 @@
     padding: 8px 10px 8px 0;
     vertical-align: middle;
 }
+.videos_container > .description > .name > .type {
+    font-size: 13px;
+    display: inline-block;
+    background-color: #D4D9DC;
+    border-radius: 4px;
+    padding: 3px 7px;
+}
 .videos_container > .description > .name > .title {
     font-size: 20px;
     font-weight: bold;
@@ -93,4 +100,13 @@
     width: 40px;
     margin-top: 3px;
     border-radius: 9px;
+}
+.videos_container > .description > .providers > .videos {
+    height: 190px;
+}
+.videos_container > .description > .providers > .videos img {
+    display: inline-block;
+    max-width: 115px;
+    max-height: 180px;
+    padding-top: 8px;
 }

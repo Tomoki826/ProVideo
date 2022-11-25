@@ -14,7 +14,6 @@ class TMDB:
     def _json_by_get_request(self, url, params={}):
         params['language'] = self.language
         params['region'] = self.region
-        print(url, params)
         res = requests.get(url, headers=self.headers_, params=params)
         return json.loads(res.text)
     
@@ -65,3 +64,8 @@ class TMDB:
         params = {'page': page}
         url = f'{self.base_url_}discover/tv'
         return self._json_by_get_request(url, params)
+    
+    # 人物の日本語訳を取得
+    def person_id(self, id):
+        url = f'{self.base_url_}person/{id}'
+        return self._json_by_get_request(url, {})
