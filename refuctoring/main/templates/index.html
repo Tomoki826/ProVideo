@@ -65,9 +65,7 @@
                     <div class="videos">
                         {% if item['known_for'] | length > 0 %}
                             {% for item2 in item['known_for'] %}
-                                <abbr title="{{item2['title']}}">
-                                <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false;"/>
-                                </abbr>
+                                <abbr title="{{item2['title']}}"><img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false"></abbr>
                             {% endfor %}
                         {% else %}
                             <abbr title="情報なし">
@@ -112,10 +110,6 @@
     </div>
     {% endfor %}
 </div>
-
-<p>{{ data }}</p>
-<p>{{ soup }}</p>
-
 </main>
 
 <!--フッター-->

@@ -6,6 +6,27 @@ $('.products .videos img').on('error', function() {
     $(this).attr('src','../static/images/unfound_image.svg');
 });
 
+// データの種類に合わせて調節
+$('.description .name .type').html( function(index, element) {
+    if (element == "映画") {
+        $(this).css('color', '#FFFFFF');
+        $(this).css('background-color', '#F46262');
+    }
+    else if (element == "テレビ・配信番組") {
+        $(this).css('color', '#FFFFFF');
+        $(this).css('background-color', '#628BF4');
+    }
+    else if (element == "人物") {
+        $(this).css('color', '#FFFFFF');
+        $(this).css('background-color', '#4FB76C');
+    }
+    else if (element == "アダルト") {
+        $(this).css('color', '#FFFFFF');
+        $(this).css('background-color', '#F471E7');
+    }
+    console.log(element);
+})
+
 // 非同期通信で配信情報取得
 $('.ajax_providers').on('inview', function(event, isInView) {
     if (isInView) {
