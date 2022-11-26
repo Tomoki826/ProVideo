@@ -15,6 +15,7 @@ $( function() {
         $(element).find('.details').next().css('margin-top', genre.height());
         if (genre.width() > element_length) {
             genre.css('width', element_length);
+            genre.wrapInner('<abbr title="' + genre.html() + '"></abbr>');
         }
     });
 });
