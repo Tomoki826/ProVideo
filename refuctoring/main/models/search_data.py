@@ -44,13 +44,13 @@ class Search_Data:
               if 'adult' not in item:
                      data['adult'] = 'false'
               if 'title' in item:
-                     data['title'] = item['title']
+                     data['title'] = item['title'].strip()
               elif 'name' in item:
-                     data['title'] = item['name']
+                     data['title'] = item['name'].strip()
               elif 'original_title' in item:
-                     data['title'] = item['original_title']
+                     data['title'] = item['original_title'].strip()
               elif 'original_name' in item:
-                     data['title'] = item['original_name']
+                     data['title'] = item['original_name'].strip()
               else:
                      data['title'] = '(タイトル情報なし)'
               # 公開日
@@ -74,11 +74,10 @@ class Search_Data:
                      for id in item['genre_ids']:
                              data['genre'] += Genre().name_get(id) + ', '
                      data['genre'] = data['genre'][:-2]
+              # 注目度
+              data['popularity'] = item.get('popularity', 0)
               # ポスター画像
-              if 'poster_path' in item:
-                     data['poster_path'] = item['poster_path']
-              else:
-                     data['poster_path'] = ''
+              data['poster_path'] = item.get('poster_path', '')
               # メディアタイプ
               match self.data['search_type']:
                      case Search.MOVIES:
@@ -114,7 +113,7 @@ class Search_Data:
        def __person_results_type(self, item):
               data = {}
               # 名前
-              data['title'] = item['name']
+              data['title'] = item['name'].strip()
               data['id'] = item['id']
               # 職業
               match item.get('known_for_department'):
@@ -159,11 +158,10 @@ class Search_Data:
                      data['gender'] = "性別: 男性"
               else:
                      data['gender'] = "性別: その他・不明"
+              # 注目度
+              data['popularity'] = item.get('popularity', 0)
               # ポスター画像
-              if 'profile_path' in item:
-                     data['poster_path'] = item['profile_path']
-              else:
-                     data['poster_path'] = ''
+              data['poster_path'] = item.get('profile_path', '')
               # 出演作
               data['known_for'] = []
               if 'known_for' in item:
@@ -178,13 +176,13 @@ class Search_Data:
                             li['id'] = item2['id']
                             # タイトル
                             if 'title' in item2:
-                                   li['title'] = item2['title']
+                                   li['title'] = item2['title'].strip()
                             elif 'name' in item2:
-                                   li['title'] = item2['name']
+                                   li['title'] = item2['name'].strip()
                             elif 'original_title' in item2:
-                                   li['title'] = item2['original_title']
+                                   li['title'] = item2['original_title'].strip()
                             elif 'original_name' in item2:
-                                   li['title'] = item2['original_name']
+                                   li['title'] = item2['original_name'].strip()
                             else:
                                    li['title'] = '(タイトル情報なし)'
                             data['known_for'].append(li)

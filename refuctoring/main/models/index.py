@@ -76,7 +76,6 @@ def search():
 def load_provider():
        id = request.form.get("id")
        data_type = request.form.get("data_type")
-       print(data_type)
        provider_search = TMDB(api_key).get_provider_info(id, data_type)
        if 'results' in provider_search:
               data = provider_search['results'].get('JP', {})
@@ -90,11 +89,10 @@ def load_provider():
 def load_personal_name():
        id = request.form.get("id")
        soup = TMDB(api_key).person_id(int(id))
-       print(soup)
        data = ''
        if 'also_known_as' in soup:
               for item in soup['also_known_as']:
-                     if JP_WORDS.fullmatch(item.rstrip()) != None and EN_WORDS.fullmatch(item.rstrip()) == None:
-                            data = item
+                     if JP_WORDS.fullmatch(item.strip()) != None and EN_WORDS.fullmatch(item.strip()) == None:
+                            data = item.strip()
                             break
        return data

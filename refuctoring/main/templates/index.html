@@ -43,7 +43,7 @@
 <!--映像・人物情報-->
 <div id="contents_container">
     {% for item in data['results'] %}
-    <div class="videos_container">
+    <div class="videos_container aaa">
         {% if item['data_type'] == 'person' %}
             <div class="leftside">
                 <div class="poster">
@@ -63,9 +63,17 @@
                 <div class="products">
                     <div class="heading">{{item['known_videos']}}</div>
                     <div class="videos">
-                        {% for item2 in item['known_for'] %}
-                            <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false;"/>
-                        {% endfor %}
+                        {% if item['known_for'] | length > 0 %}
+                            {% for item2 in item['known_for'] %}
+                                <abbr title="{{item2['title']}}">
+                                <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false;"/>
+                                </abbr>
+                            {% endfor %}
+                        {% else %}
+                            <abbr title="情報なし">
+                            <img src="../static/images/unfound_works.svg" alt="Not Found" oncontextmenu="return false;"/>
+                            </abbr>
+                        {% endif %}
                     </div>
                 </div>
             </div>
