@@ -69,3 +69,11 @@ class TMDB:
     def person_id(self, id):
         url = f'{self.base_url_}person/{id}'
         return self._json_by_get_request(url, {})
+    
+    # プロバイダー情報を取得
+    def get_provider_info(self, id, data_type):
+        if data_type == "movie":
+            return self._json_by_get_request(f'{self.base_url_}movie/{id}/watch/providers')
+        elif data_type == "tv":
+            return self._json_by_get_request(f'{self.base_url_}tv/{id}/watch/providers')
+        return {}

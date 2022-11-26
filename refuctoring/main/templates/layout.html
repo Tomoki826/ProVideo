@@ -15,6 +15,11 @@
         
          https://www.irasutoya.com/2013/09/blog-post_6662.html 
         <link href="../static/material_kachinko.png" rel="icon"> -->
+        <!-- AJAXを読み込み -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- jQueryを読み込み -->
+        <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="></script>
+        <script src="/static/JavaScript/jquery.inview.min.js"></script>
         <!--タイトル部分-->
         <title>{% block title %}{% endblock %} | ProVideo</title>
     </head>
@@ -27,6 +32,6 @@
         <!--フッター部分-->
         {% include "footer.html" %}
         <!-- JavaScriptを読み込み -->
-        <script type="text/javascript" src="../static/javascript/styles.js"></script>
+        <script type="text/javascript" src="../static/JavaScript/styles.js"></script>
     </body>
 </html>

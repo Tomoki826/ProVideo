@@ -44,7 +44,7 @@
 <div id="contents_container">
     {% for item in data['results'] %}
     <div class="videos_container">
-        {% if item['videos'] == false %}
+        {% if item['data_type'] == 'person' %}
             <div class="leftside">
                 <div class="poster">
                     <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
@@ -57,14 +57,14 @@
             <div class="description">
                 <div class="name">
                     <div class="type">{{item['media_type']}}</div>
-                    <div class="title">{{item['title']}}</div>
+                    <div class="ajax_name" value="unloaded,{{item['id']}}">{{item['title']}}</div>
                 </div>
                 <div class="details">{{item['department']}}<br/>{{item['gender']}}</div>
-                <div class="providers">
+                <div class="products">
                     <div class="heading">{{item['known_videos']}}</div>
                     <div class="videos">
                         {% for item2 in item['known_for'] %}
-                            <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+                            <img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false;"/>
                         {% endfor %}
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                     <div class="title">{{item['title']}}</div>
                 </div>
                 <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
-                <div class="providers">
+                <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                     <div class="subscription">
                         <div class="heading">サブスクリプション</div>
                         <div class="icons"></div>
@@ -107,7 +107,6 @@
 
 <p>{{ data }}</p>
 <p>{{ soup }}</p>
-<p>{{ soup2 }}</p>
 
 </main>
 

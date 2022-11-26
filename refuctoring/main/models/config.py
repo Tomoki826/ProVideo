@@ -10,3 +10,6 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
 # データベースのイベントシステムがセッションの変更を追跡
 # (リソース節約のためにオフでもよい)
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+# センシティブな検索結果を含めるか
+SENSITIVE_SEARCH = False

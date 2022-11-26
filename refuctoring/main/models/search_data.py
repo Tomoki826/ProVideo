@@ -2,7 +2,7 @@ from main import api_key
 from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.genre import Genre
-from main.models.kanji import FIRST_KANJI, SECOND_KANJI
+from main.models.config import SENSITIVE_SEARCH
 import re, datetime
 
 # 検索情報をフォーマットする
@@ -24,8 +24,6 @@ class Search_Data:
                      self.data['search_type-btn'] = int(Search.MULTI)
               # 検索データの整理
               self.data['results'] = []
-              # 日本語データのインポート
-              self.jp = re.compile(f'[ 0-9ぁ-ヶァ-ヶｦ-ﾟ{FIRST_KANJI}{SECOND_KANJI}]+$')
 
        # 検索情報をフォーマット
        def arrange(self):
@@ -40,6 +38,8 @@ class Search_Data:
        # 作品データを修正
        def __video_type(self, item):
               data = {}
+              # id
+              data['id'] = item['id']
               # 作品タイトル
               if 'adult' not in item:
                      data['adult'] = 'false'
@@ -80,17 +80,21 @@ class Search_Data:
               else:
                      data['poster_path'] = ''
               # メディアタイプ
-              data['videos'] = True
               match self.data['search_type']:
                      case Search.MOVIES:
                             data['media_type'] = '映画'
+                            data['data_type'] = 'movie'
                      case Search.DISCOVER_MOVIE:
                             data['media_type'] = '映画'
+                            data['data_type'] = 'movie'
                      case Search.TVSHOWS:
                             data['media_type'] = 'テレビ・配信番組'
+                            data['data_type'] = 'tv'
                      case Search.DISCOVER_TV:
                             data['media_type'] = 'テレビ・配信番組'
+                            data['data_type'] = 'tv'
                      case Search.MULTI:
+                            data['data_type'] = item.get('media_type')
                             if 'media_type' not in item:
                                    data['media_type'] = '不明'
                             elif item.get('adult') == True:
@@ -109,20 +113,10 @@ class Search_Data:
        # 人物データを修正
        def __person_results_type(self, item):
               data = {}
-              # 日本語名を検索 (非同期処理で高速化？)
-              """
-              soup = TMDB(api_key).person_id(int(item['id']))
-              if 'also_known_as' in soup:
-                     for item2 in soup['also_known_as']:
-                            if self.jp.fullmatch(item2) != None:
-                                   data['title'] = item2
-                                   break
-                     else:
-                            data['title'] = item['name']
-              """
+              # 名前
               data['title'] = item['name']
+              data['id'] = item['id']
               # 職業
-              print(item.get('known_for_department'))
               match item.get('known_for_department'):
                      case "Acting":
                             data['known_videos'] = "主な出演作品"
@@ -176,7 +170,7 @@ class Search_Data:
                      for item2 in item['known_for']:
                             li = {}
                             # ポスター画像
-                            if 'poster_path' in item2:
+                            if 'poster_path' in item2 and (item2.get('adult') != True or (item2.get('adult') == True and SENSITIVE_SEARCH == True)):
                                    li['poster_path'] = item2['poster_path']
                             else:
                                    continue
@@ -195,7 +189,7 @@ class Search_Data:
                                    li['title'] = '(タイトル情報なし)'
                             data['known_for'].append(li)
               # メディアタイプ
-              data['videos'] = False
+              data['data_type'] = 'person'
               if item.get('adult') == True:
                      data['media_type'] = 'アダルト'
               else:

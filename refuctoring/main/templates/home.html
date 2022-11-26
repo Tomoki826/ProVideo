@@ -39,7 +39,7 @@
                 <div class="title">{{item['title']}}</div>
             </div>
             <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
-            <div class="providers">
+            <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                 <div class="subscription">
                     <div class="heading">サブスクリプション</div>
                     <div class="icons"></div>
@@ -79,7 +79,7 @@
                 <div class="title">{{item['title']}}</div>
             </div>
             <div class="details">{{item['openday']}}<br/>{{item['genre']}}</div>
-            <div class="providers">
+            <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                 <div class="subscription">
                     <div class="heading">サブスクリプション</div>
                     <div class="icons"></div>
@@ -97,6 +97,8 @@
     </div>
     {% endfor %}
 </div>
+
+<p>{{data2}}</p>
 
 </main>
 

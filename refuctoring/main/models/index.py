@@ -1,11 +1,10 @@
 from flask import request, render_template, redirect, url_for
 from main import app, api_key
+from main.models.config import SENSITIVE_SEARCH
 from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.search_data import Search_Data
-
-# 成人向けを検索結果に含めるか？
-sensitive_search = False
+from main.models.kanji import JP_WORDS, EN_WORDS
 
 # ホームページ
 @app.route("/", methods=["GET", "POST"])
@@ -35,6 +34,7 @@ def index(search_type=int(Search.DISCOVER_MOVIE)):
        # 検索結果を表示
        return render_template("home.html", data=data, data2=data2, soup=soup)
 
+
 # 作品を検索
 @app.route("/search", methods=["GET"])
 def search():
@@ -62,12 +62,39 @@ def search():
               case Search.TVSHOWS:
                      soup = TMDB(api_key).search_tvshows(keywords, page)
               case Search.PERSON:
-                     soup = TMDB(api_key).search_person(keywords, page, sensitive_search)
+                     soup = TMDB(api_key).search_person(keywords, page, SENSITIVE_SEARCH)
               case Search.MULTI:
-                     soup = TMDB(api_key).search_multi(keywords, page, sensitive_search)
-              
-       soup2 = TMDB(api_key).person_id(585211)
+                     soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
        # 検索結果の整理
        data = soup
        data = Search_Data(search_type, page, data, keywords).arrange()
-       return render_template("index.html", data=data, soup=soup, soup2=soup2, error=False)
+       return render_template("index.html", data=data, soup=soup, error=False)
+
+
+# プロバイダー情報を取得
+@app.route('/load_provider', methods=["POST"])
+def load_provider():
+       id = request.form.get("id")
+       data_type = request.form.get("data_type")
+       print(data_type)
+       provider_search = TMDB(api_key).get_provider_info(id, data_type)
+       if 'results' in provider_search:
+              data = provider_search['results'].get('JP', {})
+       else:
+              data = {}
+       return data
+
+
+# 日本語の人物名を取得
+@app.route('/load_personal_name', methods=["POST"])
+def load_personal_name():
+       id = request.form.get("id")
+       soup = TMDB(api_key).person_id(int(id))
+       print(soup)
+       data = ''
+       if 'also_known_as' in soup:
+              for item in soup['also_known_as']:
+                     if JP_WORDS.fullmatch(item.rstrip()) != None and EN_WORDS.fullmatch(item.rstrip()) == None:
+                            data = item
+                            break
+       return data
