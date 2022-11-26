@@ -3,6 +3,7 @@ from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.genre import Genre
 from main.models.config import SENSITIVE_SEARCH
+from main.models.kanji import JP_WORDS, EN_WORDS
 import re, datetime
 
 # 検索情報をフォーマットする
@@ -79,33 +80,45 @@ class Search_Data:
               # ポスター画像
               data['poster_path'] = item.get('poster_path', '')
               # メディアタイプ
-              match self.data['search_type']:
-                     case Search.MOVIES:
-                            data['media_type'] = '映画'
-                            data['data_type'] = 'movie'
-                     case Search.DISCOVER_MOVIE:
-                            data['media_type'] = '映画'
-                            data['data_type'] = 'movie'
-                     case Search.TVSHOWS:
-                            data['media_type'] = 'テレビ・配信番組'
-                            data['data_type'] = 'tv'
-                     case Search.DISCOVER_TV:
-                            data['media_type'] = 'テレビ・配信番組'
-                            data['data_type'] = 'tv'
-                     case Search.MULTI:
-                            data['data_type'] = item.get('media_type')
-                            if 'media_type' not in item:
-                                   data['media_type'] = '不明'
-                            elif item.get('adult') == True:
-                                   data['media_type'] = 'アダルト'
-                            else:
-                                   match item['media_type']:
-                                          case 'movie':
-                                                 data['media_type'] = '映画'
-                                          case 'tv':
-                                                 data['media_type'] = 'テレビ・配信番組'
-                                          case _:
-                                                 data['media_type'] = '不明' 
+              data['is_video'] = True
+              if item.get('adult') == True:
+                     data['data_type'] = 'sensitive'
+                     data['media_type'] = 'センシティブ'
+              else:
+                     match self.data['search_type']:
+                            case Search.MOVIES:
+                                   data['data_type'] = 'movie'
+                                   data['media_type'] = '映画'
+                            case Search.DISCOVER_MOVIE:
+                                   data['data_type'] = 'movie'
+                                   data['media_type'] = '映画'
+                            case Search.TVSHOWS:
+                                   if SENSITIVE_SEARCH == False:
+                                          data['data_type'] = 'tv'
+                                   else:
+                                          data['data_type'] = 'tv-sensitive'
+                                   data['media_type'] = 'テレビ・配信番組'
+                            case Search.DISCOVER_TV:
+                                   data['data_type'] = 'tv'
+                                   data['media_type'] = 'テレビ・配信番組'
+                            case Search.MULTI:
+                                   if 'media_type' not in item:
+                                          data['data_type'] = 'None'
+                                          data['media_type'] = '不明'
+                                   else:
+                                          match item['media_type']:
+                                                 case 'movie':
+                                                        data['data_type'] = 'movie'
+                                                        data['media_type'] = '映画'
+                                                 case 'tv':
+                                                        if SENSITIVE_SEARCH == False:
+                                                               data['data_type'] = 'tv'
+                                                        else:
+                                                               data['data_type'] = 'tv-sensitive'
+                                                        data['media_type'] = 'テレビ・配信番組'
+                                                 case _:
+                                                        data['data_type'] = 'None'
+                                                        data['media_type'] = '不明'
               return data           
 
 
@@ -114,6 +127,10 @@ class Search_Data:
               data = {}
               # 名前
               data['title'] = item['name'].strip()
+              if JP_WORDS.fullmatch(data['title']) != None and EN_WORDS.fullmatch(data['title']) == None:
+                     data['JP_name'] = True
+              else:
+                     data['JP_name'] = False
               data['id'] = item['id']
               # 職業
               match item.get('known_for_department'):
@@ -187,9 +204,11 @@ class Search_Data:
                                    li['title'] = '(タイトル情報なし)'
                             data['known_for'].append(li)
               # メディアタイプ
-              data['data_type'] = 'person'
+              data['is_video'] = False
               if item.get('adult') == True:
-                     data['media_type'] = 'アダルト'
+                     data['data_type'] = 'sensitive'
+                     data['media_type'] = 'センシティブ'
               else:
+                     data['data_type'] = 'person'
                      data['media_type'] = '人物'
               return data

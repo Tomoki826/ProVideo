@@ -1,11 +1,11 @@
-#search_title {
+.search_title {
     background-image: linear-gradient(90deg, #07B4E0 70%, #9AD36D 100%);
     color: #FFFFFF;
     font-weight: bold;
     padding: 13px 20px;
     margin-bottom: 10px;
 }
-#contents_container {
+.contents_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -64,28 +64,54 @@
     font-size: 13px;
 }
 .videos_container > .description {
+    position: relative;
     display: table-cell;
     padding: 8px 10px 8px 0;
     vertical-align: middle;
 }
 .videos_container > .description > .name > .type {
     font-size: 13px;
+    color: #FFFFFF;
     display: inline-block;
-    background-color: #D4D9DC;
     border-radius: 4px;
     padding: 3px 7px;
 }
-.videos_container > .description > .name > .title {
+.videos_container > .description > .name > .type.movie {
+    background-color: #F46262;
+}
+.videos_container > .description > .name > .type.tv {
+    background-color: #628BF4;
+}
+.videos_container > .description > .name > .type.person {
+    background-color: #4FB76C;
+}
+.videos_container > .description > .name:has(> .type.tv-sensitive) {
+    border-radius: 5px;
+    width: 118px;
+    background: linear-gradient(to right, #628BF4 20%, #F471E7);
+}
+.videos_container > .description > .name > .type.sensitive {
+    background-color: #F471E7;
+}
+.videos_container > .description > .name .title {
+    position: absolute;
     font-size: 20px;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
 }
-.videos_container > .description > .name > .ajax_name {
+.videos_container > .description > .name .ajax_name {
     font-size: 20px;
     font-weight: bold;
 }
 .videos_container > .description > .details {
     font-size: 14px;
     margin-bottom: 3px;
+}
+.videos_container > .description > .details > .genre {
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .videos_container > .description > .ajax_providers .heading {
     font-size: 10px;
@@ -102,7 +128,6 @@
     vertical-align: middle;
 }
 .videos_container > .description > .ajax_providers .icons img {
-    cursor: pointer;
     display: inline-block;
     width: 40px;
     margin: 3px 3px 0 0px;
@@ -124,7 +149,6 @@
     height: 190px;
 }
 .videos_container > .description > .products > .videos img {
-    cursor: pointer;
     display: inline-block;
     max-width: 115px;
     max-height: 180px;

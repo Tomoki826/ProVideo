@@ -1,0 +1,75 @@
+<!-- 作品情報を一覧表示 -->
+{% for item in data %}
+<div class="videos_container">
+    {% if item['is_video'] == false %}
+        <div class="leftside">
+            <div class="poster">
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+            </div>
+            <div class="favorite">
+                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
+                <div class="heading">お気に入り</div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="name">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
+                {% if item['JP_name'] == true %}
+                    <div class="ajax_name" value="loaded">{{item['title']}}</div>
+                {% else %}
+                    <div class="ajax_name" value="unloaded,{{item['id']}}">{{item['title']}}</div>
+                {% endif %}
+            </div>
+            <div class="details">{{item['department']}}<br/>{{item['gender']}}</div>
+            <div class="products">
+                <div class="heading">{{item['known_videos']}}</div>
+                <div class="videos">
+                    {% if item['known_for'] | length > 0 %}
+                        {% for item2 in item['known_for'] %}
+                            <abbr title="{{item2['title']}}"><img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false"></abbr>
+                        {% endfor %}
+                    {% else %}
+                        <abbr title="情報なし">
+                        <img src="../static/images/unfound_works.svg" alt="Not Found" oncontextmenu="return false;"/>
+                        </abbr>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="leftside">
+            <div class="poster">
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+            </div>
+            <div class="favorite">
+                <img class="unliked" src="../static/images/heart_black.png" alt="お気に入り" />
+                <div class="heading">お気に入り</div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="name">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
+                <div class="title">{{item['title']}}</div>
+            </div>
+            <div class="details">
+                <div class="openday">{{item['openday']}}</div>
+                <div class="genre">{{item['genre']}}</div>
+            </div>
+            <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
+                <div class="subscription">
+                    <div class="heading">サブスクリプション</div>
+                    <div class="icons"></div>
+                </div>
+                <div class="rental">
+                    <div class="heading">レンタル可能</div>
+                    <div class="icons"></div>
+                </div>
+                <div class="buy">
+                    <div class="heading">購入可能</div>
+                    <div class="icons"></div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endfor %}

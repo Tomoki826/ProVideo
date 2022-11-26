@@ -6,6 +6,7 @@ html {
     user-select: none;
     font-family: 'メイリオ', 'Meiryo', sans-serif;
     font-size: 100%;
+    min-width: 622px;
 }
 body {
     background-color: #F5F5F5;
@@ -39,4 +40,8 @@ header > #title_content {
     color: #000000;
     font-size: 15px;
     padding-top: 5px;
+}
+abbr {
+    cursor: pointer;
+    text-decoration: none;
 }

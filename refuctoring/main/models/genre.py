@@ -14,6 +14,7 @@ class Genre:
               '犯罪': 80,
               'ドキュメンタリー': 99,
               'SF': 878,
+              'エロティック': 2916,
               'ミステリー': 9648,
               '音楽': 10402,
               'ロマンス': 10749,
@@ -35,4 +36,4 @@ class Genre:
         for key, value in self.dict.items():
             if id == value:
                 return key
-        return None
+        return 'その他'

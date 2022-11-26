@@ -1,3 +1,24 @@
+// ロード完了時の処理
+$( function() {
+    // 文字数が多すぎたらスライド表示する
+    $(".description").each( function(index, element){
+        var element_length = $(element).width();
+        // 作品名を調節
+        var title = $(element).find('.title');
+        $(element).find('.name').next().css('margin-top', title.height());
+        if (title.width() > element_length) {
+            title.css('width', element_length);
+            title.wrapInner('<abbr title="' + title.html() + '"></abbr>');
+        }
+        // ジャンルを調節
+        var genre = $(element).find('.genre');
+        $(element).find('.details').next().css('margin-top', genre.height());
+        if (genre.width() > element_length) {
+            genre.css('width', element_length);
+        }
+    });
+});
+
 // 画像のリンク切れで代替の画像を表示
 $('.poster img').on('error', function() {
     $(this).attr('src','../static/images/unfound_image.svg');
@@ -6,42 +27,22 @@ $('.products .videos img').on('error', function() {
     $(this).attr('src','../static/images/unfound_image.svg');
 });
 
-// データの種類に合わせて調節
-$('.description .name .type').html( function(index, element) {
-    if (element == "映画") {
-        $(this).css('color', '#FFFFFF');
-        $(this).css('background-color', '#F46262');
-    }
-    else if (element == "テレビ・配信番組") {
-        $(this).css('color', '#FFFFFF');
-        $(this).css('background-color', '#628BF4');
-    }
-    else if (element == "人物") {
-        $(this).css('color', '#FFFFFF');
-        $(this).css('background-color', '#4FB76C');
-    }
-    else if (element == "アダルト") {
-        $(this).css('color', '#FFFFFF');
-        $(this).css('background-color', '#F471E7');
-    }
-    console.log(element);
-})
-
 // 非同期通信で配信情報取得
 $('.ajax_providers').on('inview', function(event, isInView) {
     if (isInView) {
-        var element = $(this);
-        var values = element.attr('value').split(',');
+        var jQuery_element = $(this);
+        var values = jQuery_element.attr('value').split(',');
         if (values[0] == "unloaded") {
             $.ajax({
                 url: '/load_provider',
                 type: 'POST',
                 datatype: 'JSON',
-                data : {'id': values[1], 'data_type': values[2]},
-            }).done(function(data) {
-                //通信成功時の処理
-                element.attr('value', 'loaded,' + values[1] + ',' + values[2]);
-                replaceProviderInfo(element, data);
+                data : {'id': values[1], 'data_type': values[2]}
+            })
+            //通信成功時の処理
+            .done( function(data) {
+                jQuery_element.attr('value', 'loaded,' + values[1] + ',' + values[2]);
+                replaceProviderInfo(jQuery_element, data);
             })
         }
     }
@@ -94,20 +95,27 @@ function replaceProviderInfo(element, data) {
 $(function() {
     $('.ajax_name').on('inview', function(event, isInView) {
         if (isInView) {
-            var element = $(this);
-            var values = element.attr('value').split(',');
+            var jQuery_element = $(this);
+            var values = jQuery_element.attr('value').split(',');
             if (values[0] == "unloaded") {
+                var original_name = jQuery_element.html();
+                jQuery_element.html('(読み込み中…)');
                 $.ajax({
                     url: '/load_personal_name',
                     type: 'POST',
                     datatype: 'JSON',
                     data : {'id': values[1]},
-                }).done(function(data) {
-                    //通信成功時の処理
+                })
+                // 通信成功時の処理
+                .done( function(data) {
                     if (data != '') {
-                        element.replaceWith('<div class="ajax_name" value="">' + data + '</div>');
+                        original_name = data;
                     }
-                    element.attr('value', 'loaded,' + values[1]);
+                    jQuery_element.attr('value', 'loaded');
+                })
+                // 通信終了時の処理
+                .always( function(data) {
+                    jQuery_element.html(original_name);
                 })
             }
         }
