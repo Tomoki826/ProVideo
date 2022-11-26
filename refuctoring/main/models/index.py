@@ -76,6 +76,7 @@ def search():
 def load_provider():
        id = request.form.get("id")
        data_type = request.form.get("data_type")
+       if data_type == 'tv-sensitive': data_type = 'tv'
        provider_search = TMDB(api_key).get_provider_info(id, data_type)
        if 'results' in provider_search:
               data = provider_search['results'].get('JP', {})
