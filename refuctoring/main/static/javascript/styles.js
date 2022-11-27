@@ -1,22 +1,29 @@
 // ロード完了時の処理
 $( function() {
-    // 文字数が多すぎたらスライド表示する
+    // 文字数が多すぎたら省略する
     $(".description").each( function(index, element){
-        var element_length = $(element).width();
         // 作品名を調節
-        var title = $(element).find('.title');
-        if (title.width() > element_length) {
-            title.css('width', element_length);
-            title.wrapInner('<abbr title="' + title.html() + '"></abbr>');
-        }
+        var $title = $(element).find('.title');
+        text_shorten($title, $title.children(), 360);
         // ジャンルを調節
-        var genre = $(element).find('.genre');
-        if (genre.width() > element_length) {
-            genre.css('width', element_length);
-            genre.wrapInner('<abbr title="' + genre.html() + '"></abbr>');
-        }
+        var $genre = $(element).find('.genre');
+        text_shorten($genre, $genre.children(), 360);
     });
 });
+
+// テキストを短くする
+function text_shorten($block_box, $inline_box, max_length) {
+    if ($inline_box.width() > max_length) {
+        var text = $inline_box.html();
+        $block_box.css('position', 'absolute');
+        $inline_box.wrap('<abbr title="' + text + '">');
+        $block_box.wrap('<div class="slide-box">');
+        while ($inline_box.width() > max_length) {
+            text = text.slice(0, -1);
+            $inline_box.html(text + "…");
+        }
+    }
+}
 
 // 画像のリンク切れで代替の画像を表示
 $('.poster img').on('error', function() {
@@ -88,7 +95,9 @@ function replaceProviderInfo(element, data) {
     else {
         element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
     }
+    // 読み込み完了後 スライドインする
     element.find('img').css('animation', 'fadein-right 0.5s ease-out forwards');
+    setTimeout(function(){element.find('img').css('animation', '')}, 500);
 }
 
 // 非同期通信で日本語の人物名を取得
@@ -111,6 +120,7 @@ $(function() {
                         original_name = data;
                     }
                     jQuery_element.attr('value', 'loaded');
+                    // 読み込み完了後 スライドインする
                     jQuery_element.css('animation', 'fadein-right 0.5s ease-out forwards');
                 })
                 // 通信終了時の処理
@@ -120,4 +130,14 @@ $(function() {
             }
         }
     });
+})
+
+// 作品画像をクリックして検索する
+$('.videos-btn').on('click', function() {
+    var query = {
+        "page": "1",
+        "keywords": $(this).attr('value'),
+        "search_type": "3",
+    };
+    window.location.href = "/search?" + $.param(query);
 })

@@ -2,6 +2,7 @@
 {% for item in data %}
 <div class="videos_container">
     {% if item['is_video'] == false %}
+    <!-- 人物名 -->
         <div class="leftside">
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
@@ -30,7 +31,9 @@
                 <div class="videos">
                     {% if item['known_for'] | length > 0 %}
                         {% for item2 in item['known_for'] %}
-                            <abbr title="{{item2['title']}}"><img src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false"></abbr>
+                            <abbr title="{{item2['title']}}">
+                                <img class="videos-btn" value="{{item2['title']}}" src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false">
+                            </abbr>
                         {% endfor %}
                     {% else %}
                         <abbr title="情報なし">
@@ -41,6 +44,7 @@
             </div>
         </div>
     {% else %}
+    <!-- 作品名 -->
         <div class="leftside">
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
@@ -53,13 +57,11 @@
         <div class="description">
             <div class="name">
                 <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
-                <div class="title">{{item['title']}}</div>
-                <div class="title-space"></div>
+                <div class="title"><span>{{item['title']}}</span></div>
             </div>
             <div class="details">
                 <div class="openday">{{item['openday']}}</div>
-                <div class="genre">{{item['genre']}}</div>
-                <div class="genre-space"></div>
+                <div class="genre"><span>{{item['genre']}}</span></div>
             </div>
             <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                 <div class="subscription">
