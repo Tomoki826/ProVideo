@@ -1,10 +1,10 @@
-#page_container {
+.page_container {
     background-color: #FFFFFF;
     border-bottom: 3px solid #E7E7E7;
-    max-width: 1800px;
-    width: 95%;
+    max-width: 1790px;
+    width: 100%;
     margin: 0 auto;
-    #page_line {
+    .page_line {
         display: table;
         margin: 0 auto;
         padding: 10px 0;
@@ -29,7 +29,7 @@
                 }
             }
         }
-        #current_page {
+        .current_page {
             font-size: 17px;
             border-radius: 50%;
             background-color: #EEDA29;

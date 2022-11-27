@@ -25,7 +25,7 @@ header {
     border-bottom: 3px solid #E7E7E7;
     #title_content {
         display: table;
-        #title_logo {
+        .title_logo {
             width: 200px;
             display: table-cell;
             vertical-align: middle;
@@ -42,5 +42,8 @@ header {
 }
 abbr {
     cursor: pointer;
+    text-decoration: none;
+}
+a {
     text-decoration: none;
 }

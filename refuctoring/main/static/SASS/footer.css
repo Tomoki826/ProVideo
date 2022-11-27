@@ -6,12 +6,12 @@
   border-top: 3px solid #E7E7E7;
   margin-top: 10px;
 }
-#foot_search #title_logo {
+#foot_search .title_logo {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
 }
-#foot_search #title_logo img {
+#foot_search .title_logo img {
   width: 200px;
 }
 

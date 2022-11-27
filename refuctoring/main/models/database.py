@@ -22,5 +22,5 @@ class Records(db.Model):
     __tablename__ = 'Records'
     # ID番号
     id = db.Column(db.Integer, primary_key=True)
-    # 映画ID
+    # 作品・人物ID
     movie_id = db.Column(db.Integer)

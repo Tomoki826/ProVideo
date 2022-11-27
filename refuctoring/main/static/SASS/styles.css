@@ -31,7 +31,7 @@ header {
 header #title_content {
   display: table;
 }
-header #title_content #title_logo {
+header #title_content .title_logo {
   width: 200px;
   display: table-cell;
   vertical-align: middle;
@@ -47,5 +47,9 @@ header #title_content #title_descript {
 
 abbr {
   cursor: pointer;
+  text-decoration: none;
+}
+
+a {
   text-decoration: none;
 }/*# sourceMappingURL=styles.css.map */
