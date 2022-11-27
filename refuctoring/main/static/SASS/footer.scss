@@ -1,0 +1,76 @@
+#foot_search {
+    display: table;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 12px 0 5px 0;
+    border-top: 3px solid #E7E7E7;
+    margin-top: 10px;
+    #title_logo {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        img {
+            width: 200px;
+        }
+    }
+}
+#footer {
+    background-color: #000000;
+    #api_caution {
+        display: table;
+        margin: 0 auto;
+        border-collapse: separate;
+        border-spacing: 20px 0;
+        margin-top: 25px;
+        margin-bottom: 17px;
+        #TMDB {
+            display: table-cell;
+            width: 190px;
+        }
+        #JustWatch {
+            display: table-cell;
+            img {
+                width: 200px;
+            }
+        }
+        #text {
+            display: table-cell;
+            color: #FFFFFF;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+    }
+    #site_introduction {
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
+        color: #FFFFFF;
+    }
+    #foot_navigation {
+        text-align: center;
+        padding: 0;
+        margin: 16px 0;
+        ul {
+            padding: 0;
+        }
+        li {
+            display: inline-block;
+            list-style: none;
+            margin: 0 5px;
+        }
+        a {
+            text-decoration: none;
+            &:link {
+                color: #40B6F9;
+            }
+            &:visited {
+                color: #8728f3;
+            }
+        }
+    }
+    #copyright {
+        text-align: center;
+        color: #FFFFFF;
+        margin-bottom: 15px;
+    }
+}

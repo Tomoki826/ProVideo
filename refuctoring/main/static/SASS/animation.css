@@ -1,0 +1,25 @@
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #7d7d7d;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  -webkit-animation: spin 0.5s linear 0s infinite;
+          animation: spin 0.5s linear 0s infinite;
+}/*# sourceMappingURL=animation.css.map */
