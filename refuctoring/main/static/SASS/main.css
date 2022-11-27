@@ -105,7 +105,11 @@ main {
   overflow: hidden;
   white-space: nowrap;
 }
+.contents_container .videos_container .description .name .title-space {
+  height: 30px;
+}
 .contents_container .videos_container .description .name .ajax_name {
+  height: 30px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -117,6 +121,9 @@ main {
   position: absolute;
   overflow: hidden;
   white-space: nowrap;
+}
+.contents_container .videos_container .description .details .genre-space {
+  height: 21px;
 }
 .contents_container .videos_container .description .ajax_providers .heading {
   font-size: 10px;

@@ -101,7 +101,11 @@ main {
                     overflow: hidden;
                     white-space: nowrap;
                 }
+                .title-space {
+                    height: 30px;
+                }
                 .ajax_name {
+                    height: 30px;
                     font-size: 20px;
                     font-weight: bold;
                 }
@@ -113,6 +117,9 @@ main {
                     position: absolute;
                     overflow: hidden;
                     white-space: nowrap;
+                }
+                .genre-space {
+                    height: 21px;
                 }
             }
             .ajax_providers {

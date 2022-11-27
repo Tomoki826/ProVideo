@@ -5,14 +5,12 @@ $( function() {
         var element_length = $(element).width();
         // 作品名を調節
         var title = $(element).find('.title');
-        $(element).find('.name').next().css('margin-top', title.height());
         if (title.width() > element_length) {
             title.css('width', element_length);
             title.wrapInner('<abbr title="' + title.html() + '"></abbr>');
         }
         // ジャンルを調節
         var genre = $(element).find('.genre');
-        $(element).find('.details').next().css('margin-top', genre.height());
         if (genre.width() > element_length) {
             genre.css('width', element_length);
             genre.wrapInner('<abbr title="' + genre.html() + '"></abbr>');
@@ -90,6 +88,7 @@ function replaceProviderInfo(element, data) {
     else {
         element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
     }
+    element.find('img').css('animation', 'fadein-right 0.5s ease-out forwards');
 }
 
 // 非同期通信で日本語の人物名を取得
@@ -99,8 +98,7 @@ $(function() {
             var jQuery_element = $(this);
             var values = jQuery_element.attr('value').split(',');
             if (values[0] == "unloaded") {
-                var original_name = jQuery_element.html();
-                jQuery_element.html('(読み込み中…)');
+                var original_name = values[2];
                 $.ajax({
                     url: '/load_personal_name',
                     type: 'POST',
@@ -113,6 +111,7 @@ $(function() {
                         original_name = data;
                     }
                     jQuery_element.attr('value', 'loaded');
+                    jQuery_element.css('animation', 'fadein-right 0.5s ease-out forwards');
                 })
                 // 通信終了時の処理
                 .always( function(data) {

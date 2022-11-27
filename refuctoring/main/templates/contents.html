@@ -17,7 +17,11 @@
                 {% if item['JP_name'] == true %}
                     <div class="ajax_name" value="loaded">{{item['title']}}</div>
                 {% else %}
-                    <div class="ajax_name" value="unloaded,{{item['id']}}">{{item['title']}}</div>
+                    <div class="ajax_name ball-pulse" value="unloaded,{{item['id']}},{{item['title']}}">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 {% endif %}
             </div>
             <div class="details">{{item['department']}}<br/>{{item['gender']}}</div>
@@ -50,10 +54,12 @@
             <div class="name">
                 <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
                 <div class="title">{{item['title']}}</div>
+                <div class="title-space"></div>
             </div>
             <div class="details">
                 <div class="openday">{{item['openday']}}</div>
                 <div class="genre">{{item['genre']}}</div>
+                <div class="genre-space"></div>
             </div>
             <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                 <div class="subscription">

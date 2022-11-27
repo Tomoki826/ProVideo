@@ -1,15 +1,13 @@
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #FFFFFF;
   border-bottom: 3px solid #E7E7E7;
   flex-wrap: wrap;
 }
-header > * {
-  margin: 0 30px;
-}
 header #title_content {
   display: table;
+  margin-left: 30px;
 }
 header #title_content .title_logo {
   width: 200px;
@@ -17,17 +15,11 @@ header #title_content .title_logo {
   vertical-align: middle;
   padding: 15px 12px 0px 0px;
 }
-header #title_content #title_descript {
-  display: table-cell;
-  vertical-align: middle;
-  color: #000000;
-  font-size: 15px;
-  padding-top: 5px;
-}
 header #contents-bar ul {
   display: flex;
   align-items: center;
   padding: 0;
+  margin-right: 30px;
 }
 header #contents-bar ul li {
   cursor: pointer;
