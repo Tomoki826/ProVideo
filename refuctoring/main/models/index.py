@@ -4,7 +4,7 @@ from main.models.config import SENSITIVE_SEARCH
 from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.search_data import Search_Data
-from main.models.kanji import KANA_WORDS, KANJI_WORDS, ENG_WORDS, Japanese_check
+from main.models.kanji import Japanese_check
 
 # ホームページ
 @app.route("/", methods=["GET", "POST"])

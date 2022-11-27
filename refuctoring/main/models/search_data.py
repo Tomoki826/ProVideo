@@ -151,14 +151,14 @@ class Search_Data:
                             data['known_videos'] = "主な作品"
                             data['department'] = "職業: エフェクト・CGクリエイター"
                      case "Directing":
-                            data['known_videos'] = "主な監督作品"
+                            data['known_videos'] = "主な作品"
                             data['department'] = "職業: ディレクター・監督"
                      case "Sound":
                             data['known_videos'] = "主な作品"
                             data['department'] = "職業: ミュージシャン"
                      case "Writing":
-                            data['known_videos'] = "主な脚本作品"
-                            data['department'] = "職業: 脚本家"
+                            data['known_videos'] = "主な作品"
+                            data['department'] = "職業: 作家・ライター"
                      case "Editing":
                             data['known_videos'] = "主な作品"
                             data['department'] = "職業: 映像クリエイター"

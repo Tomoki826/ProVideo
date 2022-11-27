@@ -10,22 +10,27 @@ SECOND_KANJI = "丐丕丗个丱丶丼丿乂乕乖乘乢亂亅亊于亞亟亠亢�
 ADDITIONAL_KANJI = "﨑"
 
 # 日本語なのか判別
-KANA_WORDS  = re.compile(f'[！？ーぁ-ヶァ-ヶｦ-ﾟ]+')
-KANJI_WORDS = re.compile(f'[{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
-ENG_WORDS   = re.compile(f'[A-Za-z]+')
+KANJI_SPACE_WORDS   = re.compile(f'[ {FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
+KANJI_KANA_WORDS    = re.compile(f'[ ！？ーぁ-ヶァ-ヶｦ-ﾟ0-9{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
+KANJI_WORDS         = re.compile(f'[{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
+KANA_WORDS          = re.compile(f'[！？ーぁ-ヶァ-ヶｦ-ﾟ]+')
 
 # リストから日本語を抽出
-# 名前のリストのうち、「漢字のみ、漢字＋ひらがな・カタカナ」を優先検索
 def Japanese_check(li):
-    text = ''
+    # 漢字のみ
+    for item in li:
+        if KANJI_SPACE_WORDS.fullmatch(item.strip()) != None:
+            return item.strip()
+    # 漢字＋ひらがな・カタカナ・数字・記号のみ
+    for item in li:
+        if KANJI_KANA_WORDS.fullmatch(item.strip()) != None:
+            return item.strip()
+    # 漢字を１文字以上含む
     for item in li:
         if KANJI_WORDS.search(item.strip()) != None:
-            text = item.strip()
-            if ENG_WORDS.search(item.strip()) != None:
-                continue
-            else:
-                break
-        elif KANA_WORDS.search(item.strip()) != None:
-            text = item.strip()
-            continue
-    return text
+            return item.strip()
+    # ひらがな・カタカナ・記号を１文字以上含む
+    for item in li:
+        if KANA_WORDS.search(item.strip()) != None:
+            return item.strip()
+    return ''
