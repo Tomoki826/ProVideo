@@ -1,4 +1,5 @@
 <header>
+<div>
 <div id="title_content">
     <div class="title_logo">
         <a href="{{ url_for('index') }}">
@@ -9,6 +10,14 @@
         オンデマンド配信 探索ツール
     </div>
 </div>
-<nav>
+</div>
+<nav id="contents-bar">
+    <ul>
+    <li><a class="contents-bar-link yellow" href="/">トップ</a></li>
+    <li><a class="contents-bar-link yellow" href="/trend">トレンド</a></li>
+
+    <li><a class="contents-bar-link yellow" href="/mypage">マイページ</a></li>
+    <li><a class="contents-bar-link blue" href="/login">ログイン</a></li>
+    </ul>
 </nav>
 </header>

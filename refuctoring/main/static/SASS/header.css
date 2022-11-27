@@ -1,0 +1,55 @@
+header {
+  display: flex;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-bottom: 3px solid #E7E7E7;
+  flex-wrap: wrap;
+}
+header > * {
+  margin: 0 30px;
+}
+header #title_content {
+  display: table;
+}
+header #title_content .title_logo {
+  width: 200px;
+  display: table-cell;
+  vertical-align: middle;
+  padding: 15px 12px 0px 0px;
+}
+header #title_content #title_descript {
+  display: table-cell;
+  vertical-align: middle;
+  color: #000000;
+  font-size: 15px;
+  padding-top: 5px;
+}
+header #contents-bar ul {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+header #contents-bar ul li {
+  cursor: pointer;
+  list-style: none;
+}
+header #contents-bar ul li a {
+  display: block;
+  color: inherit;
+  font-size: 15px;
+  margin: 0 10px;
+  padding: 7px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 3px 0 #AFAFAF;
+}
+header #contents-bar ul li a.yellow {
+  color: #000000;
+  background-color: #EEDA29;
+}
+header #contents-bar ul li a.blue {
+  color: #FFFFFF;
+  background-color: #238FDD;
+}
+header #contents-bar ul li a:hover {
+  opacity: 0.6;
+}/*# sourceMappingURL=header.css.map */

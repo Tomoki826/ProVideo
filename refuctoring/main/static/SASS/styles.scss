@@ -15,31 +15,6 @@ body {
     margin: 0;
     padding: 0;
 }
-main {
-    flex: 1;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: #FFFFFF;
-    border-bottom: 3px solid #E7E7E7;
-    #title_content {
-        display: table;
-        .title_logo {
-            width: 200px;
-            display: table-cell;
-            vertical-align: middle;
-            padding: 10px 12px 3px 20px;
-        }
-        #title_descript {
-            display: table-cell;
-            vertical-align: middle;
-            color: #000000;
-            font-size: 15px;
-            padding-top: 5px;
-        }
-    }
-}
 abbr {
     cursor: pointer;
     text-decoration: none;

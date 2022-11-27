@@ -14,6 +14,7 @@ class TMDB:
     def _json_by_get_request(self, url, params={}):
         params['language'] = self.language
         params['region'] = self.region
+        print(url, params)
         res = requests.get(url, headers=self.headers_, params=params)
         return json.loads(res.text)
     
@@ -55,13 +56,23 @@ class TMDB:
 
     # 注目の映画を取得
     def discover_movie(self, page):
-        params = {'page': page}
+        params = {
+            'page': page,
+            'watch_region': 'JP',
+            'with_release_type': 4,
+            'with_watch_monetization_types': 'flatrate',
+        }
         url = f'{self.base_url_}discover/movie'
         return self._json_by_get_request(url, params)
     
     # 注目のテレビ・配信番組を取得
     def discover_tvshows(self, page):
-        params = {'page': page}
+        params = {
+            'page': page,
+            'watch_region': 'JP',
+            'with_release_type': 4,
+            'with_watch_monetization_types': 'flatrate',
+        }
         url = f'{self.base_url_}discover/tv'
         return self._json_by_get_request(url, params)
     
