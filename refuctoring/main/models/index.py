@@ -4,7 +4,7 @@ from main.models.config import SENSITIVE_SEARCH
 from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.search_data import Search_Data
-from main.models.kanji import JP_WORDS, EN_WORDS
+from main.models.kanji import KANA_WORDS, KANJI_WORDS, ENG_WORDS, Japanese_check
 
 # ホームページ
 @app.route("/", methods=["GET", "POST"])
@@ -90,10 +90,7 @@ def load_provider():
 def load_personal_name():
        id = request.form.get("id")
        soup = TMDB(api_key).person_id(int(id))
-       data = ''
        if 'also_known_as' in soup:
-              for item in soup['also_known_as']:
-                     if JP_WORDS.fullmatch(item.strip()) != None and EN_WORDS.fullmatch(item.strip()) == None:
-                            data = item.strip()
-                            break
-       return data
+              return Japanese_check(soup['also_known_as'])
+       else:
+              return ''

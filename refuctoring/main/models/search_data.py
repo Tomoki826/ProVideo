@@ -3,7 +3,7 @@ from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.genre import Genre
 from main.models.config import SENSITIVE_SEARCH
-from main.models.kanji import JP_WORDS, EN_WORDS
+from main.models.kanji import Japanese_check
 import re, datetime
 
 # 検索情報をフォーマットする
@@ -127,10 +127,11 @@ class Search_Data:
               data = {}
               # 名前
               data['title'] = item['name'].strip()
-              if JP_WORDS.fullmatch(data['title']) != None and EN_WORDS.fullmatch(data['title']) == None:
+              if Japanese_check([item['name'].strip()]) != '':
                      data['JP_name'] = True
               else:
                      data['JP_name'] = False
+              #id
               data['id'] = item['id']
               # 職業
               match item.get('known_for_department'):

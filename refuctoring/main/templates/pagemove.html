@@ -14,7 +14,7 @@
             {% if i == data['current_page'] %}
                 <div class="current_page">{{ i }}</div>
             {% else %}
-                <div class="pages"><button name="page" type="hidden" value="{{ i }}">{{ i }}</button></div>
+                <div class="pages"><button name="page" type="submit" value="{{ i }}">{{ i }}</button></div>
             {% endif %}
         {% endfor %}
         {% endwith %}
@@ -26,37 +26,37 @@
                 {% if i == data['current_page'] %}
                     <div class="current_page">{{ i }}</div>
                 {% else %}
-                    <div class="pages"><button name="page" type="hidden" value="{{ i }}">{{ i }}</button></div>
+                    <div class="pages"><button name="page" type="submit" value="{{ i }}">{{ i }}</button></div>
                 {% endif %}
             {% endfor %}
             <div class="dots">…</div>
-            <div class="pages"><button name="page" type="hidden" value="{{ data['max_page'] }}">{{ data['max_page'] }}</button></div>
+            <div class="pages"><button name="page" type="submit" value="{{ data['max_page'] }}">{{ data['max_page'] }}</button></div>
         {% elif page_value <= data['current_page'] %}
-            <div class="pages"><button name="page" type="hidden" value="1">1</button></div>
+            <div class="pages"><button name="page" type="submit" value="1">1</button></div>
             <div class="dots">…</div>
             {% for i in range(7) %}
                 {% with page_value2 = data['max_page'] + i - 6 %}
                     {% if page_value2 == data['current_page'] %}
                         <div class="current_page">{{ page_value2 }}</div>
                     {% else %}
-                        <div class="pages"><button name="page" type="hidden" value="{{ page_value2 }}">{{ page_value2 }}</button></div>
+                        <div class="pages"><button name="page" type="submit" value="{{ page_value2 }}">{{ page_value2 }}</button></div>
                     {% endif %}
                 {% endwith %}
             {% endfor %}        
         {% else %}
-            <div class="pages"><button name="page" type="hidden" value="1">1</button></div>
+            <div class="pages"><button name="page" type="submit" value="1">1</button></div>
             <div class="dots">…</div>
             {% for i in range(5) %}
                 {% with page_value2 = data['current_page'] + i - 2 %}
                     {% if page_value2 == data['current_page'] %}
                         <div class="current_page">{{ page_value2 }}</div>
                     {% else %}
-                        <div class="pages"><button name="page" type="hidden" value="{{ page_value2 }}">{{ page_value2 }}</button></div>
+                        <div class="pages"><button name="page" type="submit" value="{{ page_value2 }}">{{ page_value2 }}</button></div>
                     {% endif %}
                 {% endwith %}
             {% endfor %}
             <div class="dots">…</div>
-            <div class="pages"><button name="page" type="hidden" value="{{ data['max_page'] }}">{{ data['max_page'] }}</button></div>
+            <div class="pages"><button name="page" type="submit" value="{{ data['max_page'] }}">{{ data['max_page'] }}</button></div>
         {% endif %}
         {% endwith %}
     {% endif %}
