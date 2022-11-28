@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+お気に入り
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+<div class="search_title">お気に入り一覧 (追加順 全20件)</div>
+
+<!--映画情報-->
+<div class="contents_container">
+    {% with data = data['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+
+</main>
+
+{% endblock %}

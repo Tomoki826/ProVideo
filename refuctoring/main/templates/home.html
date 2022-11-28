@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ホーム
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+<div class="search_title">世界で話題の映画 (配信中 全20件)</div>
+
+<!--映画情報-->
+<div class="contents_container">
+    {% with data = data['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+
+<div class="search_title">世界で話題のテレビ・配信番組 (配信中 全20件)</div>
+
+<!--テレビ・配信情報-->
+<div class="contents_container">
+    {% with data = data2['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+</main>
+
+{% endblock %}
