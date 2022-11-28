@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-ホーム
+お気に入り
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
 
 <!--コンテンツ部分-->
 <main>
-<div class="search_title">世界で話題の映画 (配信中 全20件)</div>
+<div class="search_title">お気に入り一覧 (追加順 全20件)</div>
 
 <!--映画情報-->
 <div class="contents_container">
@@ -22,14 +22,6 @@
     {% endwith %}
 </div>
 
-<div class="search_title">世界で話題のテレビ・配信番組 (配信中 全20件)</div>
-
-<!--テレビ・配信情報-->
-<div class="contents_container">
-    {% with data = data2['results'] %}
-    {% include "contents.html" %}
-    {% endwith %}
-</div>
 </main>
 
 {% endblock %}

@@ -1,8 +1,6 @@
 // Ajaxでお気に入り更新
 $(function() {
     $('#favorite-heart img').on('click', function() {
-
-        var element  = $(this);
         var movie_id = element.parent().val();
         var status   = element.attr('class');
         if (status != "need-login") {

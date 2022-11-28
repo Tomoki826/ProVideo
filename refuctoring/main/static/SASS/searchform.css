@@ -53,5 +53,5 @@
   box-shadow: 0 0 3px 0 #afafaf;
 }
 .search_option #button:hover {
-  background-color: #54d9d9;
+  opacity: 0.6;
 }/*# sourceMappingURL=searchform.css.map */
