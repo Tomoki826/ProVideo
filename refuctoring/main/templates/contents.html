@@ -49,7 +49,7 @@
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
             </div>
-            <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}}">
+            <div class="favorite" value="unliked,{{item['data_type']}},{{item['id']}}">
                 {% include "heart_icon.html" %}
                 <div class="heading">お気に入り</div>
             </div>

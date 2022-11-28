@@ -94,4 +94,34 @@
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   display: inline-block;
+}
+
+@-webkit-keyframes heart-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes heart-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }/*# sourceMappingURL=animation.css.map */

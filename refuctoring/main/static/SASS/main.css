@@ -53,6 +53,7 @@ main {
   border: 0.5px solid #E7E7E7;
 }
 .contents_container .videos_container .leftside .favorite {
+  position: relative;
   cursor: pointer;
   display: table;
   margin: 0 auto;
@@ -71,13 +72,16 @@ main {
   vertical-align: middle;
 }
 .contents_container .videos_container .leftside .favorite .heart-icon {
+  position: absolute;
   fill: #E1E1E1;
   width: 18px;
   height: 20px;
 }
 .contents_container .videos_container .leftside .favorite .heading {
+  display: block;
   color: #E1E1E1;
   padding-top: 1px;
+  margin-left: 22px;
   font-size: 13px;
   height: 0;
 }

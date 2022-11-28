@@ -17,12 +17,6 @@ $(function() {
             $(element).find(".heading").css('color', '#FFFFFF');
         }
     });
-
-    // お気に入りクリックを確認する
-    $(".favorite").on('click', function(){
-        var values = $(this).attr('value').split(',');
-        console.log(values);
-    });
 });
 
 // テキストを短くする
