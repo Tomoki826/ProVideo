@@ -4,3 +4,6 @@
 
 # Flaskのセッションフォルダー
 flask_session/
+
+# pythonのキャッシュ
+.pyc
