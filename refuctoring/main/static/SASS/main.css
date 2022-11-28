@@ -86,7 +86,7 @@ main {
   height: 0;
 }
 .contents_container .videos_container .leftside .favorite:hover {
-  opacity: 0.6;
+  background-color: #4fd9d9;
 }
 .contents_container .videos_container .description {
   display: table-cell;
