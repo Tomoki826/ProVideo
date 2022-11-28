@@ -6,4 +6,4 @@
 flask_session/
 
 # pythonのキャッシュ
-.pyc
+__pycache__/
