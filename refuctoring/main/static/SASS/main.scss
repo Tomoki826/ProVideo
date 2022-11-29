@@ -7,6 +7,20 @@ main {
     font-weight: bold;
     padding: 13px 20px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .story_container {
+        display: table;
+        .story_header {
+            font-weight: bold;
+            padding-right: 8px;
+        }
+        & > * {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
 }
 .contents_container {
     display: flex;
