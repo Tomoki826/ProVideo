@@ -1,69 +1,37 @@
-.switch__label {
+.switch_label {
+  visibility: hidden;
+  cursor: pointer;
   width: 50px;
+  height: 31px;
   position: relative;
   display: inline-block;
 }
-
-.switch__content {
+.switch_label .switch_content {
   display: block;
-  cursor: pointer;
-  position: relative;
   border-radius: 30px;
-  height: 31px;
-  overflow: hidden;
+  height: 28px;
 }
-
-.switch__content:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: calc(100% - 3px);
-  height: calc(100% - 3px);
-  top: 0;
-  left: 0;
+.switch_label.off > .switch_content {
   border: 1.5px solid #E5E5EA;
-  border-radius: 30px;
   background-color: #d7d7d7;
 }
-
-.switch__content:after {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: transparent;
-  width: 0;
-  height: 0;
-  top: 50%;
-  left: 50%;
-  border-radius: 30px;
-  transition: all 0.3s;
+.switch_label.on > .switch_content {
+  border: 1.5px solid #00C4CC;
+  background-color: #00C4CC;
 }
-
-.switch__input {
-  display: none;
-}
-
-.switch__circle {
+.switch_label .switch_circle {
   display: block;
-  cursor: pointer;
-  top: 2px;
-  left: 2px;
   position: absolute;
   width: 27px;
   height: 27px;
+  top: 2px;
   border-radius: 20px;
   background-color: #fff;
   transition: all 0.3s;
 }
-
-.switch__input:checked ~ .switch__circle {
-  left: 21px;
+.switch_label.off > .switch_circle {
+  left: 2px;
 }
-
-.switch__input:checked ~ .switch__content:after {
-  background-color: #00c4cc;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.switch_label.on > .switch_circle {
+  left: 21px;
 }/*# sourceMappingURL=switch.css.map */

@@ -119,6 +119,11 @@ class Search_Data:
                                                  case _:
                                                         data['data_type'] = 'None'
                                                         data['media_type'] = '不明'
+              # あらすじ
+              if len(item.get('overview', '')) >= 1:
+                     data['overview'] = item.get('overview')
+              else:
+                     data['overview'] = "情報なし"
               return data           
 
 

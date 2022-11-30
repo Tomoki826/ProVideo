@@ -32,7 +32,7 @@ def index(search_type=int(Search.DISCOVER_MOVIE)):
        if 'errors' in soup2 or soup2['results'] == [] or soup2['total_results'] <= 0:
               return render_template("error.html")
        # 検索結果を表示
-       return render_template("home.html", data=data, data2=data2)
+       return render_template("home.html", data=data, data2=data2, soup=soup)
 
 
 # 作品を検索

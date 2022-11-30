@@ -14,7 +14,6 @@ class TMDB:
     def _json_by_get_request(self, url, params={}):
         params['language'] = self.language
         params['region'] = self.region
-        print(url, params)
         res = requests.get(url, headers=self.headers_, params=params)
         return json.loads(res.text)
     

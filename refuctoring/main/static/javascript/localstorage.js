@@ -1,5 +1,5 @@
 // localStorage関係の処理
-$(function() {
+$(document).ready(function() {
 
   // お気に入りの色を設定する
   $(".favorite").each(function(index, element) {
@@ -28,9 +28,79 @@ $(function() {
         clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
       }
   });
+
+  // オンオフボタンの初期色の設定
+  $(".switch_label").each(function(index, element) {
+    var $switch = $(this);
+    var key = $switch.attr("value");
+    if (getSingleData(key)) {
+      $switch.removeClass("off");
+      $switch.addClass("on");
+    }
+    else {
+      $switch.removeClass("on");
+      $switch.addClass("off");
+    }
+    $(element).css("visibility", "initial");
+  });
+
+  // オンオフボタンのクリック
+  $(".switch_label span").on('click', function(){
+    clickSingleButton(this);
+
+    var ori_key = $(this).parent().attr("value");
+    if (ori_key === "overview") {
+      $(".description").each(function(index, element){displayInfo(element)});
+    }
+
+    $(".switch_label").each(function(index, element){
+      var $switch = $(element);
+      var key = $switch.attr("value");
+      if (ori_key === key) {
+        if (getSingleData(key)) {
+          $switch.removeClass("off");
+          $switch.addClass("on");
+        }
+        else {
+          $switch.removeClass("on");
+          $switch.addClass("off");
+        }
+      }
+    });
+  });
+
+  // あらすじ・映画情報表示の切り替え
+  $(".description").each(function(index, element){displayInfo(element)});
+
 });
 
-// クリックごとにCSSのアニメーション
+// ボタン情報の切り替え
+function clickSingleButton(element) {
+    var $switch = $(element).parent();
+    var key = $switch.attr("value");
+    if ($switch.hasClass("on")) {
+      setSingleData(key, false);
+    }
+    else if ($switch.hasClass("off")) {
+      setSingleData(key, true);
+    }
+};
+
+// あらすじ・映画情報表示の切り替え
+function displayInfo(element) {
+  $overview = $(element).find(".overview");
+  $provider = $(element).find(".ajax_providers");
+  if (getSingleData("overview")) {
+    $overview.css("display", "inherit");
+    $provider.css("display", "none");
+  }
+  else {
+    $overview.css("display", "none");
+    $provider.css("display", "inherit");
+  }
+}
+
+// クリックごとにCSSを設定する
 function clickAnimation($element, key, value) {
   // アニメーションの設定
   $element.css(key, value);
@@ -51,6 +121,16 @@ function setHeartColor(element) {
       $(element).find(".heart-icon").css('fill', '#E1E1E1');
       $(element).find(".heading").css('color', '#E1E1E1');
   }
+}
+
+// 一つのデータを追加・上書き
+function setSingleData(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+// 一つのデータを取得
+function getSingleData(key) {
+  return JSON.parse(localStorage.getItem(key));
 }
 
 // 作品・人物情報を追加
