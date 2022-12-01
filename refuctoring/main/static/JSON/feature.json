@@ -1,0 +1,32 @@
+{
+    "feature": [
+        {
+            "title": "新海誠から目が離せない！",
+            "picture": "/test.png",
+            "path": "/sinkai_movies",
+            "contents": {
+                "title": "新海誠から目が離せない！",
+                "picture": "/test.png",
+                "containers" : [
+                    {
+                        "type": "pv",
+                        "path": "https://www.youtube.com/embed/gN0DF_IU6PQ"
+                    },
+                    {
+                        "type": "text",
+                        "title": "アニメ界の新風 新海誠",
+                        "text": "「君の名は。」で社会現象を巻き起こしたアニメーター兼監督の新海誠。映画「すずめの戸締まり」は現在公開中"
+                    },
+                    {
+                        "type": "movie",
+                        "id": "000000"
+                    },
+                    {
+                        "type": "person",
+                        "id": "000000"
+                    }
+                ]
+            }
+        }
+    ]
+}

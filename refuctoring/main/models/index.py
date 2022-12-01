@@ -7,7 +7,7 @@ from main.models.search_data import Search_Data
 from main.models.kanji import Japanese_check
 
 # ホームページ
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index(search_type=int(Search.DISCOVER_MOVIE)):
        # 話題の映画を取得
        page = 1
@@ -69,6 +69,11 @@ def search():
        data = soup
        data = Search_Data(search_type, page, data, keywords).arrange()
        return render_template("index.html", data=data, soup=soup, error=False)
+
+# 特集ページを取得
+@app.route("/feature", methods=["GET"])
+def feature():
+       pass
 
 # お気に入り情報を取得
 @app.route('/favorite', methods=["GET"])

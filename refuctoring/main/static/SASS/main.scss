@@ -230,4 +230,17 @@ main {
             }
         }
     }
+    .pv_container {
+        display: table;
+        width: 590px;
+        height: 343px;
+        margin: 0 5px 10px 5px;
+        iframe {
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+            border-radius: 10px;
+        }
+    }
 }
