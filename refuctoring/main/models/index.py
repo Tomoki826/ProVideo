@@ -5,10 +5,13 @@ from main.models.TMDB import TMDB
 from main.models.enum import Search
 from main.models.search_data import Search_Data
 from main.models.kanji import Japanese_check
+from main.models.json import JSON
 
 # ホームページ
 @app.route("/", methods=["GET"])
 def index(search_type=int(Search.DISCOVER_MOVIE)):
+       # 特集ページを取得
+       feature = JSON()
        # 話題の映画を取得
        page = 1
        soup = TMDB(api_key).discover_movie(page)
@@ -32,7 +35,7 @@ def index(search_type=int(Search.DISCOVER_MOVIE)):
        if 'errors' in soup2 or soup2['results'] == [] or soup2['total_results'] <= 0:
               return render_template("error.html")
        # 検索結果を表示
-       return render_template("home.html", data=data, data2=data2, soup=soup)
+       return render_template("home.html", feature=feature, data=data, data2=data2)
 
 
 # 作品を検索

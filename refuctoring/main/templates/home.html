@@ -16,6 +16,11 @@
 <div class="search_title">
     特集ページ
 </div>
+<div class="feature_block">
+    {% with data = feature['feature'] %}
+    {% include "feature_intro.html" %}
+    {% endwith %}
+</div>
 
 <div class="contents_container">
     <div class="pv_container">
