@@ -87,3 +87,13 @@ class TMDB:
         elif data_type == "tv":
             return self._json_by_get_request(f'{self.base_url_}tv/{id}/watch/providers')
         return {}
+    
+    # 作品の詳細情報を取得
+    def get_detail_info(self, id, data_type):
+        if data_type == "movie":
+            return self._json_by_get_request(f'{self.base_url_}movie/{id}')
+        elif data_type == "tv":
+            return self._json_by_get_request(f'{self.base_url_}tv/{id}')
+        elif data_type == "person":
+            return self._json_by_get_request(f'{self.base_url_}person/{id}')
+        return {}

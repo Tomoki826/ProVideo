@@ -52,6 +52,6 @@
   border-radius: 8px;
   box-shadow: 0 0 3px 0 #afafaf;
 }
-.search_option #button:hover {
+.search_option #button:active {
   opacity: 0.6;
 }/*# sourceMappingURL=searchform.css.map */

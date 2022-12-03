@@ -11,13 +11,12 @@ from main.models.json import JSON
 @app.route("/", methods=["GET"])
 def index(search_type=int(Search.DISCOVER_MOVIE)):
        # 特集ページを取得
-       feature = JSON()
+       feature = JSON('./main/static/JSON/feature.json').get_json()
        # 話題の映画を取得
        page = 1
        soup = TMDB(api_key).discover_movie(page)
        # 検索結果の整理
-       data = soup
-       data = Search_Data(Search.DISCOVER_MOVIE, page, data).arrange()
+       data = Search_Data(soup).search_arrange(Search.DISCOVER_MOVIE, page)
        data['max_page'] = 1
        data['total_results'] = min(20, data['total_results'])
        # 検索エラーチェック
@@ -27,8 +26,7 @@ def index(search_type=int(Search.DISCOVER_MOVIE)):
        page = 1
        soup2 = TMDB(api_key).discover_tvshows(page)
        # 検索結果の整理
-       data2 = soup2
-       data2 = Search_Data(Search.DISCOVER_TV, page, data2).arrange()
+       data2 = Search_Data(soup2).search_arrange(Search.DISCOVER_TV, page)
        data2['max_page'] = 1
        data2['total_results'] = min(20, data2['total_results'])
        # 検索エラーチェック
@@ -69,14 +67,51 @@ def search():
               case Search.MULTI:
                      soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
        # 検索結果の整理
-       data = soup
-       data = Search_Data(search_type, page, data, keywords).arrange()
+       data = Search_Data(soup).search_arrange(search_type, page, keywords)
        return render_template("index.html", data=data, soup=soup, error=False)
 
 # 特集ページを取得
-@app.route("/feature", methods=["GET"])
-def feature():
-       pass
+@app.route("/feature/<string:path>", methods=["GET"])
+def feature(path):
+       # 特集ページを取得
+       feature_data = []
+       raw_data = JSON('./main/static/JSON/feature.json').get_json()
+       for item in raw_data['feature']:
+              if item['path'] == "/" + path:
+                     feature_data = item['contents']
+                     break
+       else:
+              return render_template("error.html")
+       # ヘッダーデータを整理
+       data = {
+              "title": feature_data['title'],
+              "picture": feature_data['picture'],
+              "position": feature_data['position'],
+              "containers": {}
+       }
+       # コンテンツデータを整理
+       soup = {'results': []}
+       for item in feature_data['containers']:
+              match item['data_type']:
+                     case "movie" | "tv":
+                            single_soup = TMDB(api_key).get_detail_info(item['id'], item['data_type'])
+                            # ジャンルを変換
+                            single_soup['genre_ids'] = []
+                            for item2 in single_soup['genres']:
+                                   single_soup['genre_ids'].append(item2['id'])
+                            single_soup.pop('genres')
+                     case "person":
+                            single_soup = TMDB(api_key).get_detail_info(item['id'], item['data_type'])
+                     case _:
+                            single_soup = item
+              # データタイプを代入
+              single_soup['media_type'] = item['data_type']
+              soup['results'].append(single_soup)
+       # コンテンツをフォーマット
+       data["containers"] = Search_Data(soup).search_arrange()
+       print(data)
+       return render_template("feature.html", data=data)
+
 
 # お気に入り情報を取得
 @app.route('/favorite', methods=["GET"])

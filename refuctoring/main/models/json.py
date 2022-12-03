@@ -1,9 +1,10 @@
 import json, os
 
 class JSON:
-    def __init__(self):
-        self.data = json.load(open('./main/static/JSON/feature.json', 'r', encoding='utf8'))
+    def __init__(self, filename):
+        with open(filename, 'r', encoding='utf8') as file:
+            self.data = json.load(file)
     
     # jsonデータを入手する
-    def json_get(self):
+    def get_json(self):
         return self.data

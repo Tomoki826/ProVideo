@@ -6,10 +6,10 @@ main {
     color: #FFFFFF;
     font-weight: bold;
     padding: 13px 20px;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 0;
     .story_container {
         display: table;
         .story_header {
@@ -93,8 +93,8 @@ main {
                     font-size: 13px;
                     height: 0;
                 }
-                &:hover {
-                    background-color: #4fd9d9;
+                &:active {
+                    opacity: 0.6;
                 }
             } 
         }
@@ -183,7 +183,7 @@ main {
                         box-sizing: border-box;
                         border-radius: 6px;
                         border: 0.5px solid #E7E7E7;
-                        &:hover {
+                        &:active {
                             opacity: 0.7;
                         }
                     }
@@ -222,7 +222,7 @@ main {
                         margin-top: 8px;
                         box-sizing: border-box;
                         border: 0.5px solid #E7E7E7;    
-                        &:hover {
+                        &:active {
                             opacity: 0.7;
                         }
                     }
@@ -241,6 +241,21 @@ main {
             height: 100%;
             vertical-align: middle;
             border-radius: 10px;
+        }
+    }
+    .text_container {
+        display: table;
+        width: 590px;
+        margin: 0 5px 10px 5px;
+        .text_title {
+            padding: 5px 10px 0 10px;
+            font-size: 24px;
+            margin: 5px 0 5px 0;
+            font-weight: bold;
+        }
+        p {
+            padding: 0px 5px;
+            margin: 16px 0 0 0;
         }
     }
 }

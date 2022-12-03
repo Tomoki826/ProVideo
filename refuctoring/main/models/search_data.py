@@ -10,13 +10,17 @@ import re, datetime
 class Search_Data:
 
        # 初期設定
-       def __init__(self, search_type, page, raw_data, keywords=''):
+       def __init__(self, raw_data):
               self.data = {}
               self.raw_data = raw_data
+
+       # 情報をフォーマット
+       def search_arrange(self, search_type=Search.MULTI, page=1, keywords=''):
               self.data['keywords'] = keywords
               self.data['current_page'] = page
-              self.data['max_page'] = (raw_data['total_results'] - 1) // 20 + 1
-              self.data['total_results'] = raw_data['total_results']
+              if self.raw_data.get('total_results'):
+                     self.data['max_page'] = (self.raw_data['total_results'] - 1) // 20 + 1
+                     self.data['total_results'] = self.raw_data['total_results']
               # 検索タイプ
               self.data['search_type'] = search_type
               if search_type == Search.MOVIES or search_type == Search.TVSHOWS or search_type == Search.MULTI or search_type == Search.PERSON:
@@ -25,12 +29,11 @@ class Search_Data:
                      self.data['search_type-btn'] = int(Search.MULTI)
               # 検索データの整理
               self.data['results'] = []
-
-       # 検索情報をフォーマット
-       def arrange(self):
               for item in self.raw_data['results']:
                      if self.data['search_type'] == Search.PERSON or item.get('media_type') == 'person':
                             data = self.__person_results_type(item)
+                     elif item.get('media_type') == 'text' or item.get('media_type') == 'pv':
+                            data = self.__feature_type(item)
                      else:
                             data = self.__video_type(item)
                      self.data['results'].append(data)
@@ -218,3 +221,12 @@ class Search_Data:
                      data['data_type'] = 'person'
                      data['media_type'] = '人物'
               return data
+
+       # その他のメディアタイプを修正
+       def __feature_type(self, item):
+              print(item)
+              item['data_type'] = item['media_type']
+              if item['media_type'] == "text":
+                     if item.get('title') == None:
+                            item['title'] = ""
+              return item

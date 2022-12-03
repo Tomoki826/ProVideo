@@ -1,8 +1,23 @@
 <!-- 作品情報を一覧表示 -->
 {% for item in data %}
-<div class="videos_container">
-    {% if item['is_video'] == false %}
+{% if item['data_type'] == "pv" %}
+    <!-- 埋め込み動画 -->
+    <div class="pv_container">
+        <iframe src={{ item['path'] }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+{% elif item['data_type'] == "text" %}
+    <!-- テキスト -->
+    <div class="text_container">
+        {% if item['title'] != '' %}
+            <div class="text_title" style="border-bottom: solid 3px {{ item['color'] }};">{{ item['title'] }}</div>
+        {% endif %}
+        {% for text in item['text'] %}
+            <p>{{ text }}</p>
+        {% endfor %}
+    </div>
+{% elif item['is_video'] == false %}
     <!-- 人物名 -->
+    <div class="videos_container">
         <div class="leftside">
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
@@ -43,8 +58,10 @@
                 </div>
             </div>
         </div>
-    {% else %}
+    </div>
+{% else %}
     <!-- 作品名 -->
+    <div class="videos_container">
         <div class="leftside">
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
@@ -82,6 +99,6 @@
                 <div class="text">{{item['overview']}}</div>
             </div>
         </div>
-    {% endif %}
-</div>
+    </div>
+{% endif %}
 {% endfor %}

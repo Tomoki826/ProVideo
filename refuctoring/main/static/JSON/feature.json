@@ -1,62 +1,46 @@
 {
-    "feature": [
-        {
-            "title": "新海誠から目が離せない！",
-            "picture": "/test.png",
-            "path": "/sinkaimakoto",
-            "date": "2022/12/2",
-            "contents": {
-                "title": "新海誠から目が離せない！",
-                "picture": "/test.png",
-                "containers" : [
-                    {
-                        "type": "pv",
-                        "path": "https://www.youtube.com/embed/gN0DF_IU6PQ"
-                    },
-                    {
-                        "type": "text",
-                        "title": "アニメ界の新風 新海誠",
-                        "text": "「君の名は。」で社会現象を巻き起こしたアニメーター兼監督の新海誠。映画「すずめの戸締まり」は現在公開中"
-                    },
-                    {
-                        "type": "movie",
-                        "id": "000000"
-                    },
-                    {
-                        "type": "person",
-                        "id": "000000"
-                    }
-                ]
-            }
-        },
-        {
-            "title": "アイスクリーム",
-            "picture": "/icecream.png",
-            "path": "/icecream",
-            "date": "2022/12/2",
-            "contents": {
-                "title": "アイスクリーム",
-                "picture": "/icecream.png",
-                "containers" : [
-                    {
-                        "type": "pv",
-                        "path": "https://www.youtube.com/embed/gN0DF_IU6PQ"
-                    },
-                    {
-                        "type": "text",
-                        "title": "アニメ界の新風 新海誠",
-                        "text": "「君の名は。」で社会現象を巻き起こしたアニメーター兼監督の新海誠。映画「すずめの戸締まり」は現在公開中"
-                    },
-                    {
-                        "type": "movie",
-                        "id": "000000"
-                    },
-                    {
-                        "type": "person",
-                        "id": "000000"
-                    }
-                ]
-            }
-        }
-    ]
-}
+"feature": [
+{
+"title": "新海誠から目が離せない！",
+"picture": "/ceYZCBfwbBwSpGJ6PapNVw5jqLG.jpg",
+"path": "/sinkaimakoto",
+"date": "2022/12/2",
+"contents": {
+"title": "新海誠から目が離せない！",
+"picture": "/ceYZCBfwbBwSpGJ6PapNVw5jqLG.jpg",
+"position": [0, 0],
+"containers" : [
+    {
+        "data_type": "pv",
+        "path": "https://www.youtube.com/embed/FVU0zESXS5c"
+    },
+    {
+        "data_type": "text",
+        "title": "新海誠の新たな決意",
+        "color": "#455586",
+        "text": [
+            "「君の名は。」「天気の子」「言の葉の庭」など数々の名作映画を産み出した新海誠監督の最新作「すずめの戸締まり」が劇場公開中だ。劇中で目を引くのは、東日本大震災を思い起こさせる廃墟の数々。この重い描写こそ、前2作に続く新海誠の“決意”があった。",
+            "新海「『君の名は。』に登場する“1000年に一度の彗星”も、地震のメタファーとして描いていました。『天気の子』で描いた“人の力ではどうすることもできない巨大な災害”というのも、直接的に震災を描いたわけではないにせよ、2011年を経験したから出てきたアイデアだったと思います。」",
+            "新海「あの震災があって、ものの考えかたも、世界の捉えかたも変わった。自分にとって二度目の出発点だったような気がします。」"
+        ]
+    },
+    {
+        "data_type": "movie",
+        "id": "916224"
+    },
+    {
+        "data_type": "person",
+        "id": "74091"
+    },
+    {
+        "data_type": "text",
+        "text": [
+            ""
+        ]
+    },
+    {
+        "data_type": "person",
+        "id": "3194176"
+    }
+]}
+}]}
