@@ -1,5 +1,15 @@
 # CS50 Final Project **Provideo**
 
+
+
+```diff
+- ※Provideoは現在開発中でREADMEを修正中…
+-   2022年12月17日(土)にデプロイ予定
+```
+
+
+
+
 ## 概要
 
 - プロジェクトタイトル: Provideo
