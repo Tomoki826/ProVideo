@@ -11,9 +11,9 @@ ADDITIONAL_KANJI = "﨑"
 
 # 日本語なのか判別
 KANJI_SPACE_WORDS   = re.compile(f'[ {FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
-KANJI_KANA_WORDS    = re.compile(f'[ ！？ーぁ-ヶァ-ヶｦ-ﾟ0-9{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
+KANJI_KANA_WORDS    = re.compile(f'[ ！？．、。ーぁ-ヶァ-ヶｦ-ﾟ0-9{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
 KANJI_WORDS         = re.compile(f'[{FIRST_KANJI}{SECOND_KANJI}{ADDITIONAL_KANJI}]+')
-KANA_WORDS          = re.compile(f'[！？ーぁ-ヶァ-ヶｦ-ﾟ]+')
+KANA_WORDS          = re.compile(f'[！？．、。ーぁ-ヶァ-ヶｦ-ﾟ]+')
 
 # リストから日本語を抽出
 def Japanese_check(li):
