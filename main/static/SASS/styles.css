@@ -6,7 +6,6 @@ html {
   user-select: none;
   font-family: "メイリオ", "Meiryo", sans-serif;
   font-size: 100%;
-  min-width: 600px;
   z-index: 0;
 }
 
@@ -25,6 +24,7 @@ abbr {
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
   width: -webkit-fit-content;
   width: -moz-fit-content;
