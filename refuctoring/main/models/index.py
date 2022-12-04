@@ -85,8 +85,11 @@ def feature(path):
        # ヘッダーデータを整理
        data = {
               "title": feature_data['title'],
-              "picture": feature_data['picture'],
-              "position": feature_data['position'],
+              "title-font": feature_data['title-font'],
+              "image": feature_data['image'],
+              "color": feature_data['color'],
+              "date": feature_data['date'],
+              "writer": feature_data['writer'],
               "containers": {}
        }
        # コンテンツデータを整理
@@ -94,18 +97,13 @@ def feature(path):
        for item in feature_data['containers']:
               match item['data_type']:
                      case "movie":
-                            single_soup = TMDB(api_key).search_movies(item['name'], 1)['results'][0]
-                            # ジャンルを変換
-                            #single_soup['genre_ids'] = []
-                            #for item2 in single_soup['genres']:
-                            #       single_soup['genre_ids'].append(item2['id'])
-                            #single_soup.pop('genres')
+                            single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
                      case "tv":
-                            single_soup = TMDB(api_key).search_tvshows(item['name'], 1)['results'][0]
+                            single_soup = match_work_id(item['id'],TMDB(api_key).search_tvshows(item['name'], 1)['results'])
                      case "person":
-                            single_soup = TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'][0]
+                            single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
                      case _:
-                            single_soup = item
+                            single_soup = item      
               # データタイプを代入
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)
@@ -114,6 +112,14 @@ def feature(path):
        data["containers"] = Search_Data(soup).search_arrange()
        print(data)
        return render_template("feature.html", data=data)
+
+
+# idと一致する検索結果を探す
+def match_work_id(id, soup):
+       for item in soup:
+              if item['id'] == id:
+                     return item
+       return {}
 
 
 # お気に入り情報を取得

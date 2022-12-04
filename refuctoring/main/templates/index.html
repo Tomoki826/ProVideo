@@ -15,6 +15,8 @@
 <main>
 <div class="search_title">
     <!--検索結果-->
+    <div class="page-tree">
+        <a href="/">トップ</a> ＞
     {% if data['total_results'] <= 0 %}
         「{{ data['keywords'] }}」の検索結果 なし
     {% else %}
@@ -28,6 +30,7 @@
             {% endif %}
         {% endwith %}
     {% endif %}
+    </div>
     <div class="story_container">
         <div class="story_header">あらすじモード</div>
         <label class="switch_label" value="overview">

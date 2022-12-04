@@ -9,7 +9,7 @@
   height: 300px;
   margin-right: 20px;
 }
-.feature_block .feature_container:active {
+.feature_block .feature_container:hover {
   opacity: 0.7;
 }
 .feature_block .feature_container .feature_picture {
@@ -44,18 +44,47 @@
 }
 .feature_head_picture .picture {
   position: relative;
-  z-index: -1;
+  z-index: -3;
 }
 .feature_head_picture .picture img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
+.feature_head_picture .picture .feature-head-text {
+  width: 80%;
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 10%;
+  color: #FFFFFF;
+  text-align: center;
+}
+.feature_head_picture .picture .feature-head-text .title-text {
+  font-size: 5vw;
+}
+.feature_head_picture .picture .feature-head-text .write-date {
+  font-size: 2vw;
+  color: #dfdfdf;
+}
+.feature_head_picture .picture .feature-head-text .writer {
+  font-size: 2vw;
+  color: #dfdfdf;
+}
 .feature_head_picture .picture .white-gradation {
   position: absolute;
+  z-index: 1;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 30%;
   background-image: linear-gradient(180deg, transparent 0%, #F5F5F5 100%);
+}
+.feature_head_picture .picture .black-gradation {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }/*# sourceMappingURL=feature.css.map */

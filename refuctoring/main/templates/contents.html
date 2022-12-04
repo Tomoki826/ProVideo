@@ -14,6 +14,27 @@
         {% for text in item['text'] %}
             <p>{{ text }}</p>
         {% endfor %}
+        {% with value = item['link'] | length %}
+            {% if value == 3 %}
+                <div class="reference-link">{{ item['link'][0] }} <a href="{{ item['link'][2] }}" target="_blank">{{ item['link'][1] }}</a></div>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% elif item['data_type'] == "image" %}
+    <!-- 画像 -->
+    <div class="image_container">
+        <img src="{{item['image']}}" alt="{{ item['text'] }}" oncontextmenu="return false;"/>
+        <div class="caption">
+            <div class="caption-contents">
+                <div class="caption-left-right">
+                <div class="caption-text">{{ item['text'] }}</div>
+                {% with value = item['link'] | length %}
+                    {% if value == 3 %}
+                        <div class="reference-link">{{ item['link'][0] }} <a href="{{ item['link'][2] }}" target="_blank">{{ item['link'][1] }}</a></div>
+                    {% endif %}
+                {% endwith %}
+            </div></div>
+        </div>
     </div>
 {% elif item['is_video'] == false %}
     <!-- 人物名 -->

@@ -32,7 +32,7 @@ class Search_Data:
               for item in self.raw_data['results']:
                      if self.data['search_type'] == Search.PERSON or item.get('media_type') == 'person':
                             data = self.__person_results_type(item)
-                     elif item.get('media_type') == 'text' or item.get('media_type') == 'pv':
+                     elif item.get('media_type') == 'text' or item.get('media_type') == 'pv' or item.get('media_type') == 'image':
                             data = self.__feature_type(item)
                      else:
                             data = self.__video_type(item)
@@ -224,9 +224,16 @@ class Search_Data:
 
        # その他のメディアタイプを修正
        def __feature_type(self, item):
-              print(item)
               item['data_type'] = item['media_type']
+              # テキスト部分を修正
               if item['media_type'] == "text":
                      if item.get('title') == None:
                             item['title'] = ""
+                     if item.get('link') == None:
+                            item['link'] = []
+              if item['media_type'] == "image":
+                     if item.get('text') == None:
+                            item['text'] = ""
+                     if item.get('link') == None:
+                            item['link'] = []
               return item

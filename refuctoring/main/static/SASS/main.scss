@@ -5,11 +5,21 @@ main {
     background-image: linear-gradient(90deg, #07B4E0 70%, #9AD36D 100%);
     color: #FFFFFF;
     font-weight: bold;
-    padding: 13px 20px;
+    padding: 0 20px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
+    .page-tree {
+        a {
+            color: #FFFFFF;
+            opacity: 1;
+        }
+        a:hover {
+            opacity: 0.7;
+        }
+    }
     .story_container {
         display: table;
         .story_header {
@@ -187,7 +197,7 @@ main {
                             box-sizing: border-box;
                             border-radius: 6px;
                             border: 0.5px solid #E7E7E7;
-                            &:active {
+                            &:hover {
                                 opacity: 0.7;
                             }
                         }
@@ -230,7 +240,7 @@ main {
                             margin-top: 8px;
                             box-sizing: border-box;
                             border: 0.5px solid #E7E7E7;
-                            &:active {
+                            &:hover {
                                 opacity: 0.7;
                             }
                         }
@@ -265,6 +275,69 @@ main {
         p {
             padding: 0px 5px;
             margin: 16px 0 0 0;
+        }
+        .reference-link {
+            margin: 5px 3px 0 3px;
+            color:#afafaf;
+            font-size: 13px;
+            a {
+                color:#afafaf;
+                text-decoration: underline;
+                opacity: 1;
+            }
+            a:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+    .image_container {
+        position: relative;
+        overflow: hidden;
+        width: 590px;
+        height: 340px;
+        margin: 1.5px 5px 11.5px 5px;
+        border-radius: 10px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .caption {
+            display: table;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            background-color: #000000b2;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            .caption-contents {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                .caption-left-right {
+                    display: inline-block;
+                    .caption-text {
+                        color: #FFFFFF;
+                        text-align: left;
+                    }
+                    .reference-link {
+                        color:#afafaf;
+                        font-size: 13px;
+                        text-align: left;
+                        a {
+                            color:#afafaf;
+                            text-decoration: underline;
+                            opacity: 1;
+                        }
+                        a:hover {
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }   
+        }
+        &:hover > .caption {
+            transform: translateY(0);
         }
     }
 }
