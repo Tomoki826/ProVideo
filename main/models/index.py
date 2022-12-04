@@ -108,9 +108,7 @@ def feature(path):
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)
        # コンテンツをフォーマット
-       print(soup)
        data["containers"] = Search_Data(soup).search_arrange()
-       print(data)
        return render_template("feature.html", data=data)
 
 
