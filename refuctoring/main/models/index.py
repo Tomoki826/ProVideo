@@ -93,21 +93,24 @@ def feature(path):
        soup = {'results': []}
        for item in feature_data['containers']:
               match item['data_type']:
-                     case "movie" | "tv":
-                            single_soup = TMDB(api_key).get_detail_info(item['id'], item['data_type'])
+                     case "movie":
+                            single_soup = TMDB(api_key).search_movies(item['name'], 1)['results'][0]
                             # ジャンルを変換
-                            single_soup['genre_ids'] = []
-                            for item2 in single_soup['genres']:
-                                   single_soup['genre_ids'].append(item2['id'])
-                            single_soup.pop('genres')
+                            #single_soup['genre_ids'] = []
+                            #for item2 in single_soup['genres']:
+                            #       single_soup['genre_ids'].append(item2['id'])
+                            #single_soup.pop('genres')
+                     case "tv":
+                            single_soup = TMDB(api_key).search_tvshows(item['name'], 1)['results'][0]
                      case "person":
-                            single_soup = TMDB(api_key).get_detail_info(item['id'], item['data_type'])
+                            single_soup = TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'][0]
                      case _:
                             single_soup = item
               # データタイプを代入
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)
        # コンテンツをフォーマット
+       print(soup)
        data["containers"] = Search_Data(soup).search_arrange()
        print(data)
        return render_template("feature.html", data=data)

@@ -176,15 +176,20 @@ main {
                     height: 50px;
                     font-size: 13px;
                     vertical-align: middle;
-                    img {
+                    abbr {
                         display: inline-block;
                         width: 40px;
+                        height: 40px;
                         margin: 3px 3px 0 0px;
-                        box-sizing: border-box;
-                        border-radius: 6px;
-                        border: 0.5px solid #E7E7E7;
-                        &:active {
-                            opacity: 0.7;
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            box-sizing: border-box;
+                            border-radius: 6px;
+                            border: 0.5px solid #E7E7E7;
+                            &:active {
+                                opacity: 0.7;
+                            }
                         }
                     }
                 }
@@ -215,15 +220,19 @@ main {
                 }
                 .videos {
                     height: 190px;
-                    img {
+                    abbr {
                         display: inline-block;
                         max-width: 115px;
                         max-height: 180px;
-                        margin-top: 8px;
-                        box-sizing: border-box;
-                        border: 0.5px solid #E7E7E7;    
-                        &:active {
-                            opacity: 0.7;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            margin-top: 8px;
+                            box-sizing: border-box;
+                            border: 0.5px solid #E7E7E7;
+                            &:active {
+                                opacity: 0.7;
+                            }
                         }
                     }
                 }

@@ -47,12 +47,12 @@
                     {% if item['known_for'] | length > 0 %}
                         {% for item2 in item['known_for'] %}
                             <abbr title="{{item2['title']}}">
-                                <img class="videos-btn" value="{{item2['title']}}" src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}" oncontextmenu="return false">
+                                <img class="videos-btn" value="{{item2['title']}}" src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}">
                             </abbr>
                         {% endfor %}
                     {% else %}
                         <abbr title="情報なし">
-                        <img src="../static/images/unfound_works.svg" alt="Not Found" oncontextmenu="return false;"/>
+                        <img src="../static/images/unfound_works.svg" alt="Not Found"/>
                         </abbr>
                     {% endif %}
                 </div>
