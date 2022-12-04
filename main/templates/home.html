@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+ホーム
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+<div class="search_title">
+    特集ページ (全{{ feature['feature'] | length }}件)
+</div>
+<div class="feature_block">
+    {% with data = feature['feature'] %}
+    {% include "feature_intro.html" %}
+    {% endwith %}
+</div>
+
+<div class="search_title">
+    世界で話題の映画 (配信中 全20件)
+    <div class="story_container">
+        <div class="story_header">あらすじモード</div>
+        <label class="switch_label" value="overview">
+            <span class="switch_content"></span>
+            <span class="switch_circle"></span>
+        </label>
+    </div>
+</div>
+
+<!--映画情報-->
+<div class="contents_container">
+    {% with data = data['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+
+<div class="search_title">
+    世界で話題のテレビ・配信番組 (配信中 全20件)
+    <div class="story_container">
+        <div class="story_header">あらすじモード</div>
+        <label class="switch_label" value="overview">
+            <span class="switch_content"></span>
+            <span class="switch_circle"></span>
+        </label>
+    </div>
+</div>
+
+<!--テレビ・配信情報-->
+<div class="contents_container">
+    {% with data = data2['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+</main>
+
+{% endblock %}

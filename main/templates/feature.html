@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ data['title'] }}
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+<div class="search_title">
+    <div class="page-tree">
+        <a href="/">トップ</a> ＞ 特集：{{data['title']}}
+    </div>
+    <div class="story_container">
+        <div class="story_header">あらすじモード</div>
+        <label class="switch_label" value="overview">
+            <span class="switch_content"></span>
+            <span class="switch_circle"></span>
+        </label>
+    </div>
+</div>
+
+<div class="feature_head_picture">
+    <div class="picture">
+        <img src="{{data['image']}}" alt="{{data['title']}}" oncontextmenu="return false;"/>
+        <div class="feature-head-text fade-in-bottom">
+            <div class="title-text" style="font-family: {{ data['title-font'] }};">{{ data['title'] }}</div>
+            <span class="write-date">{{ data['date'] }}&nbsp;&nbsp;</span>
+            <span class="writer">{{ data['writer'] }}</span>
+        </div>
+        <div class="white-gradation"></div>
+        <div class="black-gradation" style="background-color: {{data['color']}};"></div>
+    </div>
+</div>
+
+<div class="contents_container">
+    {% with data = data['containers']['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+
+</main>
+
+{% endblock %}

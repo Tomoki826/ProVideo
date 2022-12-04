@@ -1,0 +1,125 @@
+<!-- 作品情報を一覧表示 -->
+{% for item in data %}
+{% if item['data_type'] == "pv" %}
+    <!-- 埋め込み動画 -->
+    <div class="pv_container">
+        <iframe src={{ item['path'] }} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+{% elif item['data_type'] == "text" %}
+    <!-- テキスト -->
+    <div class="text_container">
+        {% if item['title'] != '' %}
+            <div class="text_title" style="border-bottom: solid 3px {{ item['color'] }};">{{ item['title'] }}</div>
+        {% endif %}
+        {% for text in item['text'] %}
+            <p>{{ text }}</p>
+        {% endfor %}
+        {% with value = item['link'] | length %}
+            {% if value == 3 %}
+                <div class="reference-link">{{ item['link'][0] }} <a href="{{ item['link'][2] }}" target="_blank">{{ item['link'][1] }}</a></div>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% elif item['data_type'] == "image" %}
+    <!-- 画像 -->
+    <div class="image_container">
+        <img src="{{item['image']}}" alt="{{ item['text'] }}" oncontextmenu="return false;"/>
+        <div class="caption">
+            <div class="caption-contents">
+                <div class="caption-left-right">
+                <div class="caption-text">{{ item['text'] }}</div>
+                {% with value = item['link'] | length %}
+                    {% if value == 3 %}
+                        <div class="reference-link">{{ item['link'][0] }} <a href="{{ item['link'][2] }}" target="_blank">{{ item['link'][1] }}</a></div>
+                    {% endif %}
+                {% endwith %}
+            </div></div>
+        </div>
+    </div>
+{% elif item['is_video'] == false %}
+    <!-- 人物名 -->
+    <div class="videos_container">
+        <div class="leftside">
+            <div class="poster">
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+            </div>
+            <div class="favorite" value="unliked,{{item['data_type']}},{{item['id']}}">
+                {% include "heart_icon.html" %}
+                <div class="heading">お気に入り</div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="name">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
+                {% if item['JP_name'] == true %}
+                    <div class="ajax_name" value="loaded">{{item['title']}}</div>
+                {% else %}
+                    <div class="ajax_name ball-pulse" value="unloaded,{{item['id']}},{{item['title']}}">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="details">{{item['department']}}<br/>{{item['gender']}}</div>
+            <div class="products">
+                <div class="heading">{{item['known_videos']}}</div>
+                <div class="videos">
+                    {% if item['known_for'] | length > 0 %}
+                        {% for item2 in item['known_for'] %}
+                            <abbr title="{{item2['title']}}">
+                                <img class="videos-btn" value="{{item2['title']}}" src="https://www.themoviedb.org/t/p/w500{{item2['poster_path']}}" alt="{{item2['title']}}">
+                            </abbr>
+                        {% endfor %}
+                    {% else %}
+                        <abbr title="情報なし">
+                        <img src="../static/images/unfound_works.svg" alt="Not Found"/>
+                        </abbr>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <!-- 作品名 -->
+    <div class="videos_container">
+        <div class="leftside">
+            <div class="poster">
+                <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
+            </div>
+            <div class="favorite" value="unliked,{{item['data_type']}},{{item['id']}}">
+                {% include "heart_icon.html" %}
+                <div class="heading">お気に入り</div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="name">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
+                <div class="title"><span>{{item['title']}}</span></div>
+            </div>
+            <div class="details">
+                <div class="openday">{{item['openday']}}</div>
+                <div class="genre"><span>{{item['genre']}}</span></div>
+            </div>
+            <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
+                <div class="subscription">
+                    <div class="heading">サブスクリプション</div>
+                    <div class="icons"><div class="spinner"></div></div>
+                </div>
+                <div class="rental">
+                    <div class="heading">レンタル可能</div>
+                    <div class="icons"><div class="spinner"></div></div>
+                </div>
+                <div class="buy">
+                    <div class="heading">購入可能</div>
+                    <div class="icons"><div class="spinner"></div></div>
+                </div>
+            </div>
+            <div class="overview">
+                <div class="heading">あらすじ</div>
+                <div class="text">{{item['overview']}}</div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endfor %}

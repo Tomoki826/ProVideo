@@ -1,0 +1,26 @@
+html {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'メイリオ', 'Meiryo', sans-serif;
+    font-size: 100%;
+    min-width: 600px;
+    z-index: 0;
+}
+body {
+    background-color: #F5F5F5;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+abbr {
+    cursor: pointer;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    width:fit-content;
+}

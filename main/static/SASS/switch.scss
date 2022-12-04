@@ -1,0 +1,43 @@
+.switch_label {
+    visibility: hidden;
+    cursor: pointer;
+    width: 50px;
+    height: 31px;
+    position: relative;
+    display: inline-block;
+    .switch_content {
+        display: block;
+        border-radius: 30px;
+        height: 28px;
+    }
+    &.off > .switch_content {
+        border: 1.5px solid #E5E5EA;
+        background-color: #d7d7d7;
+    }
+    &.on > .switch_content {
+        border: 1.5px solid #00C4CC;
+        background-color: #00C4CC;
+    }
+    .switch_circle {
+        display: block;
+        position: absolute;
+        width: 27px;
+        height: 27px;
+        top: 2px;
+        -webkit-border-radius: 20px;
+                border-radius: 20px;
+        background-color: #fff;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+            -ms-transition: all .3s;
+            -o-transition: all .3s;
+                transition: all .3s;
+    }
+    &.off > .switch_circle {
+        left: 2px;
+    }
+    &.on > .switch_circle {
+        left: 21px;
+    }
+
+}

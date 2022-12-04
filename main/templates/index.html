@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+検索
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+<div class="search_title">
+    <!--検索結果-->
+    <div class="page-tree">
+        <a href="/">トップ</a> ＞
+    {% if data['total_results'] <= 0 %}
+        「{{ data['keywords'] }}」の検索結果 なし
+    {% else %}
+        {% with value = data['current_page'] * 20 %}
+            {% if data['total_results'] <= 20 %}
+                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件)
+            {% elif data['total_results'] < value %}
+                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件目)
+            {% else %}
+                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件目)
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+    </div>
+    <div class="story_container">
+        <div class="story_header">あらすじモード</div>
+        <label class="switch_label" value="overview">
+            <span class="switch_content"></span>
+            <span class="switch_circle"></span>
+        </label>
+    </div>
+</div>
+
+<!--ページ送り-->
+{% with data = data %}
+{% include "pagemove.html" %}
+{% endwith %}
+
+<!--映像・人物情報-->
+<div class="contents_container">
+    {% with data = data['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+</main>
+
+<!--フッター-->
+<footer id="foot_page">
+    <!--ページ送り-->
+    {% with data = data %}
+    {% include "pagemove.html" %}
+    {% endwith %}
+</footer>
+
+{% endblock %}
