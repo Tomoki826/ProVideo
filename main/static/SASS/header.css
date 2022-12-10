@@ -73,7 +73,7 @@
     width: 200px;
     display: table-cell;
     vertical-align: middle;
-    padding: 10px 12px 0px 0px;
+    padding-top: 10px;
   }
   header #top-header #service_description {
     display: none;
@@ -132,7 +132,7 @@
     width: 200px;
     display: table-cell;
     vertical-align: middle;
-    padding: 10px 12px 0px 0px;
+    padding-top: 10px;
   }
   header #top-header #service_description {
     display: none;

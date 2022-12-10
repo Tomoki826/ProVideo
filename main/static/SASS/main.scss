@@ -4,6 +4,9 @@ main {
 }
 // パソコン用CSS
 @media all and (min-width: 769px) {
+    .smartphone_newline {
+        display: flex;
+    }
     .search_title {
         background-image: linear-gradient(90deg, #07B4E0 70%, #9AD36D 100%);
         color: #FFFFFF;
@@ -347,6 +350,9 @@ main {
 }
 // タブレット用CSS
 @media all and (min-width: 321px) and (max-width: 768px) {
+    .newline {
+        display: flex;
+    }
     .search_title {
         background-image: linear-gradient(90deg, #07B4E0 70%, #9AD36D 100%);
         color: #FFFFFF;
@@ -691,11 +697,10 @@ main {
 // スマホ用CSS
 @media all and (max-width: 320px) {
     .search_title {
-        background-image: linear-gradient(90deg, #07B4E0 70%, #9AD36D 100%);
+        background-image: linear-gradient(90deg, #07B4E0 40%, #9AD36D 100%);
         color: #FFFFFF;
         font-weight: bold;
-        padding: 0 20px;
-        height: 60px;
+        padding: 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -712,10 +717,9 @@ main {
         .story_container {
             display: table;
             .story_header {
-                font-weight: bold;
-                padding-right: 8px;
+                display: none;
             }
-            & > * {
+            & > *:not(.story_header) {
                 display: table-cell;
                 vertical-align: middle;
             }
