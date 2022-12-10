@@ -43,7 +43,7 @@
   }
   .search_option #button {
     cursor: pointer;
-    width: 68px;
+    width: 60px;
     height: 36px;
     font-size: 14px;
     color: #FFFFFF;
@@ -53,6 +53,136 @@
     box-shadow: 0 0 3px 0 #afafaf;
   }
   .search_option #button:active {
+    opacity: 0.6;
+  }
+}
+@media all and (min-width: 321px) and (max-width: 768px) {
+  .search_form {
+    text-align: center;
+  }
+  .search_form .search_container {
+    margin: 5px 0;
+    width: 100%;
+  }
+  .search_form .search_container #box {
+    width: 90%;
+    padding: 10px 10px;
+    outline: 0;
+    border: 1.5px solid #afafaf;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .search_form .search_container #box:focus {
+    border: 1.5px solid #22c9b8;
+  }
+  .search_option_container {
+    width: 90%;
+    margin: 0 auto 5px auto;
+  }
+  .search_option_container .search_option {
+    display: flex;
+    flex-wrap: nowrap;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+  }
+  .search_option_container .search_option .radio_button {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    align-items: center;
+  }
+  .search_option_container .search_option .radio_button label {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+  }
+  .search_option_container .search_option .radio_button label input[type=radio] {
+    position: relative;
+    top: -1.5px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+  }
+  .search_option_container .search_option #button {
+    cursor: pointer;
+    width: 60px;
+    height: 36px;
+    font-size: 14px;
+    color: #FFFFFF;
+    border: 0;
+    background-color: #269393;
+    border-radius: 8px;
+    box-shadow: 0 0 3px 0 #afafaf;
+  }
+  .search_option_container .search_option #button:active {
+    opacity: 0.6;
+  }
+}
+@media all and (max-width: 320px) {
+  .search_form {
+    text-align: center;
+  }
+  .search_form .search_container {
+    margin: 5px 0;
+    width: 100%;
+  }
+  .search_form .search_container #box {
+    width: 90%;
+    padding: 10px 10px;
+    outline: 0;
+    border: 1.5px solid #afafaf;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .search_form .search_container #box:focus {
+    border: 1.5px solid #22c9b8;
+  }
+  .search_option_container {
+    width: 90%;
+    margin: 0 auto 5px auto;
+  }
+  .search_option_container .search_option {
+    display: flex;
+    flex-wrap: nowrap;
+    vertical-align: middle;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+  }
+  .search_option_container .search_option .radio_button {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    align-items: center;
+  }
+  .search_option_container .search_option .radio_button label {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+  }
+  .search_option_container .search_option .radio_button label input[type=radio] {
+    position: relative;
+    top: -1.5px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+  }
+  .search_option_container .search_option #button {
+    cursor: pointer;
+    width: 60px;
+    height: 36px;
+    font-size: 14px;
+    color: #FFFFFF;
+    border: 0;
+    background-color: #269393;
+    border-radius: 8px;
+    box-shadow: 0 0 3px 0 #afafaf;
+  }
+  .search_option_container .search_option #button:active {
     opacity: 0.6;
   }
 }/*# sourceMappingURL=searchform.css.map */

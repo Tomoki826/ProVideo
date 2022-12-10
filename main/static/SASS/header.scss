@@ -1,50 +1,186 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: #FFFFFF;
-    border-bottom: 3px solid #E7E7E7;
-    flex-wrap: wrap;
-    #title_content {
-        display: table;
-        margin-left: 30px;
-        .title_logo {
-            width: 200px;
-            display: table-cell;
-            vertical-align: middle;
-            padding: 15px 12px 0px 0px;
+// パソコン用CSS
+@media all and (min-width: 769px) {
+    header {
+        #top-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #FFFFFF;
+            flex-wrap: wrap;
+            height: 60px;
+            #title_content {
+            display: table;
+            margin-left: 30px;
+                .title_logo {
+                    width: 200px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 10px 12px 0px 0px;
+                }
+            }
+            #service_description {
+                display: table-cell;
+                vertical-align: middle;
+            }
         }
-    }
-    #contents-bar {
-        ul {
-        display: flex;
-        align-items: center;
-        padding: 0;
-        margin-right: 30px;
-            li {
-                cursor: pointer;
-                list-style: none;
-                a {
-                    display: block;
-                    color: inherit;
-                    font-size: 15px;
-                    margin: 0 10px;
-                    padding: 7px 15px;
-                    border-radius: 8px;
-                    box-shadow: 0 0 3px 0 #AFAFAF;
-                    &.yellow {
-                        color: #000000;
-                        background-color: #EEDA29;   
-                    }
-                    &.blue {
+        #gnavi__container {
+            background-color: #409fb7;
+            height: 50px;
+            ul {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+                li {
+                    list-style: none;
+                    padding: 0 20px;
+                    a {
+                        position: relative;
+                        text-decoration: none;
                         color: #FFFFFF;
-                        background-color: #238FDD;   
-                    }
-                    &:hover {
-                        opacity: 0.6;
+                        &::after {
+                            position: absolute;
+                            bottom: -4px;
+                            left: 0;
+                            content: '';
+                            width: 100%;
+                            height: 2px;
+                            background: #FFFFFF;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: .3s;
+                        }
+                        &:hover::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
                     }
                 }
             }
         }
     }
-    
+}
+// タブレット用CSS
+@media all and (min-width: 321px) and (max-width: 768px) {
+    header {
+        #top-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #FFFFFF;
+            flex-wrap: wrap;
+            height: 60px;
+            #title_content {
+            display: table;
+            margin: 0 auto;
+                .title_logo {
+                    width: 200px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 10px 12px 0px 0px;
+                }
+            }
+            #service_description {
+                display: none;
+            }
+        }
+        #gnavi__container {
+            background-color: #409fb7;
+            height: 50px;
+            ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0 auto;
+            height: 100%;
+                li {
+                    list-style: none;
+                    padding: 0 20px;
+                    a {
+                        position: relative;
+                        text-decoration: none;
+                        color: #FFFFFF;
+                        &::after {
+                            position: absolute;
+                            bottom: -4px;
+                            left: 0;
+                            content: '';
+                            width: 100%;
+                            height: 2px;
+                            background: #FFFFFF;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: .3s;
+                        }
+                        &:hover::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// スマホ用CSS
+@media all and (max-width: 320px) {
+    header {
+        #top-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #FFFFFF;
+            flex-wrap: wrap;
+            height: 60px;
+            #title_content {
+            display: table;
+            margin: 0 auto;
+                .title_logo {
+                    width: 200px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 10px 12px 0px 0px;
+                }
+            }
+            #service_description {
+                display: none;
+            }
+        }
+        #gnavi__container {
+            background-color: #409fb7;
+            height: 50px;
+            ul {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0 auto;
+            height: 100%;
+                li {
+                    list-style: none;
+                    padding: 0 20px;
+                    a {
+                        position: relative;
+                        text-decoration: none;
+                        color: #FFFFFF;
+                        &::after {
+                            position: absolute;
+                            bottom: -4px;
+                            left: 0;
+                            content: '';
+                            width: 100%;
+                            height: 2px;
+                            background: #FFFFFF;
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: .3s;
+                        }
+                        &:hover::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

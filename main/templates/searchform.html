@@ -2,35 +2,43 @@
     <!--ページ番号-->
     <input type="hidden" name="page" value="1">
     <!--キーワード-->
-    <div><input id="box" name="keywords" type="text" placeholder="キーワードから探す" value="{{ data['keywords'] }}" required/></div>
+    <div class="search_container"><input id="box" name="keywords" type="text" placeholder="キーワードから探す" value="{{ data['keywords'] }}" required/></div>
     <!--ラジオボタン-->
-    <div>
+    <div class="search_option_container">
         <div class="search_option">
             <div class="radio_button">
+                <label for="multi">
                 {% if data['search_type-btn'] == 3 %}
                     <input type="radio" class="radio_choice" name="search_type" value="3" id="multi" checked>
                 {% else %}
                     <input type="radio" class="radio_choice" name="search_type" value="3" id="multi">
                 {% endif %}
-                <label for="multi">すべて</label>
+                すべて
+                </label>
+                <label for="movies">
                 {% if data['search_type-btn'] == 1 %}
                     <input type="radio" class="radio_choice" name="search_type" value="1" id="movies" checked>
                 {% else %}
                     <input type="radio" class="radio_choice" name="search_type" value="1" id="movies">
                 {% endif %}
-                <label for="movies">映画</label>
+                映画
+                </label>
+                <label for="tvshows">
                 {% if data['search_type-btn'] == 2 %}
                     <input type="radio" class="radio_choice" name="search_type" value="2" id="tvshows" checked>
                 {% else %}
                     <input type="radio" class="radio_choice" name="search_type" value="2" id="tvshows">
                 {% endif %}
-                <label for="tvshows">テレビ・配信番組</label>
+                テレビ・配信番組
+                </label>
+                <label for="person">
                 {% if data['search_type-btn'] == 4 %}
                     <input type="radio" class="radio_choice" name="search_type" value="4" id="person" checked>
                 {% else %}
                     <input type="radio" class="radio_choice" name="search_type" value="4" id="person">
                 {% endif %}
-                <label for="person">人物</label>
+                人物
+                </label>
             </div>
             <input id="button" type="submit" value="検索" />
         </div>

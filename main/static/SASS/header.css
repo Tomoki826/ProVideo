@@ -1,47 +1,177 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: #FFFFFF;
-  border-bottom: 3px solid #E7E7E7;
-  flex-wrap: wrap;
+@media all and (min-width: 769px) {
+  header #top-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+    height: 60px;
+  }
+  header #top-header #title_content {
+    display: table;
+    margin-left: 30px;
+  }
+  header #top-header #title_content .title_logo {
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 12px 0px 0px;
+  }
+  header #top-header #service_description {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  header #gnavi__container {
+    background-color: #409fb7;
+    height: 50px;
+  }
+  header #gnavi__container ul {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+  header #gnavi__container ul li {
+    list-style: none;
+    padding: 0 20px;
+  }
+  header #gnavi__container ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  header #gnavi__container ul li a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  header #gnavi__container ul li a:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-header #title_content {
-  display: table;
-  margin-left: 30px;
+@media all and (min-width: 321px) and (max-width: 768px) {
+  header #top-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+    height: 60px;
+  }
+  header #top-header #title_content {
+    display: table;
+    margin: 0 auto;
+  }
+  header #top-header #title_content .title_logo {
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 12px 0px 0px;
+  }
+  header #top-header #service_description {
+    display: none;
+  }
+  header #gnavi__container {
+    background-color: #409fb7;
+    height: 50px;
+  }
+  header #gnavi__container ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto;
+    height: 100%;
+  }
+  header #gnavi__container ul li {
+    list-style: none;
+    padding: 0 20px;
+  }
+  header #gnavi__container ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  header #gnavi__container ul li a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  header #gnavi__container ul li a:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-header #title_content .title_logo {
-  width: 200px;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 15px 12px 0px 0px;
-}
-header #contents-bar ul {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin-right: 30px;
-}
-header #contents-bar ul li {
-  cursor: pointer;
-  list-style: none;
-}
-header #contents-bar ul li a {
-  display: block;
-  color: inherit;
-  font-size: 15px;
-  margin: 0 10px;
-  padding: 7px 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 3px 0 #AFAFAF;
-}
-header #contents-bar ul li a.yellow {
-  color: #000000;
-  background-color: #EEDA29;
-}
-header #contents-bar ul li a.blue {
-  color: #FFFFFF;
-  background-color: #238FDD;
-}
-header #contents-bar ul li a:hover {
-  opacity: 0.6;
+@media all and (max-width: 320px) {
+  header #top-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+    height: 60px;
+  }
+  header #top-header #title_content {
+    display: table;
+    margin: 0 auto;
+  }
+  header #top-header #title_content .title_logo {
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 12px 0px 0px;
+  }
+  header #top-header #service_description {
+    display: none;
+  }
+  header #gnavi__container {
+    background-color: #409fb7;
+    height: 50px;
+  }
+  header #gnavi__container ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto;
+    height: 100%;
+  }
+  header #gnavi__container ul li {
+    list-style: none;
+    padding: 0 20px;
+  }
+  header #gnavi__container ul li a {
+    position: relative;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  header #gnavi__container ul li a::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  header #gnavi__container ul li a:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 }/*# sourceMappingURL=header.css.map */

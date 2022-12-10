@@ -1,20 +1,19 @@
 <header>
-<div id="title_content">
-    <div class="title_logo">
-        <a href="{{ url_for('index') }}">
-            <img  src ="/static/images/provideo_logo.svg" alt="ProVideo"/>
-        </a>
+<div id="top-header">
+    <div id="title_content">
+        <div class="title_logo">
+            <a href="{{ url_for('index') }}">
+                <img  src ="/static/images/provideo_logo.svg" alt="ProVideo"/>
+            </a>
+        </div>
+        <div id="service_description">オンデマンド配信検索サイト</div>
     </div>
 </div>
-<nav id="contents-bar">
-    <ul>
-    <li><a class="contents-bar-link blue" href="/">トップ</a></li>
-    <li><a class="contents-bar-link blue" href="/trend">トレンド</a></li>
-    <li><a class="contents-bar-link blue" href="/favorite">お気に入り</a></li>
-    <!-- アカウント機能は将来的に実装
-    <li><a class="contents-bar-link yellow" href="/mypage">マイページ</a></li>
-    <li><a class="contents-bar-link blue" href="/login">ログイン</a></li>
-    -->
+<nav id="gnavi__container">
+    <ul id="gnavi_lists">
+    <li class="gnavi__list"><a href="/">トップ</a></li>
+    <li class="gnavi__list"><a href="/trend">トレンド</a></li>
+    <li class="gnavi__list"><a href="/favorite">お気に入り</a></li>
     </ul>
 </nav>
 </header>

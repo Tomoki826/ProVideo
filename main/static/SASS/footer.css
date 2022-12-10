@@ -1,77 +1,233 @@
-#foot_search {
-  display: table;
-  background-color: #FFFFFF;
-  text-align: center;
-  padding: 12px 0 5px 0;
-  border-top: 3px solid #E7E7E7;
-  margin-top: 10px;
+@media all and (min-width: 769px) {
+  #foot_search {
+    display: table;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 12px 0 5px 0;
+    border-top: 3px solid #E7E7E7;
+    margin-top: 10px;
+  }
+  #foot_search .title_logo {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  #foot_search .title_logo img {
+    width: 200px;
+  }
+  #footer {
+    background-color: #000000;
+  }
+  #footer #api_caution {
+    display: table;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 20px 0;
+    margin-top: 25px;
+    margin-bottom: 17px;
+  }
+  #footer #api_caution #TMDB {
+    display: table-cell;
+    width: 190px;
+  }
+  #footer #api_caution #JustWatch {
+    display: table-cell;
+  }
+  #footer #api_caution #JustWatch img {
+    width: 200px;
+  }
+  #footer #api_caution #text {
+    display: table-cell;
+    color: #FFFFFF;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  #footer #site_introduction {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    color: #FFFFFF;
+  }
+  #footer #foot_navigation {
+    text-align: center;
+    padding: 0;
+    margin: 16px 0;
+  }
+  #footer #foot_navigation ul {
+    padding: 0;
+  }
+  #footer #foot_navigation li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 5px;
+  }
+  #footer #foot_navigation a {
+    text-decoration: none;
+  }
+  #footer #foot_navigation a:link {
+    color: #40B6F9;
+  }
+  #footer #foot_navigation a:visited {
+    color: #8728f3;
+  }
+  #footer #copyright {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+  }
+  #footer #copyright a {
+    color: #E7E7E7;
+  }
 }
-#foot_search .title_logo {
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
+@media all and (min-width: 321px) and (max-width: 768px) {
+  #foot_search {
+    display: table;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 12px 0 5px 0;
+    border-top: 3px solid #E7E7E7;
+    margin-top: 10px;
+  }
+  #foot_search .title_logo {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  #foot_search .title_logo img {
+    width: 200px;
+  }
+  #footer {
+    background-color: #000000;
+  }
+  #footer #api_caution {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #footer #api_caution > * {
+    display: flex;
+    padding: 3px 10px;
+    align-items: center;
+  }
+  #footer #api_caution #TMDB img {
+    width: 200px;
+  }
+  #footer #api_caution #JustWatch img {
+    width: 200px;
+  }
+  #footer #api_caution #text {
+    color: #FFFFFF;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  #footer #site_introduction {
+    display: none;
+  }
+  #footer #foot_navigation {
+    text-align: center;
+    padding: 0;
+    margin: 16px 0;
+  }
+  #footer #foot_navigation ul {
+    padding: 0;
+  }
+  #footer #foot_navigation li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 5px;
+  }
+  #footer #foot_navigation a {
+    text-decoration: none;
+  }
+  #footer #foot_navigation a:link {
+    color: #40B6F9;
+  }
+  #footer #foot_navigation a:visited {
+    color: #8728f3;
+  }
+  #footer #copyright {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+  }
+  #footer #copyright a {
+    color: #E7E7E7;
+  }
 }
-#foot_search .title_logo img {
-  width: 200px;
-}
-
-#footer {
-  background-color: #000000;
-}
-#footer #api_caution {
-  display: table;
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 20px 0;
-  margin-top: 25px;
-  margin-bottom: 17px;
-}
-#footer #api_caution #TMDB {
-  display: table-cell;
-  width: 190px;
-}
-#footer #api_caution #JustWatch {
-  display: table-cell;
-}
-#footer #api_caution #JustWatch img {
-  width: 200px;
-}
-#footer #api_caution #text {
-  display: table-cell;
-  color: #FFFFFF;
-  font-size: 18px;
-  vertical-align: middle;
-}
-#footer #site_introduction {
-  text-align: center;
-  width: 90%;
-  margin: 0 auto;
-  color: #FFFFFF;
-}
-#footer #foot_navigation {
-  text-align: center;
-  padding: 0;
-  margin: 16px 0;
-}
-#footer #foot_navigation ul {
-  padding: 0;
-}
-#footer #foot_navigation li {
-  display: inline-block;
-  list-style: none;
-  margin: 0 5px;
-}
-#footer #foot_navigation a {
-  text-decoration: none;
-}
-#footer #foot_navigation a:link {
-  color: #40B6F9;
-}
-#footer #foot_navigation a:visited {
-  color: #8728f3;
-}
-#footer #copyright {
-  text-align: center;
-  color: #FFFFFF;
-  margin-bottom: 15px;
+@media all and (max-width: 320px) {
+  #foot_search {
+    display: table;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 12px 0 5px 0;
+    border-top: 3px solid #E7E7E7;
+    margin-top: 10px;
+  }
+  #foot_search .title_logo {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  #foot_search .title_logo img {
+    width: 200px;
+  }
+  #footer {
+    background-color: #000000;
+  }
+  #footer #api_caution {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #footer #api_caution > * {
+    padding: 3px 0;
+  }
+  #footer #api_caution #TMDB img {
+    width: 200px;
+  }
+  #footer #api_caution #JustWatch img {
+    width: 200px;
+  }
+  #footer #api_caution #text {
+    color: #FFFFFF;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+  #footer #site_introduction {
+    display: none;
+  }
+  #footer #foot_navigation {
+    text-align: center;
+    padding: 0;
+    margin: 16px 0;
+  }
+  #footer #foot_navigation ul {
+    padding: 0;
+  }
+  #footer #foot_navigation li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 5px;
+  }
+  #footer #foot_navigation a {
+    text-decoration: none;
+  }
+  #footer #foot_navigation a:link {
+    color: #40B6F9;
+  }
+  #footer #foot_navigation a:visited {
+    color: #8728f3;
+  }
+  #footer #copyright {
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+  }
+  #footer #copyright a {
+    color: #E7E7E7;
+  }
 }/*# sourceMappingURL=footer.css.map */
