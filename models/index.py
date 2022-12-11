@@ -1,11 +1,18 @@
 from flask import request, render_template, redirect, url_for
-from main import app, api_key
-from main.models.config import SENSITIVE_SEARCH
-from main.models.TMDB import TMDB
-from main.models.enum import Search
-from main.models.search_data import Search_Data
-from main.models.kanji import Japanese_check
-from main.models.json import JSON
+
+from os.path import dirname
+print(dirname(__file__))
+
+import sys
+sys.path.append('../')
+from init.run import app, api_key
+
+from models.config import SENSITIVE_SEARCH
+from models.TMDB import TMDB
+from models.enum import Search
+from models.search_data import Search_Data
+from models.kanji import Japanese_check
+from models.json import JSON
 
 # ホームページ
 @app.route("/", methods=["GET"])

@@ -1,4 +1,4 @@
-import json, os
+import json
 
 class JSON:
     def __init__(self, filename):
