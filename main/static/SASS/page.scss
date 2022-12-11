@@ -1,38 +1,123 @@
-.page_container {
-    background-color: #FFFFFF;
-    border-bottom: 3px solid #E7E7E7;
-    max-width: 1790px;
-    width: 100%;
-    margin: 0 auto;
-    .page_line {
-        display: table;
+// パソコン用CSS
+@media all and (min-width: 769px) {
+    .page_container {
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #E7E7E7;
+        max-width: 1790px;
+        width: 100%;
         margin: 0 auto;
-        padding: 10px 0;
-        border-collapse: separate;
-        border-spacing: 15px 0;
-        div {
-            display: table-cell;
-            text-align: center;
-            vertical-align: middle;
-            width: 45px;
-            height: 45px;
-            button {
-                cursor: pointer;
-                border: 0;
+        .page_line {
+            display: table;
+            margin: 0 auto;
+            padding: 10px 0;
+            border-collapse: separate;
+            border-spacing: 15px 0;
+            div {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
                 width: 45px;
                 height: 45px;
-                border-radius: 50%;
-                font-size: 14px;
-                background-color: #E9E9E9;
-                &:hover {
-                    background-color: #eae793;
+                button {
+                    cursor: pointer;
+                    border: 0;
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    font-size: 14px;
+                    background-color: #E9E9E9;
+                    &:hover {
+                        background-color: #eae793;
+                    }
                 }
             }
+            .current_page {
+                font-size: 17px;
+                border-radius: 50%;
+                background-color: #EEDA29;
+            }
         }
-        .current_page {
-            font-size: 17px;
-            border-radius: 50%;
-            background-color: #EEDA29;
+    }
+}
+// タブレット用CSS
+@media all and (min-width: 321px) and (max-width: 768px) {
+    .page_container {
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #E7E7E7;
+        max-width: 1790px;
+        width: 100%;
+        margin: 0 auto;
+        .page_line {
+            display: table;
+            margin: 0 auto;
+            padding: 10px 0;
+            border-collapse: separate;
+            border-spacing: 15px 0;
+            div {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+                width: 45px;
+                height: 45px;
+                button {
+                    cursor: pointer;
+                    border: 0;
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    font-size: 14px;
+                    background-color: #E9E9E9;
+                    &:hover {
+                        background-color: #eae793;
+                    }
+                }
+            }
+            .current_page {
+                font-size: 17px;
+                border-radius: 50%;
+                background-color: #EEDA29;
+            }
+        }
+    }
+}
+// スマホ用CSS
+@media all and (max-width: 320px) {
+    .page_container {
+        background-color: #FFFFFF;
+        border-bottom: 3px solid #E7E7E7;
+        max-width: 1790px;
+        width: 100%;
+        margin: 0 auto;
+        .page_line {
+            display: table;
+            margin: 0 auto;
+            padding: 10px 0;
+            border-collapse: separate;
+            border-spacing: 5px 0;
+            div {
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
+                width: 27px;
+                height: 20px;
+                button {
+                    cursor: pointer;
+                    border: 0;
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 50%;
+                    font-size: 10px;
+                    background-color: #E9E9E9;
+                    &:hover {
+                        background-color: #eae793;
+                    }
+                }
+            }
+            .current_page {
+                font-size: 12px;
+                border-radius: 50%;
+                background-color: #EEDA29;
+            }
         }
     }
 }

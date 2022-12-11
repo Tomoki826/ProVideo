@@ -1,3 +1,4 @@
+// 共通
 html {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -7,14 +8,6 @@ html {
     font-size: 16px;
     z-index: 0;
 }
-body {
-    background-color: #F5F5F5;
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
 abbr {
     cursor: pointer;
     text-decoration: none;
@@ -23,4 +16,37 @@ a {
     cursor: pointer;
     text-decoration: none;
     width:fit-content;
+}
+// パソコン用CSS
+@media all and (min-width: 769px) {
+    body {
+        background-color: #F5F5F5;
+        display: flex;
+        flex-flow: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+}
+// タブレット用CSS
+@media all and (min-width: 321px) and (max-width: 768px) {
+    body {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-flow: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+}
+// スマホ用CSS
+@media all and (max-width: 320px) {
+    body {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-flow: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
 }

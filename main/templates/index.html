@@ -16,18 +16,22 @@
 <div class="search_title">
     <!--検索結果-->
     <div class="page-tree">
-        <a href="/">トップ</a> ＞
     {% if data['total_results'] <= 0 %}
         「{{ data['keywords'] }}」の検索結果 なし
     {% else %}
         {% with value = data['current_page'] * 20 %}
+        <div class="smartphone_newline">
             {% if data['total_results'] <= 20 %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件)
+                <div>「{{ data['keywords'] }}」の検索結果&nbsp;</div>
+                <div>(全{{ data['total_results'] }}件)</div>
             {% elif data['total_results'] < value %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件目)
+                <div>「{{ data['keywords'] }}」の検索結果&nbsp;</div>
+                <div>(全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件)</div>
             {% else %}
-                「{{ data['keywords'] }}」の検索結果 (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件目)
+                <div>「{{ data['keywords'] }}」の検索結果&nbsp;</div>
+                <div> (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件)</div>
             {% endif %}
+        </div>
         {% endwith %}
     {% endif %}
     </div>

@@ -97,15 +97,15 @@
         padding: 5px 0 10px 10px;
         overflow-x: scroll;
         .feature_container {
-            width: 300px;
+            width: 250px;
             height: 90%;
             margin-right: 20px;
             &:hover {
                 opacity: 0.7;
             }
             .feature_picture {
-                width: 300px;
-                height: 170px;
+                width: 250px;
+                height: 142px;
                 img {
                     width: 100%;
                     border-radius: 10px;
@@ -148,14 +148,14 @@
                 color: #FFFFFF;
                 text-align: center;
                 .title-text {
-                    font-size: calc(100vw/ 20);
+                    font-size: calc(100vw/ 15);
                 }
                 .write-date {
-                    font-size: calc(100vw/ 50);
+                    font-size: calc(100vw/ 40);
                     color: #dfdfdf;
                 }
                 .writer {
-                    font-size: calc(100vw/ 50);
+                    font-size: calc(100vw/ 40);
                     color: #dfdfdf;
                 }
             }
@@ -187,15 +187,15 @@
         padding: 5px 0 10px 10px;
         overflow-x: scroll;
         .feature_container {
-            width: 300px;
+            width: 250px;
             height: 90%;
             margin-right: 20px;
             &:hover {
                 opacity: 0.7;
             }
             .feature_picture {
-                width: 300px;
-                height: 170px;
+                width: 250px;
+                height: 142px;
                 img {
                     width: 100%;
                     border-radius: 10px;
@@ -238,7 +238,7 @@
                 color: #FFFFFF;
                 text-align: center;
                 .title-text {
-                    font-size: calc(100vw/ 20);
+                    font-size: 22px;
                 }
                 .write-date {
                     font-size: calc(100vw/ 50);
