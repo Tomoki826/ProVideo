@@ -1,9 +1,8 @@
-from main import api_key
-from main.models.TMDB import TMDB
-from main.models.enum import Search
-from main.models.genre import Genre
-from main.models.config import SENSITIVE_SEARCH
-from main.models.kanji import Japanese_check
+from models.TMDB import TMDB
+from models.enum import Search
+from models.genre import Genre
+from models.config import SENSITIVE_SEARCH
+from models.kanji import Japanese_check
 import re, datetime
 
 # 検索情報をフォーマットする

@@ -1,12 +1,26 @@
+# 実行後、一番最初に実行する(コンストラクタみたいな)ファイルなので
+# WEBアプリ全体に使用したい設定を作ると便利
+from flask import Flask
+
+# Flask構成開始
+app = Flask(__name__)
+
+# 設定ファイル
+app.config.from_object('models.config')
+
+# APIの環境変数が存在するか？
+# (APIキーのテンプレート・取得方法は".env.sample"を参照)
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+api_key = os.environ.get("API_KEY")
+if not api_key:
+    raise RuntimeError("API_KEY not set")
+
+# ウェブサイトを表示
 from flask import request, render_template, redirect, url_for
-
-from os.path import dirname
-print(dirname(__file__))
-
-import sys
-sys.path.append('../')
-from init.run import app, api_key
-
 from models.config import SENSITIVE_SEARCH
 from models.TMDB import TMDB
 from models.enum import Search
@@ -17,8 +31,9 @@ from models.json import JSON
 # ホームページ
 @app.route("/", methods=["GET"])
 def index(search_type=int(Search.DISCOVER_MOVIE)):
+       print("OK")
        # 特集ページを取得
-       feature = JSON('./main/static/JSON/feature.json').get_json()
+       feature = JSON('./static/JSON/feature.json').get_json()
        # 話題の映画を取得
        page = 1
        soup = TMDB(api_key).discover_movie(page)
@@ -155,3 +170,6 @@ def load_personal_name():
               return Japanese_check(soup['also_known_as'])
        else:
               return ''
+
+if __name__=='__main__':
+    app.run()
