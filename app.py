@@ -144,7 +144,7 @@ def feature(path):
                      case _:
                             single_soup = item
               """    
-                
+
               # データタイプを代入
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)
