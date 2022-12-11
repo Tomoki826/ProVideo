@@ -4,7 +4,6 @@ from models.TMDB import TMDB
 from models.enum import Search
 from models.kanji import Japanese_check
 from models.json import JSON
-
 from models.search_data import Search_Data
 
 # Flask構成開始
@@ -75,6 +74,16 @@ def search():
        else:
               search_type = Search.MULTI
        # TMDBで検索する
+       if search_type == Search.MOVIES:
+              soup = TMDB(api_key).search_movies(keywords, page)
+       elif search_type == Search.TVSHOWS:
+              soup = TMDB(api_key).search_tvshows(keywords, page)
+       elif search_type == Search.PERSON:
+              soup = TMDB(api_key).search_person(keywords, page, SENSITIVE_SEARCH)
+       elif search_type == Search.MULTI:
+              soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
+
+       """
        match search_type:
               case Search.MOVIES:
                      soup = TMDB(api_key).search_movies(keywords, page)
@@ -84,6 +93,7 @@ def search():
                      soup = TMDB(api_key).search_person(keywords, page, SENSITIVE_SEARCH)
               case Search.MULTI:
                      soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
+       """
        # 検索結果の整理
        data = Search_Data(soup).search_arrange(search_type, page, keywords)
        return render_template("index.html", data=data, soup=soup, error=False)
@@ -113,6 +123,17 @@ def feature(path):
        # コンテンツデータを整理
        soup = {'results': []}
        for item in feature_data['containers']:
+
+              if item['data_type'] == "movie":
+                     single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
+              elif item['data_type'] == "tv":
+                     single_soup = match_work_id(item['id'],TMDB(api_key).search_tvshows(item['name'], 1)['results'])
+              elif item['data_type'] == "person":
+                     single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
+              else:
+                     single_soup = item
+
+              """
               match item['data_type']:
                      case "movie":
                             single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
@@ -121,7 +142,9 @@ def feature(path):
                      case "person":
                             single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
                      case _:
-                            single_soup = item      
+                            single_soup = item
+              """    
+                
               # データタイプを代入
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)

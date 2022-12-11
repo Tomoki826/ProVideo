@@ -1,5 +1,5 @@
 from flask import request, render_template, redirect, url_for
-from index import app
+from app import app
 
 # 不正なリクエスト
 @app.errorhandler(400)

@@ -86,6 +86,37 @@ class Search_Data:
                      data['data_type'] = 'sensitive'
                      data['media_type'] = 'センシティブ'
               else:
+                     if self.data['search_type'] == Search.MOVIES or self.data['search_type'] == Search.DISCOVER_MOVIE:
+                            data['data_type'] = 'movie'
+                            data['media_type'] = '映画'
+                     elif self.data['search_type'] == Search.TVSHOWS:
+                            if SENSITIVE_SEARCH == False:
+                                   data['data_type'] = 'tv'
+                            else:
+                                   data['data_type'] = 'tv-sensitive'
+                            data['media_type'] = 'テレビ・配信番組'
+                     elif self.data['search_type'] == Search.DISCOVER_TV:
+                            data['data_type'] = 'tv'
+                            data['media_type'] = 'テレビ・配信番組'
+                     elif self.data['search_type'] == Search.MULTI:
+                            if 'media_type' not in item:
+                                   data['data_type'] = 'None'
+                                   data['media_type'] = '不明'
+                            else:
+                                   if item['media_type'] == 'movie':
+                                          data['data_type'] = 'movie'
+                                          data['media_type'] = '映画'
+                                   elif item['media_type'] == 'tv':
+                                          if SENSITIVE_SEARCH == False:
+                                                 data['data_type'] = 'tv'
+                                          else:
+                                                 data['data_type'] = 'tv-sensitive'
+                                          data['media_type'] = 'テレビ・配信番組'
+                                   else:
+                                          data['data_type'] = 'None'
+                                          data['media_type'] = '不明'
+
+              """
                      match self.data['search_type']:
                             case Search.MOVIES:
                                    data['data_type'] = 'movie'
@@ -120,6 +151,8 @@ class Search_Data:
                                                  case _:
                                                         data['data_type'] = 'None'
                                                         data['media_type'] = '不明'
+              """
+
               # あらすじ
               if len(item.get('overview', '')) >= 1:
                      data['overview'] = item.get('overview')
@@ -140,6 +173,42 @@ class Search_Data:
               #id
               data['id'] = item['id']
               # 職業
+              job = item.get('known_for_department')
+              if job == "Acting":
+                     data['known_videos'] = "主な出演作品"
+                     gender = item.get('gender')
+                     if gender == 1:
+                            data['department'] = "職業: タレント・女優"
+                     elif gender == 2:
+                            data['department'] = "職業: タレント・俳優"
+                     else:
+                            data['department'] = "職業: タレント"
+              elif job == "Production":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: プロデューサー"
+              elif job == "Visual Effects":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: エフェクト・CGクリエイター"
+              elif job == "Directing":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: ディレクター・監督"
+              elif job == "Sound":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: ミュージシャン"
+              elif job == "Writing":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: 作家・ライター"
+              elif job == "Editing":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: 映像クリエイター"
+              elif job == "Art":
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: デザイナー"
+              else:
+                     data['known_videos'] = "主な作品"
+                     data['department'] = "職業: 不明"
+
+              """
               match item.get('known_for_department'):
                      case "Acting":
                             data['known_videos'] = "主な出演作品"
@@ -174,6 +243,7 @@ class Search_Data:
                      case _:
                             data['known_videos'] = "主な作品"
                             data['department'] = "職業: 不明"
+              """
 
               # 性別
               if item.get('gender') == 1:
