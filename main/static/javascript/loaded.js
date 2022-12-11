@@ -7,9 +7,9 @@ $(document).ready(function() {
         var $genre = $(element).find('.genre');
         if (window_useragent() == 'pc') {
             // 作品名を調節
-            //text_shorten($title, $title.children(), 360);
+            text_shorten($title, $title.children(), 360);
             // ジャンルを調節
-            //text_shorten($genre, $genre.children(), 360);
+            text_shorten($genre, $genre.children(), 360);
         }
         $title.css("display","inherit");
         $genre.css("display","inherit");
@@ -22,7 +22,8 @@ $(document).ready(function() {
             var $textbox = $(element).find(".text");
             var text = $textbox.html();
             if (text.length > max_overview) {
-                //$textbox.html(text.slice(0, max_overview) + "…");
+                $textbox.wrap('<abbr title="' + text + '">');
+                $textbox.html(text.slice(0, max_overview) + "…");
             }
         }
     });
