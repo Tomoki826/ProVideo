@@ -1,4 +1,3 @@
-from models.TMDB import TMDB
 from models.enum import Search
 from models.genre import Genre
 from models.config import SENSITIVE_SEARCH

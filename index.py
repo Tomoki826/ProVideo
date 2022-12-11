@@ -1,6 +1,11 @@
-# 実行後、一番最初に実行する(コンストラクタみたいな)ファイルなので
-# WEBアプリ全体に使用したい設定を作ると便利
-from flask import Flask
+from flask import Flask, request, render_template, redirect, url_for
+from models.config import SENSITIVE_SEARCH
+from models.TMDB import TMDB
+from models.enum import Search
+from models.kanji import Japanese_check
+from models.json import JSON
+
+from models.search_data import Search_Data
 
 # Flask構成開始
 app = Flask(__name__)
@@ -18,15 +23,6 @@ load_dotenv(dotenv_path)
 api_key = os.environ.get("API_KEY")
 if not api_key:
     raise RuntimeError("API_KEY not set")
-
-# ウェブサイトを表示
-from flask import request, render_template, redirect, url_for
-from models.config import SENSITIVE_SEARCH
-from models.TMDB import TMDB
-from models.enum import Search
-from models.search_data import Search_Data
-from models.kanji import Japanese_check
-from models.json import JSON
 
 # ホームページ
 @app.route("/", methods=["GET"])
@@ -97,7 +93,7 @@ def search():
 def feature(path):
        # 特集ページを取得
        feature_data = []
-       raw_data = JSON('./main/static/JSON/feature.json').get_json()
+       raw_data = JSON('./static/JSON/feature.json').get_json()
        for item in raw_data['feature']:
               if item['path'] == "/" + path:
                      feature_data = item['contents']
