@@ -3,33 +3,27 @@ name: deploy to xserver
 on:
   push:
     branches:
-      - master
+      - ma
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v3
-        
-        - name: Run install
-          uses: borales/actions-yarn@v4.2.0
+        - uses: actions/checkout@v2
+        - uses: borales/actions-yarn@v2.3.0
           with:
             cmd: install
-         
-        - name: Build production bundle 
-          uses: borales/actions-yarn@v4.2.0
+        - uses: borales/actions-yarn@v2.3.0
           with:
             cmd: build
-            
         - name: ssh key generate
           run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
           env:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        
         - name: rsync deployments
-          uses: burnett01/rsync-deployments@5.2.1
+          uses: burnett01/rsync-deployments@5.1
           with:
-            switches: -avzr --delete
+            switches: -avz --delete
             path: dist/
             remote_path: ${{ secrets.REMOTE_PATH }}
             remote_host: ${{ secrets.REMOTE_HOST }}
