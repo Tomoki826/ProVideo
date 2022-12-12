@@ -356,7 +356,7 @@ main {
     }
 }
 // タブレット用CSS
-@media all and (min-width: 321px) and (max-width: 768px) {
+@media all and (min-width: 426px) and (max-width: 768px) {
     .search_title {
         background-image: linear-gradient(90deg, #07B4E0 40%, #9AD36D 100%);
         color: #FFFFFF;
@@ -427,6 +427,7 @@ main {
                     }
                 }
                 .favorite {
+                    z-index: 10;
                     position: absolute;
                     top: 140px;
                     right: 5px;
@@ -719,7 +720,7 @@ main {
     }
 }
 // スマホ用CSS
-@media all and (max-width: 320px) {
+@media all and (max-width: 426px) {
     .search_title {
         background-image: linear-gradient(90deg, #07B4E0 40%, #9AD36D 100%);
         color: #FFFFFF;
@@ -761,13 +762,13 @@ main {
         .videos_container {
             display: table;
             background-color: #FFFFFF;
-            width: 320px;
+            width: 95%;
             padding-bottom: 10px;
             margin-bottom: 10px;
             .leftside {
                 display: table-cell;
                 width: 120px;
-                padding: 2px 5px 0 8px;
+                padding: 2px 5px 0 0;
                 margin: 0;
                 vertical-align: top;
                 position: relative;
@@ -790,42 +791,51 @@ main {
                     }
                 }
                 .favorite {
-                    position: absolute;
-                    top: 140px;
-                    right: 5px;
+                    z-index: 10;
+                    position: relative;
                     cursor: pointer;
+                    display: table;
                     margin: 0 auto;
                     background-color: #269393;
+                    border-collapse: separate;
+                    border-spacing: 5px 0;
+                    margin-right: -110px;
+                    margin-top: -30px;
                     padding: 3px;
-                    border-radius: 20px;
+                    border-radius: 5px;
                     box-shadow: 0 0 3px 0 #afafaf;
-                    width: 30px;
-                    height: 30px;
+                    height: 20px;
+                    & > * {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
                     .heart-icon {
                         position: absolute;
                         fill: #E1E1E1;
-                        width: 20px;
+                        width: 18px;
                         height: 20px;
-                        top: 8px;
-                        left: 8px;
                     }
                     .heading {
-                        display: none;
+                        display: block;
+                        color: #E1E1E1;
+                        padding-top: 1px;
+                        margin-left: 22px;
+                        font-size: 13px;
+                        height: 0;
                     }
                     &:active {
                         opacity: 0.6;
                     }
-                } 
+                }
             }
             .description {
                 visibility: hidden;
                 display: table-cell;
                 padding: 0;
-                vertical-align: middle;
+                vertical-align: top;
                 position: relative;
                 .name-block {
-                    height: 170px;
-                    width: 180px;
+                    height: 135px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
@@ -866,21 +876,17 @@ main {
                             display: none;
                             font-size: 17px;
                             font-weight: bold;
-                            width: 170px;
                         }
                         .ajax_name {
                             font-size: 17px;
                             font-weight: bold;
-                            width: 160px;
                         }
                     }
                     .details {
                         font-size: 14px;
                         margin-bottom: 3px;
-                        width: 170px;
                         .slide-box {
                             position: relative;
-                            width: 100%;
                             height: 21px;
                             overflow: hidden;
                         }
@@ -891,94 +897,114 @@ main {
                     }
                 }
                 .ajax_providers {
-                    position: relative;
-                    top: 10px;
-                    left: -120px;
-                    margin-right: -120px;
                     display: none;
-                    & > div {
-                        position: relative;
+                    position: relative;
+                    margin-top: 40px;
+                    margin-left: -120px;
+                    max-width: 95vw;
+                    overflow: hidden;
+                    height: 135px;
+                    &:before {
+                        content: "";
+                        display: block;
+                    }
+                    .subscription, .rental, .buy {
+                        display: flex;
                         .spinner {
                             margin-top: 3px;
                         }
-                    .heading {
-                        font-size: 10px;
-                        display: inline-block;
-                        background-color: #D4D9DC;
-                        border-radius: 4px;
-                        padding: 5px 7px;
-                    }
-                    .icons {
-                        display: flex;
-                        height: 50px;
-                        font-size: 13px;
-                        width: 280px;
-                        vertical-align: middle;
-                        abbr {
-                            display: inline-block;
-                            width: 40px;
+                        .heading {
+                            font-size: 10px;
+                            display: inline;
+                            color: #FFFFFF;
+                            background-color: #a1a1a1;
+                            border-radius: 4px;
+                            width: 50px;
+                            text-align: center;
+                            margin: auto 5px auto 0;
+                            padding: 2px;
+                        }
+                        .icons {
+                            max-width: 100%;
+                            display: flex;
+                            flex-wrap: nowrap;
                             height: 40px;
-                            margin: 3px 3px 0 0px;
-                            img {
+                            font-size: 13px;
+                            padding: 2px 0;
+                            vertical-align: middle;
+                            abbr {
+                                display: inline-block;
                                 width: 40px;
                                 height: 40px;
-                                box-sizing: border-box;
-                                border-radius: 6px;
-                                border: 0.5px solid #E7E7E7;
-                                &:hover {
-                                    opacity: 0.7;
+                                margin: 3px 3px 0 0px;
+                                img {
+                                    width: 40px;
+                                    height: 40px;
+                                    box-sizing: border-box;
+                                    border-radius: 6px;
+                                    border: 0.5px solid #E7E7E7;
+                                    &:hover {
+                                        opacity: 0.7;
+                                    }
                                 }
                             }
                         }
                     }
-                    }
                 }
                 .overview {
-                    position: relative;
-                    top: 10px;
-                    left: -120px;
                     display: none;
+                    position: relative;
+                    margin-top: 40px;
+                    margin-left: -120px;
                     .heading {
+                        width: 48px;
                         font-size: 10px;
                         display: inline-block;
-                        background-color: #D4D9DC;
+                        background-color: #a1a1a1;
                         border-radius: 4px;
-                        padding: 5px 7px;
+                        padding: 2px 4px;
+                        text-align: center;
+                        color: #FFFFFF;
+                        margin-bottom: 5px;
                     }
                     .text {
-                        position: relative;
-                        margin: 3px -110px 15px 0;
                         font-size: 13px;
-                        max-height: 195px;
+                        max-height: 130px;
                         overflow-y: scroll;
                     }
                 }
                 .products {
                     position: relative;
-                    top: 10px;
-                    left: -120px;
+                    margin-top: 45px;
+                    margin-left: -120px;
+                    width: 100%;
                     .heading {
                         font-size: 10px;
                         display: inline-block;
                         background-color: #D4D9DC;
                         border-radius: 4px;
                         padding: 5px 7px;
+                        margin-bottom: 5px;
                     }
                     .videos {
-                        height: 165px;
-                        margin-right: -110px;
-                        abbr {
-                            display: inline-block;
-                            max-width: 95px;
-                            max-height: 150px;
-                            img {
-                                width: 100%;
-                                height: 100%;
-                                margin-top: 8px;
-                                box-sizing: border-box;
-                                border: 0.5px solid #E7E7E7;
-                                &:hover {
-                                    opacity: 0.7;
+                        width: 95vw;
+                        .videos_viewer {
+                            display: flex;
+                            flex-wrap: nowrap;
+                            align-items: flex-end;
+                            abbr {
+                                display: inline-block;
+                                max-width: 115px;
+                                max-height: 180px;
+                                margin: 0 3px;
+                                img {
+                                    max-width: 100%;
+                                    max-height: 100%;
+                                    box-sizing: border-box;
+                                    border: 0.5px solid #E7E7E7;
+                                    &:hover {
+                                        opacity: 0.7;
+                                    }
                                 }
                             }
                         }
@@ -988,8 +1014,8 @@ main {
         }
         .pv_container {
             display: table;
-            width: 320px;
-            height: 180px;
+            width: 95%;
+            height: calc(95vw * 9 / 16);
             margin-bottom: 10px;
             padding: 5px;
             iframe {
@@ -1002,7 +1028,7 @@ main {
         }
         .text_container {
             display: table;
-            width: 320px;
+            width: 95%;
             margin-bottom: 10px;
             .text_title {
                 padding: 5px 10px 0 10px;
