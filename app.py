@@ -180,4 +180,6 @@ def load_personal_name():
               return ''
 
 if __name__=='__main__':
-    app.run()
+       # デバッグ用
+       app.run(debug=True, host='0.0.0.0')
+       #app.run()

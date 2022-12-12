@@ -16,12 +16,11 @@ class Search_Data:
        def search_arrange(self, search_type=Search.MULTI, page=1, keywords=''):
               self.data['keywords'] = keywords
               self.data['current_page'] = page
-              print(self.raw_data.get('total_results'))
               if self.raw_data.get('total_results') != None:
                      self.data['max_page'] = (self.raw_data['total_results'] - 1) // 20 + 1
                      self.data['total_results'] = self.raw_data['total_results']
               # 検索タイプ
-              self.data['search_type'] = search_type
+              self.data['search_type'] = int(search_type)
               if search_type == Search.MOVIES or search_type == Search.TVSHOWS or search_type == Search.MULTI or search_type == Search.PERSON:
                      self.data['search_type-btn'] = int(search_type)
               else:

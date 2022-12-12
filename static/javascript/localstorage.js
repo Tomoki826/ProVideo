@@ -114,11 +114,11 @@ function clickAnimation($element, key, value) {
 function setHeartColor(element) {
   var values = $(element).attr('value').split(',');
   if (values[0] === "liked") {
-      $(element).find(".heart-icon").css('fill', '#E32626');
-      $(element).find(".heading").css('color', '#FFFFFF');
+    $(element).find(".heart-icon img").css('filter', '');
+    $(element).find(".heading").css('color', '#FFFFFF');
   }
   else if (values[0] === "unliked") {
-      $(element).find(".heart-icon").css('fill', '#E1E1E1');
+      $(element).find(".heart-icon img").css('filter', 'grayscale(100%) brightness(500%)');
       $(element).find(".heading").css('color', '#E1E1E1');
   }
 }

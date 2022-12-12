@@ -32,7 +32,7 @@ $(document).ready(function() {
     $(".favorite").each(function(index, element){
         var check = $(element).attr('value');
         if (check == "liked") {
-            $(element).find(".heart-icon").css('fill', '#E32626');
+            $(element).find(".heart-icon img").css('filter', '');
             $(element).find(".heading").css('color', '#FFFFFF');
         }
     });

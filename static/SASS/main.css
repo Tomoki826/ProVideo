@@ -1,8 +1,12 @@
 main {
   flex: 1;
+  z-index: 1;
 }
 
-@media all and (min-width: 769px) {
+@media all and (min-width: 1024px) {
+  main {
+    background-color: #f5f5f5;
+  }
   .smartphone_newline {
     display: flex;
   }
@@ -81,37 +85,35 @@ main {
     border: 0.5px solid #E7E7E7;
   }
   .contents_container .videos_container .leftside .favorite {
+    z-index: 10;
     position: relative;
     cursor: pointer;
     display: table;
-    margin: 0 auto;
+    margin: 3px auto;
     background-color: #269393;
     border-collapse: separate;
     border-spacing: 5px 0;
-    margin-top: 3px;
-    margin-bottom: 4px;
     padding: 3px;
     border-radius: 5px;
     box-shadow: 0 0 3px 0 #afafaf;
-    height: 20px;
-  }
-  .contents_container .videos_container .leftside .favorite > * {
-    display: table-cell;
-    vertical-align: middle;
+    max-height: 20px;
   }
   .contents_container .videos_container .leftside .favorite .heart-icon {
     position: absolute;
+    top: 3px;
+    left: 5px;
+    vertical-align: middle;
     fill: #E1E1E1;
-    width: 18px;
-    height: 20px;
+    height: 18px;
+  }
+  .contents_container .videos_container .leftside .favorite .heart-icon img {
+    height: 100%;
   }
   .contents_container .videos_container .leftside .favorite .heading {
-    display: block;
+    margin-left: 20px;
+    vertical-align: middle;
     color: #E1E1E1;
-    padding-top: 1px;
-    margin-left: 22px;
     font-size: 13px;
-    height: 0;
   }
   .contents_container .videos_container .leftside .favorite:active {
     opacity: 0.6;
@@ -347,7 +349,10 @@ main {
     transform: translateY(0);
   }
 }
-@media all and (min-width: 426px) and (max-width: 768px) {
+@media all and (min-width: 426px) and (max-width: 1023px) {
+  main {
+    background-color: #FFFFFF;
+  }
   .search_title {
     background-image: linear-gradient(90deg, #07B4E0 40%, #9AD36D 100%);
     color: #FFFFFF;
@@ -423,28 +428,36 @@ main {
   }
   .contents_container .videos_container .leftside .favorite {
     z-index: 10;
-    position: absolute;
-    top: 140px;
-    right: 5px;
+    position: relative;
     cursor: pointer;
+    display: table;
     margin: 0 auto;
     background-color: #269393;
+    border-collapse: separate;
+    border-spacing: 5px 0;
+    margin-right: -110px;
+    margin-top: -26px;
     padding: 3px;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: 0 0 3px 0 #afafaf;
-    width: 30px;
-    height: 30px;
+    max-height: 20px;
   }
   .contents_container .videos_container .leftside .favorite .heart-icon {
     position: absolute;
+    top: 3px;
+    left: 5px;
+    vertical-align: middle;
     fill: #E1E1E1;
-    width: 20px;
-    height: 20px;
-    top: 8px;
-    left: 8px;
+    height: 18px;
+  }
+  .contents_container .videos_container .leftside .favorite .heart-icon img {
+    height: 100%;
   }
   .contents_container .videos_container .leftside .favorite .heading {
-    display: none;
+    margin-left: 20px;
+    vertical-align: middle;
+    color: #E1E1E1;
+    font-size: 13px;
   }
   .contents_container .videos_container .leftside .favorite:active {
     opacity: 0.6;
@@ -457,8 +470,7 @@ main {
     position: relative;
   }
   .contents_container .videos_container .description .name-block {
-    height: 170px;
-    width: 180px;
+    height: 143px;
     padding-right: 5px;
     overflow-y: scroll;
     position: relative;
@@ -499,21 +511,16 @@ main {
     display: none;
     font-size: 17px;
     font-weight: bold;
-    width: 170px;
   }
   .contents_container .videos_container .description .name-block .name .ajax_name {
     font-size: 17px;
     font-weight: bold;
-    width: 160px;
   }
   .contents_container .videos_container .description .name-block .details {
     font-size: 14px;
-    margin-bottom: 3px;
-    width: 170px;
   }
   .contents_container .videos_container .description .name-block .details .slide-box {
     position: relative;
-    width: 100%;
     height: 21px;
     overflow: hidden;
   }
@@ -522,97 +529,116 @@ main {
     white-space: wrap;
   }
   .contents_container .videos_container .description .ajax_providers {
-    position: relative;
-    top: 10px;
-    left: -120px;
-    margin-right: -120px;
     display: none;
-  }
-  .contents_container .videos_container .description .ajax_providers > div {
     position: relative;
+    margin-top: 40px;
+    margin-left: -120px;
+    max-width: 95vw;
+    overflow: hidden;
+    height: 135px;
   }
-  .contents_container .videos_container .description .ajax_providers > div .spinner {
+  .contents_container .videos_container .description .ajax_providers:before {
+    content: "";
+    display: block;
+  }
+  .contents_container .videos_container .description .ajax_providers .subscription, .contents_container .videos_container .description .ajax_providers .rental, .contents_container .videos_container .description .ajax_providers .buy {
+    display: flex;
+  }
+  .contents_container .videos_container .description .ajax_providers .subscription .spinner, .contents_container .videos_container .description .ajax_providers .rental .spinner, .contents_container .videos_container .description .ajax_providers .buy .spinner {
     margin-top: 3px;
   }
-  .contents_container .videos_container .description .ajax_providers > div .heading {
+  .contents_container .videos_container .description .ajax_providers .subscription .heading, .contents_container .videos_container .description .ajax_providers .rental .heading, .contents_container .videos_container .description .ajax_providers .buy .heading {
     font-size: 10px;
-    display: inline-block;
-    background-color: #D4D9DC;
+    display: inline;
+    color: #FFFFFF;
+    background-color: #a1a1a1;
     border-radius: 4px;
-    padding: 5px 7px;
+    width: 50px;
+    text-align: center;
+    margin: auto 5px auto 0;
+    padding: 2px;
   }
-  .contents_container .videos_container .description .ajax_providers > div .icons {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons, .contents_container .videos_container .description .ajax_providers .rental .icons, .contents_container .videos_container .description .ajax_providers .buy .icons {
+    max-width: 100%;
     display: flex;
-    height: 50px;
+    flex-wrap: nowrap;
+    height: 40px;
     font-size: 13px;
-    width: 280px;
+    padding: 2px 0;
     vertical-align: middle;
   }
-  .contents_container .videos_container .description .ajax_providers > div .icons abbr {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr, .contents_container .videos_container .description .ajax_providers .rental .icons abbr, .contents_container .videos_container .description .ajax_providers .buy .icons abbr {
     display: inline-block;
     width: 40px;
     height: 40px;
     margin: 3px 3px 0 0px;
   }
-  .contents_container .videos_container .description .ajax_providers > div .icons abbr img {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img {
     width: 40px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 6px;
     border: 0.5px solid #E7E7E7;
   }
-  .contents_container .videos_container .description .ajax_providers > div .icons abbr img:hover {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img:hover {
     opacity: 0.7;
   }
   .contents_container .videos_container .description .overview {
-    position: relative;
-    top: 10px;
-    left: -120px;
     display: none;
+    position: relative;
+    margin-top: 40px;
+    margin-left: -120px;
   }
   .contents_container .videos_container .description .overview .heading {
+    width: 48px;
     font-size: 10px;
     display: inline-block;
-    background-color: #D4D9DC;
+    background-color: #a1a1a1;
     border-radius: 4px;
-    padding: 5px 7px;
+    padding: 2px 4px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 5px;
   }
   .contents_container .videos_container .description .overview .text {
-    position: relative;
-    margin: 3px -110px 15px 0;
     font-size: 13px;
-    max-height: 195px;
+    max-height: 130px;
     overflow-y: scroll;
   }
   .contents_container .videos_container .description .products {
     position: relative;
-    top: 10px;
-    left: -120px;
+    margin-top: 40px;
+    margin-left: -120px;
   }
   .contents_container .videos_container .description .products .heading {
+    min-width: 48px;
     font-size: 10px;
     display: inline-block;
-    background-color: #D4D9DC;
+    color: #FFFFFF;
+    background-color: #a1a1a1;
     border-radius: 4px;
-    padding: 5px 7px;
+    padding: 2px 4px;
+    text-align: center;
+    margin-bottom: 5px;
   }
-  .contents_container .videos_container .description .products .videos {
-    height: 165px;
-    margin-right: -110px;
+  .contents_container .videos_container .description .products .videos .videos_viewer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
   }
-  .contents_container .videos_container .description .products .videos abbr {
+  .contents_container .videos_container .description .products .videos .videos_viewer abbr {
     display: inline-block;
-    max-width: 95px;
-    max-height: 150px;
+    max-width: 115px;
+    max-height: 180px;
+    margin: 0 3px;
   }
-  .contents_container .videos_container .description .products .videos abbr img {
-    width: 100%;
-    height: 100%;
-    margin-top: 8px;
+  .contents_container .videos_container .description .products .videos .videos_viewer abbr img {
+    max-width: 100%;
+    max-height: 100%;
     box-sizing: border-box;
     border: 0.5px solid #E7E7E7;
   }
-  .contents_container .videos_container .description .products .videos abbr img:hover {
+  .contents_container .videos_container .description .products .videos .videos_viewer abbr img:hover {
     opacity: 0.7;
   }
   .contents_container .pv_container {
@@ -710,6 +736,9 @@ main {
   }
 }
 @media all and (max-width: 426px) {
+  main {
+    background-color: #FFFFFF;
+  }
   .search_title {
     background-image: linear-gradient(90deg, #07B4E0 40%, #9AD36D 100%);
     color: #FFFFFF;
@@ -797,21 +826,23 @@ main {
     padding: 3px;
     border-radius: 5px;
     box-shadow: 0 0 3px 0 #afafaf;
-    height: 20px;
+    max-height: 20px;
   }
   .contents_container .videos_container .leftside .favorite .heart-icon {
-    display: table-cell;
+    position: absolute;
+    top: 3px;
+    left: 5px;
     vertical-align: middle;
     fill: #E1E1E1;
-    width: 18px;
-    height: 20px;
+    height: 18px;
+  }
+  .contents_container .videos_container .leftside .favorite .heart-icon img {
+    height: 100%;
   }
   .contents_container .videos_container .leftside .favorite .heading {
-    display: table-cell;
+    margin-left: 20px;
     vertical-align: middle;
     color: #E1E1E1;
-    margin-left: 22px;
-    padding-top: 1px;
     font-size: 13px;
   }
   .contents_container .videos_container .leftside .favorite:active {
