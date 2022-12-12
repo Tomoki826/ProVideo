@@ -85,10 +85,6 @@ def search():
 
        # 検索結果の整理
        data = Search_Data(soup).search_arrange(search_type, page, keywords)
-
-       print(soup)
-       print(data)
-
        return render_template("index.html", data=data, soup=soup, error=False)
 
 # 特集ページを取得
