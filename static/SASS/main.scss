@@ -6,6 +6,7 @@ main {
 // パソコン用CSS
 @media all and (min-width: 1024px) {
     main {
+        display: block;
         background-color: #f5f5f5;
     }
     .smartphone_newline {
@@ -123,63 +124,56 @@ main {
                 padding: 8px 10px 0 0;
                 vertical-align: top;
                 overflow: hidden;
+                position: relative;  
+                .type {
+                    font-size: 13px;
+                    color: #FFFFFF;
+                    display: inline-block;
+                    border-radius: 4px;
+                    padding: 3px 7px;
+                    &.movie {
+                        background-color: #F46262;
+                    }
+                    &.tv {
+                        background-color: #628BF4;
+                    }
+                    &.person {
+                        background-color: #4FB76C;
+                    }
+                    &.sensitive {
+                        background-color: #F471E7;
+                    }
+                    &.tv-sensitive {
+                        background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                    }
+                }
                 .pc-overflow {
                     .name-block {
                         width: 360px;
                         margin-bottom: 5px;
                         .name {
-                            .type {
-                                font-size: 13px;
-                                color: #FFFFFF;
-                                display: inline-block;
-                                border-radius: 4px;
-                                padding: 3px 7px;
-                                &.movie {
-                                    background-color: #F46262;
-                                }
-                                &.tv {
-                                    background-color: #628BF4;
-                                }
-                                &.person {
-                                    background-color: #4FB76C;
-                                }
-                                &.sensitive {
-                                    background-color: #F471E7;
-                                }
-                                &.tv-sensitive {
-                                    background: linear-gradient(to right, #628BF4 20%, #F471E7);   
-                                }
-                            }
-                            .slide-box {
-                                position: relative;
-                                width: 100%;
-                                height: 30px;
-                                overflow: hidden;
-                            }
                             .title {
-                                display: none;
                                 font-size: 20px;
                                 font-weight: bold;
                                 white-space: nowrap;
+                                max-width: 360px;
+                                overflow: hidden;
                             }
                             .ajax_name {
                                 height: 30px;
                                 font-size: 20px;
                                 font-weight: bold;
                                 white-space: nowrap;
+                                max-width: 360px;
+                                overflow: hidden;
                             }
                         }
                         .details {
                             font-size: 14px;
                             margin-bottom: 3px;
-                            .slide-box {
-                                position: relative;
-                                width: 100%;
-                                height: 21px;
-                                overflow: hidden;
-                            }
                             .genre {
-                                display: none;
+                                max-width: 360px;
+                                overflow: hidden;
                                 white-space: nowrap;
                             }
                         }
@@ -187,6 +181,8 @@ main {
                     .ajax_providers {
                         display: none;
                         height: 230px;
+                        position: relative;
+                        z-index: 3;
                         .heading {
                             font-size: 10px;
                             display: inline-block;
@@ -228,6 +224,8 @@ main {
                             padding: 5px 7px;
                         }
                         .text {
+                            max-height: 190px;
+                            overflow: hidden;
                             margin: 3px 0;
                             font-size: 13px;
                             width: 360px;
@@ -260,6 +258,23 @@ main {
                             }
                         }
                     }
+                }
+                .bottom_white {
+                    z-index: 2;
+                    position: absolute;
+                    width: 100%;
+                    height: 20%;
+                    bottom: 0;
+                    background-image: linear-gradient(180deg, transparent 0%, #FFFFFF 85%);
+                }
+                .right_white {
+                    z-index: 2;
+                    position: absolute;
+                    width: 20%;
+                    height: 35%;
+                    top: 0;
+                    right: 0;
+                    background-image: linear-gradient(90deg, transparent 0%, #FFFFFF 80%);
                 }
             }
         }
@@ -357,7 +372,7 @@ main {
     }
 }
 // タブレット用CSS
-@media all and (min-width: 426px) and (max-width: 1023px) {
+@media all and (min-width: 426px) and (max-width: 1023.5px) {
     main {
         background-color: #FFFFFF;
     }
@@ -474,36 +489,37 @@ main {
                 padding: 0;
                 vertical-align: middle;
                 position: relative;
+                .type {
+                    font-size: 13px;
+                    color: #FFFFFF;
+                    display: inline-block;
+                    border-radius: 4px;
+                    padding: 3px 7px;
+                    &.movie {
+                        background-color: #F46262;
+                    }
+                    &.tv {
+                        background-color: #628BF4;
+                    }
+                    &.person {
+                        background-color: #4FB76C;
+                    }
+                    &.sensitive {
+                        background-color: #F471E7;
+                    }
+                    &.tv-sensitive {
+                        background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                    }
+                }
                 .name-block {
-                    height: 143px;
+                    height: 120px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
                     .name {
                         top: 0;
                         left: 0;
-                        .type {
-                            font-size: 13px;
-                            color: #FFFFFF;
-                            display: inline-block;
-                            border-radius: 4px;
-                            padding: 3px 7px;
-                            &.movie {
-                                background-color: #F46262;
-                            }
-                            &.tv {
-                                background-color: #628BF4;
-                            }
-                            &.person {
-                                background-color: #4FB76C;
-                            }
-                            &.sensitive {
-                                background-color: #F471E7;
-                            }
-                            &.tv-sensitive {
-                                background: linear-gradient(to right, #628BF4 20%, #F471E7);   
-                            }
-                        }
+                        
                         .slide-box {
                             position: relative;
                             width: 100%;
@@ -511,7 +527,6 @@ main {
                             overflow: hidden;
                         }
                         .title {
-                            display: none;
                             font-size: 17px;
                             font-weight: bold;
                         }
@@ -528,7 +543,6 @@ main {
                             overflow: hidden;
                         }
                         .genre {
-                            display: none;
                             white-space: wrap;
                         }
                     }
@@ -536,7 +550,7 @@ main {
                 .ajax_providers {
                     display: none;
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     max-width: 95vw;
                     overflow: hidden;
@@ -591,7 +605,7 @@ main {
                 .overview {
                     display: none;
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     .heading {
                         width: 48px;
@@ -612,7 +626,7 @@ main {
                 }
                 .products {
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     .heading {
                         min-width: 48px;
@@ -863,36 +877,36 @@ main {
                 padding: 0;
                 vertical-align: top;
                 position: relative;
+                .type {
+                    font-size: 13px;
+                    color: #FFFFFF;
+                    display: inline-block;
+                    border-radius: 4px;
+                    padding: 3px 7px;
+                    &.movie {
+                        background-color: #F46262;
+                    }
+                    &.tv {
+                        background-color: #628BF4;
+                    }
+                    &.person {
+                        background-color: #4FB76C;
+                    }
+                    &.sensitive {
+                        background-color: #F471E7;
+                    }
+                    &.tv-sensitive {
+                        background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                    }
+                }
                 .name-block {
-                    height: 143px;
+                    height: 120px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
                     .name {
                         top: 0;
                         left: 0;
-                        .type {
-                            font-size: 13px;
-                            color: #FFFFFF;
-                            display: inline-block;
-                            border-radius: 4px;
-                            padding: 3px 7px;
-                            &.movie {
-                                background-color: #F46262;
-                            }
-                            &.tv {
-                                background-color: #628BF4;
-                            }
-                            &.person {
-                                background-color: #4FB76C;
-                            }
-                            &.sensitive {
-                                background-color: #F471E7;
-                            }
-                            &.tv-sensitive {
-                                background: linear-gradient(to right, #628BF4 20%, #F471E7);   
-                            }
-                        }
                         .slide-box {
                             position: relative;
                             width: 100%;
@@ -900,7 +914,6 @@ main {
                             overflow: hidden;
                         }
                         .title {
-                            display: none;
                             font-size: 17px;
                             font-weight: bold;
                         }
@@ -917,7 +930,6 @@ main {
                             overflow: hidden;
                         }
                         .genre {
-                            display: none;
                             white-space: wrap;
                         }
                     }
@@ -925,7 +937,7 @@ main {
                 .ajax_providers {
                     display: none;
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     max-width: 95vw;
                     overflow: hidden;
@@ -980,7 +992,7 @@ main {
                 .overview {
                     display: none;
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     .heading {
                         width: 48px;
@@ -1001,7 +1013,7 @@ main {
                 }
                 .products {
                     position: relative;
-                    margin-top: 40px;
+                    margin-top: 30px;
                     margin-left: -120px;
                     width: 100%;
                     .heading {

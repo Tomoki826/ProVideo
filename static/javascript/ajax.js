@@ -91,6 +91,7 @@ $(function() {
                 // 通信終了時の処理
                 .always( function(data) {
                     jQuery_element.html(original_name);
+                    jQuery_element.wrapInner('<abbr title="' + original_name + '">');
                 })
             }
         }

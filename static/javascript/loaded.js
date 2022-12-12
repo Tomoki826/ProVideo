@@ -1,6 +1,7 @@
 // HTML読み込み完了直後に実行
 $(document).ready(function() {
 
+    /*
     // 文字数が多すぎたら省略する
     $(".description").each(function(index, element){
         var $title = $(element).find('.title');
@@ -27,6 +28,7 @@ $(document).ready(function() {
             }
         }
     });
+    */
 
     // お気に入りの色を設定する
     $(".favorite").each(function(index, element){

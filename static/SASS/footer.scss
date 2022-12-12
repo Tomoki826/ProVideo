@@ -1,14 +1,12 @@
 // パソコン用CSS
 @media all and (min-width: 769px) {
     #foot_search {
-        display: table;
         background-color: #FFFFFF;
         text-align: center;
         padding: 12px 0 5px 0;
         border-top: 3px solid #E7E7E7;
         margin-top: 10px;
         .title_logo {
-            display: table-cell;
             text-align: center;
             vertical-align: middle;
             img {
@@ -83,14 +81,12 @@
 // タブレット用CSS
 @media all and (min-width: 321px) and (max-width: 768px) {
     #foot_search {
-        display: table;
         background-color: #FFFFFF;
         text-align: center;
         padding: 12px 0 5px 0;
         border-top: 3px solid #E7E7E7;
         margin-top: 10px;
         .title_logo {
-            display: table-cell;
             text-align: center;
             vertical-align: middle;
             img {
@@ -165,14 +161,12 @@
 // スマホ用CSS
 @media all and (max-width: 320px) {
     #foot_search {
-        display: table;
         background-color: #FFFFFF;
         text-align: center;
         padding: 12px 0 5px 0;
         border-top: 3px solid #E7E7E7;
         margin-top: 10px;
         .title_logo {
-            display: table-cell;
             text-align: center;
             vertical-align: middle;
             img {

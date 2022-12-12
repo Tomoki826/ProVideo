@@ -45,16 +45,16 @@
             </div>
             <div class="favorite" value="unliked,{{item['data_type']}},{{item['id']}}">
                 <div class="heart-icon">
-                    <img src="../static/images/heart_icon.svg" alt="お気に入り" style="filter: grayscale(100%) brightness(500%);">
+                    <img src="../static/images/heart_icon.svg" alt="お気に入り" oncontextmenu="return false;" style="filter: grayscale(100%) brightness(500%);"/>
                 </div>
                 <div class="heading">お気に入り</div>
             </div>
         </div>
         <div class="description">
             <div class="pc-overflow">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
                 <div class="name-block">
                     <div class="name">
-                        <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
                         {% if item['JP_name'] == true %}
                             <div class="ajax_name" value="loaded">{{item['title']}}</div>
                         {% else %}
@@ -86,6 +86,7 @@
                     </div>
                 </div>
             </div>
+            <div class="right_white"></div>
         </div>
     </div>
 {% else %}
@@ -97,21 +98,25 @@
             </div>
             <div class="favorite" value="unliked,{{item['data_type']}},{{item['id']}}">
                 <div class="heart-icon">
-                    <img src="../static/images/heart_icon.svg" alt="お気に入り" style="filter: grayscale(100%) brightness(500%);">
+                    <img src="../static/images/heart_icon.svg" alt="お気に入り" oncontextmenu="return false;" style="filter: grayscale(100%) brightness(500%);"/>
                 </div>
                 <div class="heading">お気に入り</div>
             </div>
         </div>
         <div class="description">
             <div class="pc-overflow">
+                <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
                 <div class="name-block">
                     <div class="name">
-                        <div class="type {{item['data_type']}}">{{item['media_type']}}</div>
-                        <div class="title"><span>{{item['title']}}</span></div>
+                        <div class="title">
+                            <abbr title="{{item['title']}}"><span>{{item['title']}}</span></abbr>
+                        </div>
                     </div>
                     <div class="details">
                         <div class="openday">{{item['openday']}}</div>
-                        <div class="genre"><span>{{item['genre']}}</span></div>
+                        <div class="genre">
+                            <abbr title="{{item['genre']}}"><span>{{item['genre']}}</span></abbr>
+                        </div>
                     </div>
                 </div>
                 <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
@@ -130,9 +135,11 @@
                 </div>
                 <div class="overview">
                     <div class="heading">あらすじ</div>
-                    <div class="text">{{item['overview']}}</div>
+                    <div class="text"><abbr title="{{item['overview']}}">{{item['overview']}}</abbr></div>
                 </div>
             </div>
+            <div class="bottom_white"></div>
+            <div class="right_white"></div>
         </div>
     </div>
 {% endif %}
