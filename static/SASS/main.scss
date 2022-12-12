@@ -144,11 +144,9 @@ main {
                                 &.sensitive {
                                     background-color: #F471E7;
                                 }
-                            }
-                            &:has(> .type.tv-sensitive) {
-                                border-radius: 5px;
-                                width: 118px;
-                                background: linear-gradient(to right, #628BF4 20%, #F471E7);
+                                &.tv-sensitive {
+                                    background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                                }
                             }
                             .slide-box {
                                 position: relative;
@@ -490,11 +488,9 @@ main {
                             &.sensitive {
                                 background-color: #F471E7;
                             }
-                        }
-                        &:has(> .type.tv-sensitive) {
-                            border-radius: 5px;
-                            width: 118px;
-                            background: linear-gradient(to right, #628BF4 20%, #F471E7);
+                            &.tv-sensitive {
+                                background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                            }
                         }
                         .slide-box {
                             position: relative;
@@ -808,23 +804,20 @@ main {
                     border-radius: 5px;
                     box-shadow: 0 0 3px 0 #afafaf;
                     height: 20px;
-                    & > * {
+                    .heart-icon {
                         display: table-cell;
                         vertical-align: middle;
-                    }
-                    .heart-icon {
-                        position: absolute;
                         fill: #E1E1E1;
                         width: 18px;
                         height: 20px;
                     }
                     .heading {
-                        display: block;
+                        display: table-cell;
+                        vertical-align: middle;
                         color: #E1E1E1;
-                        padding-top: 1px;
                         margin-left: 22px;
+                        padding-top: 1px;
                         font-size: 13px;
-                        height: 0;
                     }
                     &:active {
                         opacity: 0.6;
@@ -863,11 +856,9 @@ main {
                             &.sensitive {
                                 background-color: #F471E7;
                             }
-                        }
-                        &:has(> .type.tv-sensitive) {
-                            border-radius: 5px;
-                            width: 118px;
-                            background: linear-gradient(to right, #628BF4 20%, #F471E7);
+                            &.tv-sensitive {
+                                background: linear-gradient(to right, #628BF4 20%, #F471E7);   
+                            }
                         }
                         .slide-box {
                             position: relative;

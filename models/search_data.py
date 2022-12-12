@@ -17,7 +17,7 @@ class Search_Data:
               self.data['keywords'] = keywords
               self.data['current_page'] = page
               print(self.raw_data.get('total_results'))
-              if self.raw_data.get('total_results') >= 0:
+              if self.raw_data.get('total_results') != None:
                      self.data['max_page'] = (self.raw_data['total_results'] - 1) // 20 + 1
                      self.data['total_results'] = self.raw_data['total_results']
               # 検索タイプ

@@ -146,9 +146,7 @@ main {
   .contents_container .videos_container .description .pc-overflow .name-block .name .type.sensitive {
     background-color: #F471E7;
   }
-  .contents_container .videos_container .description .pc-overflow .name-block .name:has(> .type.tv-sensitive) {
-    border-radius: 5px;
-    width: 118px;
+  .contents_container .videos_container .description .pc-overflow .name-block .name .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
   }
   .contents_container .videos_container .description .pc-overflow .name-block .name .slide-box {
@@ -488,9 +486,7 @@ main {
   .contents_container .videos_container .description .name-block .name .type.sensitive {
     background-color: #F471E7;
   }
-  .contents_container .videos_container .description .name-block .name:has(> .type.tv-sensitive) {
-    border-radius: 5px;
-    width: 118px;
+  .contents_container .videos_container .description .name-block .name .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
   }
   .contents_container .videos_container .description .name-block .name .slide-box {
@@ -803,23 +799,20 @@ main {
     box-shadow: 0 0 3px 0 #afafaf;
     height: 20px;
   }
-  .contents_container .videos_container .leftside .favorite > * {
+  .contents_container .videos_container .leftside .favorite .heart-icon {
     display: table-cell;
     vertical-align: middle;
-  }
-  .contents_container .videos_container .leftside .favorite .heart-icon {
-    position: absolute;
     fill: #E1E1E1;
     width: 18px;
     height: 20px;
   }
   .contents_container .videos_container .leftside .favorite .heading {
-    display: block;
+    display: table-cell;
+    vertical-align: middle;
     color: #E1E1E1;
-    padding-top: 1px;
     margin-left: 22px;
+    padding-top: 1px;
     font-size: 13px;
-    height: 0;
   }
   .contents_container .videos_container .leftside .favorite:active {
     opacity: 0.6;
@@ -860,9 +853,7 @@ main {
   .contents_container .videos_container .description .name-block .name .type.sensitive {
     background-color: #F471E7;
   }
-  .contents_container .videos_container .description .name-block .name:has(> .type.tv-sensitive) {
-    border-radius: 5px;
-    width: 118px;
+  .contents_container .videos_container .description .name-block .name .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
   }
   .contents_container .videos_container .description .name-block .name .slide-box {
