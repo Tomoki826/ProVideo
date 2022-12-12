@@ -41,7 +41,6 @@
 @media all and (max-width: 600px) {
   .page_container {
     background-color: #FFFFFF;
-    border-bottom: 3px solid #E7E7E7;
     max-width: 1790px;
     width: 100%;
     margin: 0 auto;
@@ -51,7 +50,7 @@
     margin: 0 auto;
     padding: 10px 0;
     border-collapse: separate;
-    border-spacing: 5px 0;
+    border-spacing: 3px 0;
   }
   .page_container .page_line .pages, .page_container .page_line .dots, .page_container .page_line .current_page {
     display: table-cell;

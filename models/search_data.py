@@ -16,7 +16,8 @@ class Search_Data:
        def search_arrange(self, search_type=Search.MULTI, page=1, keywords=''):
               self.data['keywords'] = keywords
               self.data['current_page'] = page
-              if self.raw_data.get('total_results'):
+              print(self.raw_data.get('total_results'))
+              if self.raw_data.get('total_results') >= 0:
                      self.data['max_page'] = (self.raw_data['total_results'] - 1) // 20 + 1
                      self.data['total_results'] = self.raw_data['total_results']
               # 検索タイプ

@@ -17,6 +17,9 @@ main {
     align-items: center;
     margin-bottom: 0;
   }
+  .search_title .page-tree {
+    max-width: 70%;
+  }
   .search_title .page-tree a {
     color: #FFFFFF;
     opacity: 1;
@@ -356,6 +359,9 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
+  }
+  .search_title .page-tree {
+    max-width: 80%;
   }
   .search_title .page-tree a {
     color: #FFFFFF;
@@ -718,6 +724,9 @@ main {
     align-items: center;
     margin-bottom: 0;
   }
+  .search_title .page-tree {
+    max-width: 80%;
+  }
   .search_title .page-tree a {
     color: #FFFFFF;
     opacity: 1;
@@ -788,7 +797,7 @@ main {
     border-collapse: separate;
     border-spacing: 5px 0;
     margin-right: -110px;
-    margin-top: -30px;
+    margin-top: -26px;
     padding: 3px;
     border-radius: 5px;
     box-shadow: 0 0 3px 0 #afafaf;
@@ -823,7 +832,7 @@ main {
     position: relative;
   }
   .contents_container .videos_container .description .name-block {
-    height: 135px;
+    height: 143px;
     padding-right: 5px;
     overflow-y: scroll;
     position: relative;
@@ -873,7 +882,6 @@ main {
   }
   .contents_container .videos_container .description .name-block .details {
     font-size: 14px;
-    margin-bottom: 3px;
   }
   .contents_container .videos_container .description .name-block .details .slide-box {
     position: relative;
@@ -963,16 +971,19 @@ main {
   }
   .contents_container .videos_container .description .products {
     position: relative;
-    margin-top: 45px;
+    margin-top: 40px;
     margin-left: -120px;
     width: 100%;
   }
   .contents_container .videos_container .description .products .heading {
+    min-width: 48px;
     font-size: 10px;
     display: inline-block;
-    background-color: #D4D9DC;
+    color: #FFFFFF;
+    background-color: #a1a1a1;
     border-radius: 4px;
-    padding: 5px 7px;
+    padding: 2px 4px;
+    text-align: center;
     margin-bottom: 5px;
   }
   .contents_container .videos_container .description .products .videos {
@@ -1041,26 +1052,20 @@ main {
     opacity: 0.6;
   }
   .contents_container .image_container {
-    position: relative;
     overflow: hidden;
-    width: 320px;
-    height: 180px;
-    border-radius: 10px;
+    width: 95%;
     margin: 5px;
   }
   .contents_container .image_container img {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
   }
   .contents_container .image_container .caption {
     display: table;
-    position: absolute;
     bottom: 0;
     width: 100%;
     height: 20%;
-    background-color: rgba(0, 0, 0, 0.6980392157);
-    transform: translateY(100%);
-    transition: transform 0.3s;
   }
   .contents_container .image_container .caption .caption-contents {
     display: table-cell;
@@ -1072,7 +1077,7 @@ main {
     display: inline-block;
   }
   .contents_container .image_container .caption .caption-contents .caption-left-right .caption-text {
-    color: #FFFFFF;
+    color: #000000;
     text-align: left;
   }
   .contents_container .image_container .caption .caption-contents .caption-left-right .reference-link {

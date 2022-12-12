@@ -26,7 +26,7 @@ if not api_key:
 # ホームページ
 @app.route("/", methods=["GET"])
 def index(search_type=int(Search.DISCOVER_MOVIE)):
-       print("OK")
+
        # 特集ページを取得
        feature = JSON('./static/JSON/feature.json').get_json()
        # 話題の映画を取得
@@ -83,19 +83,12 @@ def search():
        elif search_type == Search.MULTI:
               soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
 
-       """
-       match search_type:
-              case Search.MOVIES:
-                     soup = TMDB(api_key).search_movies(keywords, page)
-              case Search.TVSHOWS:
-                     soup = TMDB(api_key).search_tvshows(keywords, page)
-              case Search.PERSON:
-                     soup = TMDB(api_key).search_person(keywords, page, SENSITIVE_SEARCH)
-              case Search.MULTI:
-                     soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
-       """
        # 検索結果の整理
        data = Search_Data(soup).search_arrange(search_type, page, keywords)
+
+       print(soup)
+       print(data)
+
        return render_template("index.html", data=data, soup=soup, error=False)
 
 # 特集ページを取得

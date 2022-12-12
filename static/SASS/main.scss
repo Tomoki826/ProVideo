@@ -18,6 +18,7 @@ main {
         align-items: center;
         margin-bottom: 0;
         .page-tree {
+            max-width: 70%;
             a {
                 color: #FFFFFF;
                 opacity: 1;
@@ -367,6 +368,7 @@ main {
         align-items: center;
         margin-bottom: 0;
         .page-tree {
+            max-width: 80%;
             a {
                 color: #FFFFFF;
                 opacity: 1;
@@ -731,6 +733,7 @@ main {
         align-items: center;
         margin-bottom: 0;
         .page-tree {
+            max-width: 80%;
             a {
                 color: #FFFFFF;
                 opacity: 1;
@@ -800,7 +803,7 @@ main {
                     border-collapse: separate;
                     border-spacing: 5px 0;
                     margin-right: -110px;
-                    margin-top: -30px;
+                    margin-top: -26px;
                     padding: 3px;
                     border-radius: 5px;
                     box-shadow: 0 0 3px 0 #afafaf;
@@ -835,7 +838,7 @@ main {
                 vertical-align: top;
                 position: relative;
                 .name-block {
-                    height: 135px;
+                    height: 143px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
@@ -884,7 +887,6 @@ main {
                     }
                     .details {
                         font-size: 14px;
-                        margin-bottom: 3px;
                         .slide-box {
                             position: relative;
                             height: 21px;
@@ -975,15 +977,18 @@ main {
                 }
                 .products {
                     position: relative;
-                    margin-top: 45px;
+                    margin-top: 40px;
                     margin-left: -120px;
                     width: 100%;
                     .heading {
+                        min-width: 48px;
                         font-size: 10px;
                         display: inline-block;
-                        background-color: #D4D9DC;
+                        color: #FFFFFF;
+                        background-color: #a1a1a1;
                         border-radius: 4px;
-                        padding: 5px 7px;
+                        padding: 2px 4px;
+                        text-align: center;
                         margin-bottom: 5px;
                     }
                     .videos {
@@ -1055,25 +1060,19 @@ main {
             }
         }
         .image_container {
-            position: relative;
             overflow: hidden;
-            width: 320px;
-            height: 180px;
-            border-radius: 10px;
+            width: 95%;
             margin: 5px;
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: 10px;
             }
             .caption {
                 display: table;
-                position: absolute;
                 bottom: 0;
                 width: 100%;
                 height: 20%;
-                background-color: #000000b2;
-                transform: translateY(100%);
-                transition: transform 0.3s;
                 .caption-contents {
                     display: table-cell;
                     vertical-align: middle;
@@ -1082,7 +1081,7 @@ main {
                     .caption-left-right {
                         display: inline-block;
                         .caption-text {
-                            color: #FFFFFF;
+                            color: #000000;
                             text-align: left;
                         }
                         .reference-link {
