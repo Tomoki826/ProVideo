@@ -68,6 +68,7 @@
                 <div class="products">
                     <div class="heading">{{item['known_videos']}}</div>
                     <div class="videos">
+                        <div class="videos_viewer">
                         {% if item['known_for'] | length > 0 %}
                             {% for item2 in item['known_for'] %}
                                 <abbr title="{{item2['title']}}">
@@ -79,6 +80,7 @@
                             <img src="../static/images/unfound_works.svg" alt="Not Found"/>
                             </abbr>
                         {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,15 +112,15 @@
                 </div>
                 <div class="ajax_providers" value="unloaded,{{item['id']}},{{item['data_type']}}">
                     <div class="subscription">
-                        <div class="heading"><span>サブスクリプション</span></div>
+                        <div class="heading"><span>定額</span></div>
                         <div class="icons"><div class="spinner"></div></div>
                     </div>
                     <div class="rental">
-                        <div class="heading"><span>レンタル可能</span></div>
+                        <div class="heading"><span>レンタル</span></div>
                         <div class="icons"><div class="spinner"></div></div>
                     </div>
                     <div class="buy">
-                        <div class="heading"><span>購入可能</span></div>
+                        <div class="heading"><span>購入</span></div>
                         <div class="icons"><div class="spinner"></div></div>
                     </div>
                 </div>

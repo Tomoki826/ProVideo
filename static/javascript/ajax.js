@@ -60,8 +60,8 @@ function replaceProviderInfo(element, data) {
     else {
         element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
     }
-    // 読み込み完了後 スライドインする
-    element.find('img').css('animation', 'fadein-right 0.5s ease-out forwards');
+    // 読み込み完了後 フェードインする
+    element.find('img').css('animation', 'fadein 0.5s ease-out forwards');
     setTimeout(function(){element.find('img').css('animation', '')}, 500);
 }
 
@@ -85,8 +85,8 @@ $(function() {
                         original_name = data;
                     }
                     jQuery_element.attr('value', 'loaded');
-                    // 読み込み完了後 スライドインする
-                    jQuery_element.css('animation', 'fadein-right 0.5s ease-out forwards');
+                    // 読み込み完了後 フェードインする
+                    jQuery_element.css('animation', 'fadein 0.5s ease-out forwards');
                 })
                 // 通信終了時の処理
                 .always( function(data) {
