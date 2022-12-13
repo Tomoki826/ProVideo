@@ -14,6 +14,8 @@ $('.ajax_providers').on('inview', function(event, isInView) {
             .done( function(data) {
                 jQuery_element.attr('value', 'loaded,' + values[1] + ',' + values[2]);
                 replaceProviderInfo(jQuery_element, data);
+                // 読み込み完了後 フェードインする
+                element_fadein(jQuery_element.find('img'));
             })
         }
     }
@@ -60,8 +62,6 @@ function replaceProviderInfo(element, data) {
     else {
         element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
     }
-    // 読み込み完了後 フェードインする
-    element_fadein(element.find('img'));
 }
 
 // 非同期通信で日本語の人物名を取得
@@ -100,7 +100,5 @@ $(function() {
 // 読み込み完了後フェードイン
 function element_fadein(element) {
     element.addClass("set_fade-in");
-    setTimeout(function(){
-        element.addClass("fade-in");
-    },1);
+    setTimeout(function(){element.addClass("fade-in");},10);
 }

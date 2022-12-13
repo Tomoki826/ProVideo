@@ -2,6 +2,13 @@ main {
   flex: 1;
   z-index: 1;
 }
+main .none-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+main .none-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 @media all and (min-width: 1024px) {
   main {
@@ -266,7 +273,7 @@ main {
   .contents_container .videos_container .description .right_white {
     z-index: 2;
     position: absolute;
-    width: 20%;
+    width: 10%;
     height: 35%;
     top: 0;
     right: 0;

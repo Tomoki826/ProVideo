@@ -24,12 +24,21 @@ if not api_key:
     raise RuntimeError("API_KEY not set")
 
 # ホームページ
+"""
+トレンド機能は
+映画、配信、人物のどれかで話題の20作品を表示する
+?media=があれば、それを
+無ければLocalStorageから、最後に呼び出したデータタイプを表示する
+"""
 @app.route("/", methods=["GET"])
-def index(search_type=int(Search.DISCOVER_MOVIE)):
+def index():
+       
+       # クエリパラメータを取得
+       print(request.args)
 
        # 特集ページを取得
        feature = JSON('./static/JSON/feature.json').get_json()
-       # 話題の映画を取得
+       # 話題の映画・配信番組・人物を取得
        page = 1
        soup = TMDB(api_key).discover_movie(page)
        # 検索結果の整理
@@ -42,15 +51,7 @@ def index(search_type=int(Search.DISCOVER_MOVIE)):
        # 話題のテレビ・配信番組を取得
        page = 1
        soup2 = TMDB(api_key).discover_tvshows(page)
-       # 検索結果の整理
-       data2 = Search_Data(soup2).search_arrange(Search.DISCOVER_TV, page)
-       data2['max_page'] = 1
-       data2['total_results'] = min(20, data2['total_results'])
-       # 検索エラーチェック
-       if 'errors' in soup2 or soup2['results'] == [] or soup2['total_results'] <= 0:
-              return render_template("error.html")
-       # 検索結果を表示
-       return render_template("home.html", feature=feature, data=data, data2=data2)
+       return render_template("homepage.html", feature=feature, data=data)
 
 
 # 作品を検索
@@ -87,6 +88,7 @@ def search():
        data = Search_Data(soup).search_arrange(search_type, page, keywords)
        return render_template("index.html", data=data, soup=soup, error=False)
 
+
 # 特集ページを取得
 @app.route("/feature/<string:path>", methods=["GET"])
 def feature(path):
@@ -112,7 +114,6 @@ def feature(path):
        # コンテンツデータを整理
        soup = {'results': []}
        for item in feature_data['containers']:
-
               if item['data_type'] == "movie":
                      single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
               elif item['data_type'] == "tv":
@@ -121,19 +122,6 @@ def feature(path):
                      single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
               else:
                      single_soup = item
-
-              """
-              match item['data_type']:
-                     case "movie":
-                            single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
-                     case "tv":
-                            single_soup = match_work_id(item['id'],TMDB(api_key).search_tvshows(item['name'], 1)['results'])
-                     case "person":
-                            single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
-                     case _:
-                            single_soup = item
-              """    
-
               # データタイプを代入
               single_soup['media_type'] = item['data_type']
               soup['results'].append(single_soup)
@@ -149,11 +137,6 @@ def match_work_id(id, soup):
                      return item
        return {}
 
-
-# お気に入り情報を取得
-@app.route('/favorite', methods=["GET"])
-def favorite():
-       pass
 
 # プロバイダー情報を取得
 @app.route('/load_provider', methods=["POST"])
@@ -178,6 +161,25 @@ def load_personal_name():
               return Japanese_check(soup['also_known_as'])
        else:
               return ''
+
+
+# トレンド情報を取得
+"""
+トレンド機能は
+配信業者一つ一つで話題の20作品を表示する
+?provider=があれば、そのプロバイダーを
+無ければLocalStorageから、最後に呼び出したプロバイダーを表示する
+"""
+@app.route('/trend', methods=["GET"])
+def trend(provider):
+       pass
+
+
+# お気に入り情報を取得
+@app.route('/favorite', methods=["GET"])
+def favorite():
+       pass
+
 
 if __name__=='__main__':
        # デバッグ用

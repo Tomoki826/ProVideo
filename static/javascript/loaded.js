@@ -43,6 +43,7 @@ $(document).ready(function() {
     $(".description").each(function(index, element){
         setTimeout(function(){$(element).css("visibility", "initial")}, 1);
     });
+
 });
 
 // テキストを短くする
