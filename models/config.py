@@ -12,4 +12,4 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # センシティブな検索結果を含めるか
-SENSITIVE_SEARCH = True
+SENSITIVE_SEARCH = False
