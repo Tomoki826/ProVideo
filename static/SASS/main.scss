@@ -512,14 +512,13 @@ main {
                     }
                 }
                 .name-block {
-                    height: 120px;
+                    height: 115px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
                     .name {
                         top: 0;
                         left: 0;
-                        
                         .slide-box {
                             position: relative;
                             width: 100%;
@@ -550,7 +549,7 @@ main {
                 .ajax_providers {
                     display: none;
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     max-width: 95vw;
                     overflow: hidden;
@@ -605,7 +604,7 @@ main {
                 .overview {
                     display: none;
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     .heading {
                         width: 48px;
@@ -626,7 +625,7 @@ main {
                 }
                 .products {
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     .heading {
                         min-width: 48px;
@@ -707,25 +706,19 @@ main {
             }
         }
         .image_container {
-            position: relative;
             overflow: hidden;
             width: 320px;
-            height: 180px;
-            border-radius: 10px;
             margin: 5px;
             img {
                 width: 100%;
                 height: 100%;
+                border-radius: 10px;
             }
             .caption {
                 display: table;
-                position: absolute;
                 bottom: 0;
                 width: 100%;
                 height: 20%;
-                background-color: #000000b2;
-                transform: translateY(100%);
-                transition: transform 0.3s;
                 .caption-contents {
                     display: table-cell;
                     vertical-align: middle;
@@ -734,7 +727,7 @@ main {
                     .caption-left-right {
                         display: inline-block;
                         .caption-text {
-                            color: #FFFFFF;
+                            color: #000000;
                             text-align: left;
                         }
                         .reference-link {
@@ -900,7 +893,7 @@ main {
                     }
                 }
                 .name-block {
-                    height: 120px;
+                    height: 115px;
                     padding-right: 5px;
                     overflow-y: scroll;
                     position: relative;
@@ -937,7 +930,7 @@ main {
                 .ajax_providers {
                     display: none;
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     max-width: 95vw;
                     overflow: hidden;
@@ -992,7 +985,7 @@ main {
                 .overview {
                     display: none;
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     .heading {
                         width: 48px;
@@ -1013,7 +1006,7 @@ main {
                 }
                 .products {
                     position: relative;
-                    margin-top: 30px;
+                    margin-top: 35px;
                     margin-left: -120px;
                     width: 100%;
                     .heading {

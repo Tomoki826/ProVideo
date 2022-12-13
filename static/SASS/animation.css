@@ -24,27 +24,6 @@
           animation: spin 0.5s linear 0s infinite;
 }
 
-@-webkit-keyframes fadein-right {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
-
-@keyframes fadein-right {
-  0% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-}
 @-webkit-keyframes scale {
   0% {
     transform: scale(1);
@@ -166,19 +145,11 @@
     transform: translateY(0);
   }
 }
-@-webkit-keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.set_fade-in {
+  opacity: 0;
 }
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+
+.fade-in {
+  transition: all 0.5s;
+  opacity: 1;
 }/*# sourceMappingURL=animation.css.map */

@@ -118,7 +118,7 @@ function setHeartColor(element) {
     $(element).find(".heading").css('color', '#FFFFFF');
   }
   else if (values[0] === "unliked") {
-      $(element).find(".heart-icon img").css('filter', 'grayscale(100%) brightness(500%)');
+      $(element).find(".heart-icon img").css('filter', 'grayscale(100%) brightness(230%)');
       $(element).find(".heading").css('color', '#E1E1E1');
   }
 }

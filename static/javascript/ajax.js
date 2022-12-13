@@ -61,8 +61,7 @@ function replaceProviderInfo(element, data) {
         element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
     }
     // 読み込み完了後 フェードインする
-    element.find('img').css('animation', 'fadein 0.5s ease-out forwards');
-    setTimeout(function(){element.find('img').css('animation', '')}, 500);
+    element_fadein(element.find('img'));
 }
 
 // 非同期通信で日本語の人物名を取得
@@ -86,7 +85,7 @@ $(function() {
                     }
                     jQuery_element.attr('value', 'loaded');
                     // 読み込み完了後 フェードインする
-                    jQuery_element.css('animation', 'fadein 0.5s ease-out forwards');
+                    element_fadein(jQuery_element);
                 })
                 // 通信終了時の処理
                 .always( function(data) {
@@ -97,3 +96,11 @@ $(function() {
         }
     });
 })
+
+// 読み込み完了後フェードイン
+function element_fadein(element) {
+    element.addClass("set_fade-in");
+    setTimeout(function(){
+        element.addClass("fade-in");
+    },1);
+}

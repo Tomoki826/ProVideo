@@ -16,17 +16,6 @@
     border-radius: 50%;
     animation: spin .5s linear 0s infinite;
 }
-// 右からフェードイン
-@keyframes fadein-right {
-  0% {
-     opacity: 0;
-     transform: translateX(20px);
-  }
-  100% {
-     opacity: 1;
-     transform: translateX(0px);
-  }
-}
 // 三つ並びのボールのローディング
 @-webkit-keyframes scale {
   0% {
@@ -125,11 +114,14 @@
         }
 }
 // フェードイン
-@keyframes fadein {
-        0% {
-                opacity: 0;
-        }
-        100% {
-                opacity: 1;
-        }
+.set_fade-in {
+        opacity: 0;
+}
+.fade-in {
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        opacity: 1;
 }
