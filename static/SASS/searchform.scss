@@ -1,5 +1,5 @@
 // パソコン用CSS
-@media all and (min-width: 769px) {
+@media all and (min-width: 1024px) {
     .search_form {
         margin: 0 auto;
         text-align: center;
@@ -60,7 +60,7 @@
     }
 }
 // タブレット用CSS
-@media all and (min-width: 321px) and (max-width: 768px) {
+@media all and (min-width: 321px) and (max-width: 1023.5px) {
     .search_form {
         text-align: center;
         .search_container {
