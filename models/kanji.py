@@ -17,6 +17,14 @@ KANA_WORDS          = re.compile(f'[！？．、。ーぁ-ヶァ-ヶｦ-ﾟ]+')
 
 # リストから日本語を抽出
 def Japanese_check(li):
+    # 簡体字があるものを除く
+    tmp = []
+    while li:
+        item = li.pop()
+        if is_zh(item) == False:
+            tmp.append(item)
+    while tmp:
+        li.append(tmp.pop())
     # 漢字のみ
     for item in li:
         if KANJI_SPACE_WORDS.fullmatch(item.strip()) != None:
@@ -34,3 +42,7 @@ def Japanese_check(li):
         if KANA_WORDS.search(item.strip()) != None:
             return item.strip()
     return ''
+
+# 中国語(簡体字があるかチェックする)
+def is_zh(in_str):
+    return (set(in_str) - set(in_str.encode('sjis','ignore').decode('sjis'))) != set([])

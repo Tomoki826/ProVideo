@@ -8,3 +8,4 @@ class Search(enum.IntEnum):
     PERSON = 4
     DISCOVER_MOVIE = 5
     DISCOVER_TV = 6
+    DISCOVER_PERSON = 7

@@ -17,6 +17,13 @@ $('.ajax_providers').on('inview', function(event, isInView) {
                 // 読み込み完了後 フェードインする
                 element_fadein(jQuery_element.find('img'));
             })
+            //通信失敗時の処理
+            .fail( function() {
+                jQuery_element.attr('value', 'loaded,' + values[1] + ',' + values[2]);
+                replaceProviderInfo(jQuery_element, {});
+                // 読み込み完了後 フェードインする
+                element_fadein(jQuery_element.find('img'));
+            })
         }
     }
 });
@@ -83,6 +90,13 @@ $(function() {
                     if (data != '') {
                         original_name = data;
                     }
+                    jQuery_element.attr('value', 'loaded');
+                    // 読み込み完了後 フェードインする
+                    element_fadein(jQuery_element);
+                })
+                // 通信失敗時の処理
+                .fail( function(data) {
+                    // 一旦名前を表示する
                     jQuery_element.attr('value', 'loaded');
                     // 読み込み完了後 フェードインする
                     element_fadein(jQuery_element);

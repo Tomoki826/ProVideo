@@ -28,7 +28,7 @@ class Search_Data:
               # 検索データの整理
               self.data['results'] = []
               for item in self.raw_data['results']:
-                     if self.data['search_type'] == Search.PERSON or item.get('media_type') == 'person':
+                     if self.data['search_type'] == Search.PERSON or self.data['search_type'] == Search.DISCOVER_PERSON or item.get('media_type') == 'person':
                             data = self.__person_results_type(item)
                      elif item.get('media_type') == 'text' or item.get('media_type') == 'pv' or item.get('media_type') == 'image':
                             data = self.__feature_type(item)

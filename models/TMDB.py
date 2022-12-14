@@ -74,6 +74,17 @@ class TMDB:
         }
         url = f'{self.base_url_}discover/tv'
         return self._json_by_get_request(url, params)
+
+    # 注目の人物を取得
+    def discover_person(self, page):
+        params = {
+            'page': page,
+            'watch_region': 'JP',
+            'with_release_type': 4,
+            'with_watch_monetization_types': 'flatrate',
+        }
+        url = f'{self.base_url_}person/popular'
+        return self._json_by_get_request(url, params)
     
     # 人物の日本語訳を取得
     def person_id(self, id):

@@ -34,23 +34,29 @@ if not api_key:
 def index():
        
        # クエリパラメータを取得
-       print(request.args)
+       media_type = request.args.get('media')
+       if media_type == None or media_type == "movie":
+              soup = TMDB(api_key).discover_movie(1)
+              data = Search_Data(soup).search_arrange(Search.DISCOVER_MOVIE, 1)
+       elif media_type == "tvshow":
+              soup = TMDB(api_key).discover_tvshows(1)
+              data = Search_Data(soup).search_arrange(Search.DISCOVER_TV, 1)
+       elif media_type == "person":
+              soup = TMDB(api_key).discover_person(1)
+              data = Search_Data(soup).search_arrange(Search.DISCOVER_PERSON, 1)
+       else:
+              return render_template("error.html")
 
        # 特集ページを取得
        feature = JSON('./static/JSON/feature.json').get_json()
-       # 話題の映画・配信番組・人物を取得
-       page = 1
-       soup = TMDB(api_key).discover_movie(page)
        # 検索結果の整理
-       data = Search_Data(soup).search_arrange(Search.DISCOVER_MOVIE, page)
        data['max_page'] = 1
        data['total_results'] = min(20, data['total_results'])
        # 検索エラーチェック
        if 'errors' in soup or soup['results'] == [] or soup['total_results'] <= 0:
               return render_template("error.html")
-       # 話題のテレビ・配信番組を取得
-       page = 1
-       soup2 = TMDB(api_key).discover_tvshows(page)
+       
+       # レンダリング
        return render_template("homepage.html", feature=feature, data=data)
 
 
