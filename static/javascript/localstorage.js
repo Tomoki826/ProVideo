@@ -7,22 +7,30 @@ $(document).ready(function() {
       var data = JSON.parse(localStorage.getItem(values[1]));
       var id = parseInt(values[2], 10);
       if (data !== null) {
-        if (data.indexOf(id) !== -1) $(element).attr('value', "liked," + values[1] + "," + values[2]);
+        for (var index in data) {
+          if (id == data[index][0]) {
+            $(element).attr('value', "liked," + values[1] + "," + values[2] + "," + values[3]);
+            break;
+          }
+        }
       }
       setHeartColor(element);
   });
 
   // お気に入りボタンのクリック
+  // values[1]: データタイプ
+  // values[2]: 作品id
+  // values[3]: 作品名
   $(".favorite").on('click', function(){
       var values = $(this).attr('value').split(',');
       if (values[0] === "unliked") {
-        $(this).attr('value', "liked," + values[1] + "," + values[2]);
-        setFavoriteData(values[1], parseInt(values[2], 10));
+        $(this).attr('value', "liked," + values[1] + "," + values[2] + "," + values[3]);
+        setFavoriteData(values[1], parseInt(values[2], 10), values[3]);
         setHeartColor(this);
         clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
       }
       else if (values[0] === "liked") {
-        $(this).attr('value', "unliked," + values[1] + "," + values[2]);
+        $(this).attr('value', "unliked," + values[1] + "," + values[2] + "," + values[3]);
         delFavoriteData(values[1], parseInt(values[2], 10));
         setHeartColor(this);
         clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
@@ -134,13 +142,14 @@ function getSingleData(key) {
 }
 
 // 作品・人物情報を追加
-function setFavoriteData(type, id) {
+function setFavoriteData(type, id, name) {
+  var currentDate = new Date();
   var data = JSON.parse(localStorage.getItem(type));
   if (data === null) {
-    data = [id];
+    data = [[id, name, currentDate]];
   }
   else if (data.indexOf(id) === -1) {
-    data.push(id);
+    data.push([id, name, currentDate]);
   }
   localStorage.setItem(type, JSON.stringify(data));
 }
@@ -149,8 +158,43 @@ function setFavoriteData(type, id) {
 function delFavoriteData(type, id) {
   var data = JSON.parse(localStorage.getItem(type));
   if (data !== null) {
-    var index = data.indexOf(id);
-    if (index !== -1) data.splice(index, 1);
+    for (var index in data) {
+      if (id == data[index][0]) {
+        data.splice(index, 1);
+        break;
+      }
+    }
     localStorage.setItem(type, JSON.stringify(data));
   }
+}
+
+// 要素をクリックしてLocalStorageをPOST送信
+$('.localstorage_post').click(function() {
+    data = {
+       movie: getSingleData("movie"),
+          tv: getSingleData("tv"),
+      person: getSingleData("person")
+    }
+    form_post("/favorite", data)
+});
+
+// 架空のformでPOST送信
+function form_post(path, params, method='post') {
+
+  var form = document.createElement('form');
+  form.method = method;
+  form.action = path;
+
+  for (var key in params) {
+      if (params.hasOwnProperty(key)) {
+          var hiddenField = document.createElement('input');
+          hiddenField.type = 'hidden';
+          hiddenField.name = key;
+          hiddenField.value = params[key];
+          form.appendChild(hiddenField);
+      }
+  }  
+  document.body.appendChild(form);
+  console.log(form);
+  form.submit();
 }

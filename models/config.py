@@ -1,5 +1,5 @@
 # テンプレートを自動で読み込むか
-TEMPLATES_AUTO_RELOAD = True
+TEMPLATES_AUTO_RELOAD = False
 
 # デバッグモードなのか
 DEBUG = True

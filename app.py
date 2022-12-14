@@ -28,22 +28,25 @@ if not api_key:
 トレンド機能は
 映画、配信、人物のどれかで話題の20作品を表示する
 ?media=があれば、それを
-無ければLocalStorageから、最後に呼び出したデータタイプを表示する
+無ければmovieを表示する
 """
 @app.route("/", methods=["GET"])
 def index():
-       
+
        # クエリパラメータを取得
        media_type = request.args.get('media')
        if media_type == None or media_type == "movie":
               soup = TMDB(api_key).discover_movie(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_MOVIE, 1)
-       elif media_type == "tvshow":
+              discover_type = "映画"
+       elif media_type == "tv":
               soup = TMDB(api_key).discover_tvshows(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_TV, 1)
+              discover_type = "テレビ・配信番組"
        elif media_type == "person":
               soup = TMDB(api_key).discover_person(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_PERSON, 1)
+              discover_type = "人物"
        else:
               return render_template("error.html")
 
@@ -57,6 +60,14 @@ def index():
               return render_template("error.html")
        
        # レンダリング
+       data['site_data'] = {
+              'discover_type' : discover_type,
+              'tab_data' : [
+                     ["movie",  "/?media=movie#scroll",  "映画"],
+                     ["tv",     "/?media=tv#scroll",     "テレビ・配信番組"],
+                     ["person", "/?media=person#scroll", "人物"]
+              ]
+       }
        return render_template("homepage.html", feature=feature, data=data)
 
 
@@ -120,27 +131,27 @@ def feature(path):
        # コンテンツデータを整理
        soup = {'results': []}
        for item in feature_data['containers']:
-              if item['data_type'] == "movie":
-                     single_soup = match_work_id(item['id'],TMDB(api_key).search_movies(item['name'], 1)['results'])
-              elif item['data_type'] == "tv":
-                     single_soup = match_work_id(item['id'],TMDB(api_key).search_tvshows(item['name'], 1)['results'])
-              elif item['data_type'] == "person":
-                     single_soup = match_work_id(item['id'],TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH)['results'])
+              if item['media_type'] == "movie":
+                     single_soup = match_work_id(item['id'], TMDB(api_key).search_movies(item['name'], 1), "movie")
+              elif item['media_type'] == "tv":
+                     single_soup = match_work_id(item['id'], TMDB(api_key).search_tvshows(item['name'], 1), "tv")
+              elif item['media_type'] == "person":
+                     single_soup = match_work_id(item['id'], TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH), "person")
               else:
                      single_soup = item
-              # データタイプを代入
-              single_soup['media_type'] = item['data_type']
-              soup['results'].append(single_soup)
+              if single_soup != {}: soup['results'].append(single_soup)
        # コンテンツをフォーマット
        data["containers"] = Search_Data(soup).search_arrange()
        return render_template("feature.html", data=data)
 
 
 # idと一致する検索結果を探す
-def match_work_id(id, soup):
-       for item in soup:
-              if item['id'] == id:
-                     return item
+def match_work_id(id, soup, media_type="Unknown"):
+       if "results" in soup:
+              for item in soup["results"]:
+                     if item['id'] == id:
+                            item['media_type'] = media_type
+                            return item
        return {}
 
 
@@ -182,8 +193,48 @@ def trend(provider):
 
 
 # お気に入り情報を取得
-@app.route('/favorite', methods=["GET"])
+# 映画・テレビ番組・人物を?media=で細分化する
+# LocalStorageとPython内の変数で同期？
+@app.route('/favorite', methods=["GET", "POST"])
 def favorite():
+       if request.method == "GET":
+              # 一旦、リダイレクトしてからLocalStorageを読み込み
+              return redirect("/favorite_load")
+       elif request.method == "POST":
+              # お気に入り情報を取得
+              local_data = {
+                     'movie':  convert_localdata(request.form['movie']),
+                     'tv':     convert_localdata(request.form['tv']),
+                     'person': convert_localdata(request.form['person'])
+              }
+              # コンテンツデータを整理
+              data = {'results':{}}
+              for type in ['movie', 'tv', 'person']:
+                     soup = {'results': []}
+                     for item in local_data[type]:
+                            single_soup = TMDB(api_key).get_detail_info(item[0], type)
+                            if SENSITIVE_SEARCH or not single_soup.get('adult', False):
+                                   single_soup['media_type'] = type
+                                   soup['results'].append(single_soup)
+                     data['results'] = Search_Data(soup).search_arrange()
+              print(data)
+              return render_template("favorite.html", data=data)
+       else:
+              return render_template("error.html")
+
+
+# ローカルストレージのデータを扱いやすいように変換
+def convert_localdata(raw_data):
+       data = raw_data.split(',')
+       res = []
+       for index in range(len(data) // 3):
+              res.append([int(data[index * 3]), data[index * 3 + 1], data[index * 3 + 2]])
+       return res
+
+
+# LocalStorageとFlaskのデータを同期
+@app.route('/sync_localstorage', methods=["POST"])
+def sync_localstorage():
        pass
 
 

@@ -14,11 +14,11 @@
     "writer": "TAMAGO(@eggpanpan)",
     "containers" : [
     {
-        "data_type": "pv",
+        "media_type": "pv",
         "path": "https://www.youtube.com/embed/FVU0zESXS5c"
     },
     {
-        "data_type": "text",
+        "media_type": "text",
         "title": "最新作に込めた決意とは",
         "color": "#455586",
         "text": [
@@ -28,17 +28,17 @@
         ]
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "すずめの戸締まり",
         "id": 916224
     },
     {
-        "data_type": "person",
+        "media_type": "person",
         "name": "新海誠",
         "id": 74091
     },
     {
-        "data_type": "text",
+        "media_type": "text",
         "text": [
             "新海「『エンターテイメントとして語ってはいけない現実のできごとはあるんだろうか？』とも思っています。“この件にはエンターテイメント作品で触れてはならない”という決まりごとがあったとしたら、それこそ、悲劇だと思うんです。」",
             "本作は何らかの巨大災害が、初めて明示的に描かれたものだ。どうしようもない悲劇をスクリーン上で観客に突きつけつつ、なんとか解釈を見出して乗り越えていきたい監督の想いが込められている。",
@@ -51,7 +51,7 @@
         ]
     },
     {
-        "data_type": "image",
+        "media_type": "image",
         "text": "主人公の前に突如現れる謎の猫。人の言葉を話し、主人公たちを翻弄する。",
         "image": "https://suzume-tojimari-movie.jp/assets/images/ver3/character/image3.jpg",
         "link": [
@@ -61,7 +61,7 @@
         ]
     },
     {
-        "data_type": "text",
+        "media_type": "text",
         "title": "アニメーション監督としての決意",
         "color": "#455586",
         "text": [
@@ -70,41 +70,41 @@
         ]
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "遠い世界",
         "id": 73799
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "彼女と彼女の猫",
         "id": 18143
     },
     {
-        "data_type": "pv",
+        "media_type": "pv",
         "path": "https://www.youtube.com/embed/8-ANtYTLMIY"
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "ほしのこえ",
         "id": 37910
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "雲のむこう、約束の場所",
         "id": 12924
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "秒速5センチメートル",
         "id": 38142
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "星を追う子ども",
         "id": 79707
     },
     {
-        "data_type": "image",
+        "media_type": "image",
         "text": "言の葉の庭の舞台となった新宿御苑を捉えた写真。キービジュアルとほぼ一致。",
         "image": "https://decoy284.net/wp-content/uploads/2017/09/shinjuku-gyoen.jpg",
         "link": [
@@ -114,7 +114,7 @@
         ]
     },
     {
-        "data_type": "text",
+        "media_type": "text",
         "text": [
             "2013年に『言の葉の庭』を公開。雨が降る庭園のもと、男女二人のささやかな交流を描いた本作は興行収入1億5000万円を獲得して、次回作の『君の名は。』に繋がることになる。",
             "2016年、『君の名は。』が東宝系で全国公開された。これまで描いた美麗な情景と思春期の純真な心情は受け継ぎつつ、主題歌・挿入歌にRADWINPSを起用してエンターテイメント性を高めた結果、社会現象を巻き起こし、新海を国民的アニメ監督のポジションに押し上げた。",
@@ -122,21 +122,21 @@
         ]
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "言の葉の庭",
         "id": 198375
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "君の名は。",
         "id": 372058
     },
     {
-        "data_type": "pv",
+        "media_type": "pv",
         "path": "https://www.youtube.com/embed/DdJXOvtNsCY"
     },
     {
-        "data_type": "movie",
+        "media_type": "movie",
         "name": "天気の子",
         "id": 568160
     }

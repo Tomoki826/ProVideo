@@ -29,16 +29,16 @@ class Search_Data:
               self.data['results'] = []
               for item in self.raw_data['results']:
                      if self.data['search_type'] == Search.PERSON or self.data['search_type'] == Search.DISCOVER_PERSON or item.get('media_type') == 'person':
-                            data = self.__person_results_type(item)
+                            data = self.__person_results_type__(item)
                      elif item.get('media_type') == 'text' or item.get('media_type') == 'pv' or item.get('media_type') == 'image':
-                            data = self.__feature_type(item)
+                            data = self.__feature_type__(item)
                      else:
-                            data = self.__video_type(item)
+                            data = self.__video_type__(item)
                      self.data['results'].append(data)
               return self.data
 
        # 作品データを修正
-       def __video_type(self, item):
+       def __video_type__(self, item):
               data = {}
               # id
               data['id'] = item['id']
@@ -69,7 +69,12 @@ class Search_Data:
               if 'openday' not in data:
                      data['openday'] = '公開日: 不明'
               # ジャンル
-              if 'genre_ids' not in item or item.get('genre_ids') == []:
+              if 'genres' in item:
+                     data['genre'] = 'ジャンル: '
+                     for genre in item['genres']:
+                            data['genre'] += Genre().name_get(genre.get('id')) + ', '
+                     data['genre'] = data['genre'][:-2]
+              elif 'genre_ids' not in item or item.get('genre_ids') == []:
                      data['genre'] = 'ジャンル: 不明'
               else:
                      data['genre'] = 'ジャンル: '
@@ -80,79 +85,42 @@ class Search_Data:
               data['popularity'] = item.get('popularity', 0)
               # ポスター画像
               data['poster_path'] = item.get('poster_path', '')
+              # 識別子
+              data['media_type'] = item.get('media_type', 'Unknown')
               # メディアタイプ
-              data['is_video'] = True
               if item.get('adult') == True:
                      data['data_type'] = 'sensitive'
-                     data['media_type'] = 'センシティブ'
+                     data['print_type'] = 'センシティブ'
               else:
                      if self.data['search_type'] == Search.MOVIES or self.data['search_type'] == Search.DISCOVER_MOVIE:
                             data['data_type'] = 'movie'
-                            data['media_type'] = '映画'
+                            data['print_type'] = '映画'
                      elif self.data['search_type'] == Search.TVSHOWS:
                             if SENSITIVE_SEARCH == False:
                                    data['data_type'] = 'tv'
                             else:
                                    data['data_type'] = 'tv-sensitive'
-                            data['media_type'] = 'テレビ・配信番組'
+                            data['print_type'] = 'テレビ・配信番組'
                      elif self.data['search_type'] == Search.DISCOVER_TV:
                             data['data_type'] = 'tv'
-                            data['media_type'] = 'テレビ・配信番組'
+                            data['print_type'] = 'テレビ・配信番組'
                      elif self.data['search_type'] == Search.MULTI:
                             if 'media_type' not in item:
-                                   data['data_type'] = 'None'
-                                   data['media_type'] = '不明'
+                                   data['data_type'] = 'Unknown'
+                                   data['print_type'] = '不明'
                             else:
                                    if item['media_type'] == 'movie':
                                           data['data_type'] = 'movie'
-                                          data['media_type'] = '映画'
+                                          data['print_type'] = '映画'
                                    elif item['media_type'] == 'tv':
                                           if SENSITIVE_SEARCH == False:
                                                  data['data_type'] = 'tv'
                                           else:
                                                  data['data_type'] = 'tv-sensitive'
-                                          data['media_type'] = 'テレビ・配信番組'
+                                          data['print_type'] = 'テレビ・配信番組'
                                    else:
-                                          data['data_type'] = 'None'
-                                          data['media_type'] = '不明'
-
-              """
-                     match self.data['search_type']:
-                            case Search.MOVIES:
-                                   data['data_type'] = 'movie'
-                                   data['media_type'] = '映画'
-                            case Search.DISCOVER_MOVIE:
-                                   data['data_type'] = 'movie'
-                                   data['media_type'] = '映画'
-                            case Search.TVSHOWS:
-                                   if SENSITIVE_SEARCH == False:
-                                          data['data_type'] = 'tv'
-                                   else:
-                                          data['data_type'] = 'tv-sensitive'
-                                   data['media_type'] = 'テレビ・配信番組'
-                            case Search.DISCOVER_TV:
-                                   data['data_type'] = 'tv'
-                                   data['media_type'] = 'テレビ・配信番組'
-                            case Search.MULTI:
-                                   if 'media_type' not in item:
-                                          data['data_type'] = 'None'
-                                          data['media_type'] = '不明'
-                                   else:
-                                          match item['media_type']:
-                                                 case 'movie':
-                                                        data['data_type'] = 'movie'
-                                                        data['media_type'] = '映画'
-                                                 case 'tv':
-                                                        if SENSITIVE_SEARCH == False:
-                                                               data['data_type'] = 'tv'
-                                                        else:
-                                                               data['data_type'] = 'tv-sensitive'
-                                                        data['media_type'] = 'テレビ・配信番組'
-                                                 case _:
-                                                        data['data_type'] = 'None'
-                                                        data['media_type'] = '不明'
-              """
-
+                                          data['data_type'] = 'Unknown'
+                                          data['print_type'] = '不明'
               # あらすじ
               if len(item.get('overview', '')) >= 1:
                      data['overview'] = item.get('overview')
@@ -162,7 +130,7 @@ class Search_Data:
 
 
        # 人物データを修正
-       def __person_results_type(self, item):
+       def __person_results_type__(self, item):
               data = {}
               # 名前
               data['title'] = item['name'].strip()
@@ -207,44 +175,6 @@ class Search_Data:
               else:
                      data['known_videos'] = "主な作品"
                      data['department'] = "職業: 不明"
-
-              """
-              match item.get('known_for_department'):
-                     case "Acting":
-                            data['known_videos'] = "主な出演作品"
-                            match item.get('gender'):
-                                   case 1:
-                                          data['department'] = "職業: タレント・女優"
-                                   case 2:
-                                          data['department'] = "職業: タレント・俳優"
-                                   case _:
-                                          data['department'] = "職業: タレント"
-                     case "Production":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: プロデューサー"
-                     case "Visual Effects":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: エフェクト・CGクリエイター"
-                     case "Directing":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: ディレクター・監督"
-                     case "Sound":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: ミュージシャン"
-                     case "Writing":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: 作家・ライター"
-                     case "Editing":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: 映像クリエイター"
-                     case "Art":
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: デザイナー"
-                     case _:
-                            data['known_videos'] = "主な作品"
-                            data['department'] = "職業: 不明"
-              """
-
               # 性別
               if item.get('gender') == 1:
                      data['gender'] = "性別: 女性"
@@ -280,18 +210,19 @@ class Search_Data:
                             else:
                                    li['title'] = '(タイトル情報なし)'
                             data['known_for'].append(li)
+              # 識別子
+              data['media_type'] = 'person'
               # メディアタイプ
-              data['is_video'] = False
               if item.get('adult') == True:
                      data['data_type'] = 'sensitive'
-                     data['media_type'] = 'センシティブ'
+                     data['print_type'] = 'センシティブ'
               else:
                      data['data_type'] = 'person'
-                     data['media_type'] = '人物'
+                     data['print_type'] = '人物'
               return data
 
        # その他のメディアタイプを修正
-       def __feature_type(self, item):
+       def __feature_type__(self, item):
               item['data_type'] = item['media_type']
               # テキスト部分を修正
               if item['media_type'] == "text":

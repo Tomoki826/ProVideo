@@ -13,6 +13,7 @@
 
 <!--コンテンツ部分-->
 <main>
+    
 <div class="search_title">
     特集ページ (全{{ feature['feature'] | length }}件)
 </div>
@@ -22,8 +23,11 @@
     {% endwith %}
 </div>
 
-<div class="search_title">
-    <div class="smartphone_newline"><div>世界で話題の○○&nbsp;</div><div>(配信中 全20件)</div></div>
+<div id="scroll" class="search_title">
+    <div class="smartphone_newline">
+        <div>世界で話題の{{data['site_data']['discover_type']}}&nbsp;</div>
+        <div>(配信中 全20件)</div>
+    </div>
     <div class="story_container">
         <div class="story_header">あらすじモード</div>
         <label class="switch_label" value="overview">
@@ -32,6 +36,10 @@
         </label>
     </div>
 </div>
+
+{% with tab_data = data['site_data']['tab_data'] %}
+{% include "tab.html" %}
+{% endwith %}
 
 <!-- 話題のメディア情報 -->
 <div class="contents_container">

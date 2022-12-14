@@ -11,13 +11,13 @@
 {% include "searchform.html" %}
 {% endwith %}
 
-<!--コンテンツ部分-->
+<!-- コンテンツ部分 -->
 <main>
 <div class="search_title">お気に入り一覧 (追加順 全20件)</div>
 
-<!--映画情報-->
+<!-- コンテンツ情報 -->
 <div class="contents_container">
-    {% with data = data['results'] %}
+    {% with data = data['results']['movie'] %}
     {% include "contents.html" %}
     {% endwith %}
 </div>

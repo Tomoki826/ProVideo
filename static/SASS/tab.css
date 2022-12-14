@@ -1,0 +1,111 @@
+@media all and (min-width: 1024px) {
+  .tab-container {
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+  .tab-container .tab-box {
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tab-container .tab-box .tab-item {
+    list-style: none;
+  }
+  .tab-container .tab-box .tab-item a {
+    color: #000000;
+    display: block;
+    position: relative;
+    height: 30px;
+  }
+  .tab-container .tab-box .tab-item a:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 25px;
+    left: 0;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #dbdbdb;
+  }
+  .tab-container .tab-box .tab-item a:after {
+    content: "";
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top: 25px;
+    left: 0;
+    height: 4px;
+    border-radius: 4px;
+    transform: scale(0, 1);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+  .tab-container .tab-box .tab-item:hover > a:after {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  .tab-container .tab-box .tab-item.movie > a:after {
+    background-color: #F46262;
+  }
+  .tab-container .tab-box .tab-item.tv > a:after {
+    background-color: #628BF4;
+  }
+  .tab-container .tab-box .tab-item.person > a:after {
+    background-color: #4FB76C;
+  }
+}
+@media all and (max-width: 1023.5px) {
+  .tab-container {
+    width: 100%;
+    background-color: #FFFFFF;
+  }
+  .tab-container .tab-box {
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tab-container .tab-box .tab-item {
+    list-style: none;
+  }
+  .tab-container .tab-box .tab-item a {
+    color: #000000;
+    display: block;
+    position: relative;
+    height: 30px;
+  }
+  .tab-container .tab-box .tab-item a:after {
+    content: "";
+    opacity: 0.5;
+    display: inline-block;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top: 25px;
+    left: 0;
+    height: 4px;
+    border-radius: 4px;
+    transform-origin: center;
+  }
+  .tab-container .tab-box .tab-item:hover > a:after {
+    opacity: 1;
+  }
+  .tab-container .tab-box .tab-item.movie > a:after {
+    background-color: #F46262;
+  }
+  .tab-container .tab-box .tab-item.tv > a:after {
+    background-color: #628BF4;
+  }
+  .tab-container .tab-box .tab-item.person > a:after {
+    background-color: #4FB76C;
+  }
+}/*# sourceMappingURL=tab.css.map */

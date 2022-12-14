@@ -1,0 +1,7 @@
+<div class="tab-container">
+    <ul class="tab-box">
+        {% for item in tab_data %}
+            <li class="tab-item {{item[0]}}"><a href="{{item[1]}}">{{item[2]}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
