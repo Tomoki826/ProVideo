@@ -43,7 +43,11 @@
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
             </div>
-            <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}}">
+                {% if item['data_type'] == 'sensitive' %}
+                    <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}},true">
+                {% else %}
+                    <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}},false">
+                {% endif %}
                 <div class="heart-icon">
                     <img src="../static/images/heart_icon.svg" alt="お気に入り" oncontextmenu="return false;" style="filter: grayscale(100%) brightness(500%);"/>
                 </div>
@@ -96,7 +100,11 @@
             <div class="poster">
                 <img src="https://www.themoviedb.org/t/p/w500{{item['poster_path']}}" alt="{{item['title']}}" oncontextmenu="return false;"/>
             </div>
-            <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}}">
+                {% if item['data_type'] == 'sensitive' %}
+                    <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}},true">
+                {% else %}
+                    <div class="favorite" value="unliked,{{item['media_type']}},{{item['id']}},{{item['title']}},false">
+                {% endif %}
                 <div class="heart-icon">
                     <img src="../static/images/heart_icon.svg" alt="お気に入り" oncontextmenu="return false;" style="filter: grayscale(100%) brightness(500%);"/>
                 </div>

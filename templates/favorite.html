@@ -16,9 +16,23 @@
 
     <!-- お気に入りコンテンツ -->
     <div class="search_title">
-        <div class="smartphone_newline">
-            <div>お気に入りの{{data['site_data']['print_type']}}&nbsp;</div>
-            <div>(追加順 全○○件)</div>
+        <div class="page-tree">
+            {% if data['total_results'] <= 0 %}
+                お気に入りの{{ data['site_data']['print_type'] }} なし
+            {% else %}
+                {% with value = data['current_page'] * 20 %}
+                <div class="smartphone_newline">
+                    <div>お気に入りの{{ data['site_data']['print_type'] }}&nbsp;</div>
+                    {% if data['total_results'] <= 20 %}
+                        <div>(追加順 全{{ data['total_results'] }}件)</div>
+                    {% elif data['total_results'] < value %}
+                        <div>(追加順 全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件)</div>
+                    {% else %}
+                        <div>(追加順 全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件)</div>
+                    {% endif %}
+                </div>
+                {% endwith %}
+            {% endif %}
         </div>
         <div class="story_container">
             <div class="story_header">あらすじモード</div>
@@ -33,11 +47,22 @@
     {% include "tab.html" %}
     {% endwith %}
 
+    <!--ページ送り-->
+    {% with data = data %}
+    {% include "pagemove.html" %}
+    {% endwith %}
+
     <div class="contents_container">
         {% with data = data['results'] %}
         {% include "contents.html" %}
         {% endwith %}
     </div>
+
+    <!--ページ送り-->
+    {% with data = data %}
+    {% include "pagemove.html" %}
+    {% endwith %}
+
 </main>
 
 {% endblock %}

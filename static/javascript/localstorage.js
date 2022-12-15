@@ -24,17 +24,15 @@ $(document).ready(function() {
   $(".favorite").on('click', function(){
       var values = $(this).attr('value').split(',');
       if (values[0] === "unliked") {
-        $(this).attr('value', "liked," + values[1] + "," + values[2] + "," + values[3]);
-        setFavoriteData(values[1], parseInt(values[2], 10), values[3]);
-        setHeartColor(this);
-        clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
+        $(this).attr('value', "liked," + values[1] + "," + values[2] + "," + values[3] + "," + values[4]);
+        setFavoriteData(values[1], parseInt(values[2], 10), values[3], parseBoolean(values[4]));
       }
       else if (values[0] === "liked") {
-        $(this).attr('value', "unliked," + values[1] + "," + values[2] + "," + values[3]);
+        $(this).attr('value', "unliked," + values[1] + "," + values[2] + "," + values[3] + "," + values[4]);
         delFavoriteData(values[1], parseInt(values[2], 10));
-        setHeartColor(this);
-        clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
       }
+      setHeartColor(this);
+      clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
       flask_local_sync();
   });
 
@@ -82,11 +80,11 @@ $(document).ready(function() {
   var webStorage = function () {
     if (sessionStorage.getItem('access')) {
       //2回目以降アクセス時の処理
-      console.log('2回目以降のアクセスです');
+      //console.log('2回目以降のアクセスです');
     } else {
       //初回アクセス時の処理
       sessionStorage.setItem('access', 0);
-      console.log('初回アクセスです');
+      //console.log('初回アクセスです');
       flask_local_sync();
     }
   }
@@ -96,6 +94,12 @@ $(document).ready(function() {
   $(".description").each(function(index, element){displayInfo(element)});
 
 });
+
+// 文字列型からBoolean型に変換
+function parseBoolean(str) {
+  // 文字列を判定
+  return (str == 'true') ? true : false;
+};
 
 // AjaxでFlaskとLocalStorageを同期
 function flask_local_sync() {
@@ -171,14 +175,14 @@ function getSingleData(key) {
 }
 
 // 作品・人物情報を追加
-function setFavoriteData(type, id, name) {
+function setFavoriteData(type, id, name, sensitive) {
   var currentDate = new Date();
   var data = JSON.parse(localStorage.getItem(type));
   if (data === null) {
-    data = [[id, name, currentDate]];
+    data = [[id, name, currentDate, sensitive]];
   }
   else if (data.indexOf(id) === -1) {
-    data.push([id, name, currentDate]);
+    data.unshift([id, name, currentDate, sensitive]);
   }
   localStorage.setItem(type, JSON.stringify(data));
 }

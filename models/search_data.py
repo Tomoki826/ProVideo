@@ -28,9 +28,11 @@ class Search_Data:
               # 検索データの整理
               self.data['results'] = []
               for item in self.raw_data['results']:
-                     if self.data['search_type'] == Search.PERSON or self.data['search_type'] == Search.DISCOVER_PERSON or item.get('media_type') == 'person':
+                     search_type = self.data['search_type']
+                     media_type = item.get('media_type')
+                     if search_type == Search.PERSON or search_type == Search.DISCOVER_PERSON or media_type == 'person':
                             data = self.__person_results_type__(item)
-                     elif item.get('media_type') == 'text' or item.get('media_type') == 'pv' or item.get('media_type') == 'image':
+                     elif media_type == 'text' or media_type == 'pv' or media_type == 'image':
                             data = self.__feature_type__(item)
                      else:
                             data = self.__video_type__(item)
@@ -43,8 +45,6 @@ class Search_Data:
               # id
               data['id'] = item['id']
               # 作品タイトル
-              if 'adult' not in item:
-                     data['adult'] = 'false'
               if 'title' in item:
                      data['title'] = item['title'].strip()
               elif 'name' in item:
@@ -85,7 +85,6 @@ class Search_Data:
               data['popularity'] = item.get('popularity', 0)
               # ポスター画像
               data['poster_path'] = item.get('poster_path', '')
-              # 
               # メディアタイプ・識別子
               if self.data['search_type'] == Search.MOVIES or self.data['search_type'] == Search.DISCOVER_MOVIE:
                      data['media_type'] = 'movie'
@@ -123,7 +122,7 @@ class Search_Data:
                                    data['media_type'] = 'Unknown'
                                    data['data_type'] = 'Unknown'
                                    data['print_type'] = '不明'
-              if item.get('adult'):
+              if item.get('adult', False):
                      data['data_type'] = 'sensitive'
                      data['print_type'] = 'センシティブ'
               # あらすじ
@@ -131,7 +130,7 @@ class Search_Data:
                      data['overview'] = item.get('overview')
               else:
                      data['overview'] = "情報なし"
-              return data           
+              return data
 
 
        # 人物データを修正
@@ -197,7 +196,7 @@ class Search_Data:
                      for item2 in item['known_for']:
                             li = {}
                             # ポスター画像
-                            if 'poster_path' in item2 and (item2.get('adult') != True or (item2.get('adult') == True and SENSITIVE_SEARCH == True)):
+                            if 'poster_path' in item2 and (SENSITIVE_SEARCH or not item2.get('adult', False)):
                                    li['poster_path'] = item2['poster_path']
                             else:
                                    continue
@@ -218,13 +217,14 @@ class Search_Data:
               # 識別子
               data['media_type'] = 'person'
               # メディアタイプ
-              if item.get('adult') == True:
+              if item.get('adult', False):
                      data['data_type'] = 'sensitive'
                      data['print_type'] = 'センシティブ'
               else:
                      data['data_type'] = 'person'
                      data['print_type'] = '人物'
               return data
+
 
        # その他のメディアタイプを修正
        def __feature_type__(self, item):

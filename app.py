@@ -27,12 +27,6 @@ if not api_key:
     raise RuntimeError("API_KEY not set")
 
 # ホームページ
-"""
-トレンド機能は
-映画、配信、人物のどれかで話題の20作品を表示する
-?media=があれば、それを
-無ければmovieを表示する
-"""
 @app.route("/", methods=["GET"])
 def index():
 
@@ -42,14 +36,17 @@ def index():
               soup = TMDB(api_key).discover_movie(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_MOVIE, 1)
               discover_type = "映画"
+              print_sort = "配信中 注目順"
        elif media_type == "tv":
               soup = TMDB(api_key).discover_tvshows(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_TV, 1)
               discover_type = "テレビ・配信番組"
+              print_sort = "配信中 注目順"
        elif media_type == "person":
               soup = TMDB(api_key).discover_person(1)
               data = Search_Data(soup).search_arrange(Search.DISCOVER_PERSON, 1)
               discover_type = "人物"
+              print_sort = "注目順"
        else:
               return render_template("error.html")
 
@@ -65,6 +62,7 @@ def index():
        # レンダリング
        data['site_data'] = {
               'discover_type' : discover_type,
+              'print_sort' : print_sort,
               'tab_data' : [
                      ["movie",  "/?media=movie#scroll",  "映画"],
                      ["tv",     "/?media=tv#scroll",     "テレビ・配信番組"],
@@ -78,22 +76,15 @@ def index():
 @app.route("/search", methods=["GET"])
 def search():
        # パラメータチェック
-       if 'keywords' in request.args:
-              keywords = request.args['keywords']
-              if len(keywords) == 0: keywords = ' '
-       else:
+       keywords = request.args.get('keywords', '')
+       if keywords == '':
               return render_template("error.html")
-       if 'page' in request.args:
-              page = int(request.args['page'])
-              if page <= 0: page = 1
-       else:
-              page = 1
-       if 'search_type' in request.args:
-              search_type = int(request.args['search_type'])
-              if not (1 <= search_type and search_type <= 4):
-                     return render_template("error.html")
-       else:
-              search_type = Search.MULTI
+       page = int(request.args.get('page', 1))
+       if page <= 0 or page > 500:
+              return render_template("error.html")
+       search_type = int(request.args.get('search_type', Search.MULTI))
+       if not (1 <= search_type and search_type <= 4):
+              return render_template("error.html")
        # TMDBで検索する
        if search_type == Search.MOVIES:
               soup = TMDB(api_key).search_movies(keywords, page)
@@ -103,9 +94,16 @@ def search():
               soup = TMDB(api_key).search_person(keywords, page, SENSITIVE_SEARCH)
        elif search_type == Search.MULTI:
               soup = TMDB(api_key).search_multi(keywords, page, SENSITIVE_SEARCH)
-
        # 検索結果の整理
        data = Search_Data(soup).search_arrange(search_type, page, keywords)
+       # レンダリング
+       data['site_data'] = {
+              'page_url': "/search",
+              'page_tab_data' : [
+                     ["keywords", data['keywords']],
+                     ["search_type", data['search_type']],
+              ],
+       }
        return render_template("index.html", data=data, soup=soup, error=False)
 
 
@@ -134,28 +132,34 @@ def feature(path):
        # コンテンツデータを整理
        soup = {'results': []}
        for item in feature_data['containers']:
-              if item['media_type'] == "movie":
-                     single_soup = match_work_id(item['id'], TMDB(api_key).search_movies(item['name'], 1), "movie")
-              elif item['media_type'] == "tv":
-                     single_soup = match_work_id(item['id'], TMDB(api_key).search_tvshows(item['name'], 1), "tv")
-              elif item['media_type'] == "person":
-                     single_soup = match_work_id(item['id'], TMDB(api_key).search_person(item['name'], 1, SENSITIVE_SEARCH), "person")
+              if item['media_type'] == "movie" or item['media_type'] == "tv" or item['media_type'] == "person":
+                     single_soup = match_work_id(item['id'], item['name'], item['media_type'])
               else:
                      single_soup = item
-              if single_soup != {}: soup['results'].append(single_soup)
+              if single_soup != None:
+                     soup['results'].append(single_soup)
        # コンテンツをフォーマット
        data["containers"] = Search_Data(soup).search_arrange()
        return render_template("feature.html", data=data)
 
 
 # idと一致する検索結果を探す
-def match_work_id(id, soup, media_type="Unknown"):
-       if "results" in soup:
+def match_work_id(id, name, media_type="Unknown"):
+       if media_type == "unknown" : return None
+       page = 1
+       while True:
+              if media_type == "movie":
+                     soup = TMDB(api_key).search_movies(name, page, SENSITIVE_SEARCH)
+              elif media_type == "tv":
+                     soup = TMDB(api_key).search_tvshows(name, page, SENSITIVE_SEARCH)
+              elif media_type == "person":
+                     soup = TMDB(api_key).search_person(name, page, SENSITIVE_SEARCH)
+              if soup.get("results", []) == []: return None
               for item in soup["results"]:
                      if item['id'] == id:
                             item['media_type'] = media_type
                             return item
-       return {}
+              page += 1
 
 
 # プロバイダー情報を取得
@@ -197,12 +201,13 @@ def trend(provider):
 
 # お気に入り情報を取得
 # 映画・テレビ番組・人物を?media=で細分化する
+# ?page=でページ指定可能
 # LocalStorageとPython内の変数で同期？
 @app.route('/favorite', methods=["GET"])
 def favorite():
        # クエリパラメータを取得
-       media_type = request.args.get('media')
-       if media_type == None or media_type == "movie":
+       media_type = request.args.get('media', "movie")
+       if media_type == "movie":
               data_type = "movie"
               print_type = "映画"
        elif media_type == "tv":
@@ -213,20 +218,27 @@ def favorite():
               print_type = "人物"
        else:
               return render_template("error.html")
+       page = int(request.args.get('page', 1))
+       total_results = len(session['user'][data_type])
+       if page <= 0:
+              return render_template("error.html")
+       elif page > (total_results - 1) // 20 + 1 and total_results >= 1:
+              page = (total_results - 1) // 20 + 1
        # コンテンツデータを整理
        data = {}
        soup = {'results': []}
-       for item in session['user'][data_type]:
-              if data_type == "movie" or data_type == "tv":
-                     single_soup = TMDB(api_key).get_detail_info(item[0], data_type)
-                     single_soup['media_type'] = data_type
-              elif data_type == "person":
-                     single_soup = match_work_id(int(item[0]), TMDB(api_key).search_person(item[1], 1, SENSITIVE_SEARCH), "person")
-              if SENSITIVE_SEARCH or not single_soup.get('adult', False):
+       for item in session['user'][data_type][(page - 1) * 20 : page * 20]:
+              single_soup = match_work_id(int(item[0]), item[1], data_type)
+              if single_soup != None:
                      soup['results'].append(single_soup)
-       data = Search_Data(soup).search_arrange()
+       data = Search_Data(soup).search_arrange(Search.MULTI, page)
+       # ページ数の調節
+       data['total_results'] = total_results
+       data['max_page'] = (total_results - 1) // 20 + 1
        # レンダリング
        data['site_data'] = {
+              'page_url': "/favorite",
+              'page_tab_data' : [["media", media_type]],
               'print_type' : print_type,
               'tab_data' : [
                      ["movie",  "/favorite?media=movie",  "映画"],
@@ -254,7 +266,8 @@ def convert_localdata(key, post_data):
        while True:
               li = post_data.getlist(key + '[0]['+ str(tmp) +'][]')
               if li:
-                     session['user'][key].append(li)
+                     if (SENSITIVE_SEARCH or li[3] == 'false'):
+                            session['user'][key].append(li)
               else:
                      return
               tmp += 1

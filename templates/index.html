@@ -21,7 +21,7 @@
     {% else %}
         {% with value = data['current_page'] * 20 %}
         <div class="smartphone_newline">
-            {% if data['total_results'] <= 20 %}
+            {% if data['total_results'] <= 20 or data['current_page'] > data['max_page'] %}
                 <div>「{{ data['keywords'] }}」の検索結果&nbsp;</div>
                 <div>(全{{ data['total_results'] }}件)</div>
             {% elif data['total_results'] < value %}
@@ -29,7 +29,7 @@
                 <div>(全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件)</div>
             {% else %}
                 <div>「{{ data['keywords'] }}」の検索結果&nbsp;</div>
-                <div> (全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件)</div>
+                <div>(全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件)</div>
             {% endif %}
         </div>
         {% endwith %}

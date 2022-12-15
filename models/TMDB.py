@@ -18,16 +18,24 @@ class TMDB:
         return json.loads(res.text)
     
     # キーワードに部分一致する映画タイトルを取得
-    def search_movies(self, with_keywords, page):
+    def search_movies(self, with_keywords, page, adult=False):
         params = {'query': with_keywords}
         params['page'] = page
+        if adult:
+            params['include_adult'] = 'true'
+        else:
+            params['include_adult'] = 'false'
         url = f'{self.base_url_}search/movie'
         return self._json_by_get_request(url, params)
 
     # キーワードに部分一致するテレビ番組を取得
-    def search_tvshows(self, with_keywords, page):
+    def search_tvshows(self, with_keywords, page, adult=False):
         params = {'query': with_keywords}
         params['page'] = page
+        if adult:
+            params['include_adult'] = 'true'
+        else:
+            params['include_adult'] = 'false'
         url = f'{self.base_url_}search/tv'
         return self._json_by_get_request(url, params)
 

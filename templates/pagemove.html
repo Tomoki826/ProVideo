@@ -1,5 +1,7 @@
-{% if data['max_page'] >= 2 %}
-<form class="page_form" action="{{ url_for('search') }}" method="GET">
+{% if data['max_page'] >= 2 and data['current_page'] <= data['max_page'] %}
+
+<form class="page_form" action="{{ data['site_data']['page_url'] }}" method="GET">
+
 <!--ページ番号-->
 <div class="page_container">
     <!--少ないページ数のとき-->
@@ -58,9 +60,11 @@
     {% endif %}
     </div>
 </div>
-<!--キーワード-->
-<input type="hidden" name="keywords" value="{{ data['keywords'] }}">
-<!--検索タイプ-->
-<input type="hidden" name="search_type" value="{{ data['search_type'] }}">
+
+<!-- GET通信用にデータ格納 -->
+{% for item in data['site_data']['page_tab_data'] %}
+    <input type="hidden" name="{{ item[0] }}" value="{{ item[1] }}">
+{% endfor %}
+
 </form>
 {% endif %}
