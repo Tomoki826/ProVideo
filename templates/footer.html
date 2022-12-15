@@ -4,6 +4,18 @@
             <img  src ="/static/images/provideo_logo.svg" alt="ProVideo" border="0" />
         </a>
     </div>
+    <!--フッターの検索ボックス-->
+    <form class="search_form" action="{{ url_for('search') }}" method="GET">
+        <!--ページ番号-->
+        <input type="hidden" name="page" value="1">
+        <!--キーワード-->
+        <div class="search_container"><input id="box" name="keywords" type="text" placeholder="キーワードから探す" value="{{ data['keywords'] }}" required/></div>
+        <div class="search_option_container">
+            <div class="search_option">
+            <input id="button" type="submit" value="検索" />
+            </div>
+        </div>
+    </form>
 </footer>
 <footer id="footer">
     <div id="api_caution">

@@ -58,6 +58,11 @@
             }
         }
     }
+    footer {
+        .search_form #box {
+            margin-left: 20px;
+        }
+    }
 }
 // タブレット用CSS
 @media all and (min-width: 321px) and (max-width: 1023.5px) {
@@ -124,6 +129,22 @@
             }
         }
     }
+    footer {
+        .search_form {
+            width: 90%;
+            display: flex;
+            margin: 0 auto;
+            .search_option_container {
+                width: auto;
+                display: table;
+                margin: 0 0 0 10px;
+                .search_option {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
 }
 // スマホ用CSS
 @media all and (max-width: 320px) {
@@ -186,6 +207,22 @@
                 box-shadow: 0 0 3px 0 #afafaf;
                 &:active {
                     opacity: 0.6;
+                }
+            }
+        }
+    }
+    footer {
+        .search_form {
+            width: 90%;
+            display: flex;
+            margin: 0 auto;
+            .search_option_container {
+                width: auto;
+                display: table;
+                margin: 0 0 0 10px;
+                .search_option {
+                    display: table-cell;
+                    vertical-align: middle;
                 }
             }
         }

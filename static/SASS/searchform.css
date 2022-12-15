@@ -55,6 +55,9 @@
   .search_option #button:active {
     opacity: 0.6;
   }
+  footer .search_form #box {
+    margin-left: 20px;
+  }
 }
 @media all and (min-width: 321px) and (max-width: 1023.5px) {
   .search_form {
@@ -120,6 +123,20 @@
   .search_option_container .search_option #button:active {
     opacity: 0.6;
   }
+  footer .search_form {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+  }
+  footer .search_form .search_option_container {
+    width: auto;
+    display: table;
+    margin: 0 0 0 10px;
+  }
+  footer .search_form .search_option_container .search_option {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }
 @media all and (max-width: 320px) {
   .search_form {
@@ -184,5 +201,19 @@
   }
   .search_option_container .search_option #button:active {
     opacity: 0.6;
+  }
+  footer .search_form {
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+  }
+  footer .search_form .search_option_container {
+    width: auto;
+    display: table;
+    margin: 0 0 0 10px;
+  }
+  footer .search_form .search_option_container .search_option {
+    display: table-cell;
+    vertical-align: middle;
   }
 }/*# sourceMappingURL=searchform.css.map */
