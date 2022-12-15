@@ -85,42 +85,47 @@ class Search_Data:
               data['popularity'] = item.get('popularity', 0)
               # ポスター画像
               data['poster_path'] = item.get('poster_path', '')
-              # 識別子
-              data['media_type'] = item.get('media_type', 'Unknown')
-              # メディアタイプ
-              if item.get('adult') == True:
-                     data['data_type'] = 'sensitive'
-                     data['print_type'] = 'センシティブ'
-              else:
-                     if self.data['search_type'] == Search.MOVIES or self.data['search_type'] == Search.DISCOVER_MOVIE:
-                            data['data_type'] = 'movie'
-                            data['print_type'] = '映画'
-                     elif self.data['search_type'] == Search.TVSHOWS:
-                            if SENSITIVE_SEARCH == False:
-                                   data['data_type'] = 'tv'
-                            else:
-                                   data['data_type'] = 'tv-sensitive'
-                            data['print_type'] = 'テレビ・配信番組'
-                     elif self.data['search_type'] == Search.DISCOVER_TV:
+              # 
+              # メディアタイプ・識別子
+              if self.data['search_type'] == Search.MOVIES or self.data['search_type'] == Search.DISCOVER_MOVIE:
+                     data['media_type'] = 'movie'
+                     data['data_type'] = 'movie'
+                     data['print_type'] = '映画'
+              elif self.data['search_type'] == Search.TVSHOWS:
+                     data['media_type'] = 'tv'
+                     if SENSITIVE_SEARCH == False:
                             data['data_type'] = 'tv'
-                            data['print_type'] = 'テレビ・配信番組'
-                     elif self.data['search_type'] == Search.MULTI:
-                            if 'media_type' not in item:
+                     else:
+                            data['data_type'] = 'tv-sensitive'
+                     data['print_type'] = 'テレビ・配信番組'
+              elif self.data['search_type'] == Search.DISCOVER_TV:
+                     data['media_type'] = 'tv'
+                     data['data_type'] = 'tv'
+                     data['print_type'] = 'テレビ・配信番組'
+              elif self.data['search_type'] == Search.MULTI:
+                     if 'media_type' not in item:
+                            data['media_type'] = 'Unknown'
+                            data['data_type'] = 'Unknown'
+                            data['print_type'] = '不明'
+                     else:
+                            if item['media_type'] == 'movie':
+                                   data['media_type'] = 'movie'
+                                   data['data_type'] = 'movie'
+                                   data['print_type'] = '映画'
+                            elif item['media_type'] == 'tv':
+                                   data['media_type'] = 'tv'
+                                   if SENSITIVE_SEARCH == False:
+                                          data['data_type'] = 'tv'
+                                   else:
+                                          data['data_type'] = 'tv-sensitive'
+                                   data['print_type'] = 'テレビ・配信番組'
+                            else:
+                                   data['media_type'] = 'Unknown'
                                    data['data_type'] = 'Unknown'
                                    data['print_type'] = '不明'
-                            else:
-                                   if item['media_type'] == 'movie':
-                                          data['data_type'] = 'movie'
-                                          data['print_type'] = '映画'
-                                   elif item['media_type'] == 'tv':
-                                          if SENSITIVE_SEARCH == False:
-                                                 data['data_type'] = 'tv'
-                                          else:
-                                                 data['data_type'] = 'tv-sensitive'
-                                          data['print_type'] = 'テレビ・配信番組'
-                                   else:
-                                          data['data_type'] = 'Unknown'
-                                          data['print_type'] = '不明'
+              if item.get('adult'):
+                     data['data_type'] = 'sensitive'
+                     data['print_type'] = 'センシティブ'
               # あらすじ
               if len(item.get('overview', '')) >= 1:
                      data['overview'] = item.get('overview')

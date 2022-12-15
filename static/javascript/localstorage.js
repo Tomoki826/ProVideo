@@ -35,6 +35,7 @@ $(document).ready(function() {
         setHeartColor(this);
         clickAnimation($(this).find(".heart-icon"), 'animation', "heart-click 0.25s 0s ease 1 normal backwards");
       }
+      flask_local_sync();
   });
 
   // オンオフボタンの初期色の設定
@@ -77,10 +78,38 @@ $(document).ready(function() {
     });
   });
 
+  // AjaxでFlaskとLocalStorageを同期
+  var webStorage = function () {
+    if (sessionStorage.getItem('access')) {
+      //2回目以降アクセス時の処理
+      console.log('2回目以降のアクセスです');
+    } else {
+      //初回アクセス時の処理
+      sessionStorage.setItem('access', 0);
+      console.log('初回アクセスです');
+      flask_local_sync();
+    }
+  }
+  webStorage();
+
   // あらすじ・映画情報表示の切り替え
   $(".description").each(function(index, element){displayInfo(element)});
 
 });
+
+// AjaxでFlaskとLocalStorageを同期
+function flask_local_sync() {
+  $.ajax({
+    url: '/sync_localstorage',
+    type: 'POST',
+    datatype: 'JSON',
+    data : {
+      "movie": [getSingleData("movie")],
+         "tv": [getSingleData("tv")],
+     "person": [getSingleData("person")]
+    }
+  })
+};
 
 // ボタン情報の切り替え
 function clickSingleButton(element) {
@@ -168,6 +197,7 @@ function delFavoriteData(type, id) {
   }
 }
 
+/*
 // 要素をクリックしてLocalStorageをPOST送信
 $('.localstorage_post').click(function() {
     data = {
@@ -198,3 +228,4 @@ function form_post(path, params, method='post') {
   console.log(form);
   form.submit();
 }
+*/

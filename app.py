@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
 from models.config import SENSITIVE_SEARCH
 from models.TMDB import TMDB
 from models.enum import Search
@@ -8,6 +8,9 @@ from models.search_data import Search_Data
 
 # Flask構成開始
 app = Flask(__name__)
+
+# sessionの設定
+app.secret_key = "user"
 
 # 設定ファイル
 app.config.from_object('models.config')
@@ -195,47 +198,66 @@ def trend(provider):
 # お気に入り情報を取得
 # 映画・テレビ番組・人物を?media=で細分化する
 # LocalStorageとPython内の変数で同期？
-@app.route('/favorite', methods=["GET", "POST"])
+@app.route('/favorite', methods=["GET"])
 def favorite():
-       if request.method == "GET":
-              # 一旦、リダイレクトしてからLocalStorageを読み込み
-              return redirect("/favorite_load")
-       elif request.method == "POST":
-              # お気に入り情報を取得
-              local_data = {
-                     'movie':  convert_localdata(request.form['movie']),
-                     'tv':     convert_localdata(request.form['tv']),
-                     'person': convert_localdata(request.form['person'])
-              }
-              # コンテンツデータを整理
-              data = {'results':{}}
-              for type in ['movie', 'tv', 'person']:
-                     soup = {'results': []}
-                     for item in local_data[type]:
-                            single_soup = TMDB(api_key).get_detail_info(item[0], type)
-                            if SENSITIVE_SEARCH or not single_soup.get('adult', False):
-                                   single_soup['media_type'] = type
-                                   soup['results'].append(single_soup)
-                     data['results'] = Search_Data(soup).search_arrange()
-              print(data)
-              return render_template("favorite.html", data=data)
+       # クエリパラメータを取得
+       media_type = request.args.get('media')
+       if media_type == None or media_type == "movie":
+              data_type = "movie"
+              print_type = "映画"
+       elif media_type == "tv":
+              data_type = "tv"
+              print_type = "テレビ・配信番組"
+       elif media_type == "person":
+              data_type = "person"
+              print_type = "人物"
        else:
               return render_template("error.html")
+       # コンテンツデータを整理
+       data = {}
+       soup = {'results': []}
+       for item in session['user'][data_type]:
+              if data_type == "movie" or data_type == "tv":
+                     single_soup = TMDB(api_key).get_detail_info(item[0], data_type)
+                     single_soup['media_type'] = data_type
+              elif data_type == "person":
+                     single_soup = match_work_id(int(item[0]), TMDB(api_key).search_person(item[1], 1, SENSITIVE_SEARCH), "person")
+              if SENSITIVE_SEARCH or not single_soup.get('adult', False):
+                     soup['results'].append(single_soup)
+       data = Search_Data(soup).search_arrange()
+       # レンダリング
+       data['site_data'] = {
+              'print_type' : print_type,
+              'tab_data' : [
+                     ["movie",  "/favorite?media=movie",  "映画"],
+                     ["tv",     "/favorite?media=tv",     "テレビ・配信番組"],
+                     ["person", "/favorite?media=person", "人物"]
+              ]
+       }
+       return render_template("favorite.html", data=data)
+
+
+# LocalStorageとFlaskのデータを同期(Cookieが必要)
+@app.route('/sync_localstorage', methods=["POST"])
+def sync_localstorage():
+       session['user'] = {'movie': [], 'tv': [], 'person': []}
+       session.permanent = True
+       convert_localdata('movie', request.form)
+       convert_localdata('tv', request.form)
+       convert_localdata('person', request.form)
+       return "OK"
 
 
 # ローカルストレージのデータを扱いやすいように変換
-def convert_localdata(raw_data):
-       data = raw_data.split(',')
-       res = []
-       for index in range(len(data) // 3):
-              res.append([int(data[index * 3]), data[index * 3 + 1], data[index * 3 + 2]])
-       return res
-
-
-# LocalStorageとFlaskのデータを同期
-@app.route('/sync_localstorage', methods=["POST"])
-def sync_localstorage():
-       pass
+def convert_localdata(key, post_data):
+       tmp = 0
+       while True:
+              li = post_data.getlist(key + '[0]['+ str(tmp) +'][]')
+              if li:
+                     session['user'][key].append(li)
+              else:
+                     return
+              tmp += 1
 
 
 if __name__=='__main__':
