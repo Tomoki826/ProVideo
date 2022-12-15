@@ -5,6 +5,7 @@ from models.enum import Search
 from models.kanji import Japanese_check
 from models.json import JSON
 from models.search_data import Search_Data
+from models.match import match_work_id
 
 # Flask構成開始
 app = Flask(__name__)
@@ -48,7 +49,7 @@ def index():
               discover_type = "人物"
               print_sort = "注目順"
        else:
-              return render_template("error.html")
+              return render_template("error.html", text="")
 
        # 特集ページを取得
        feature = JSON('./static/JSON/feature.json').get_json()
@@ -57,7 +58,7 @@ def index():
        data['total_results'] = min(20, data['total_results'])
        # 検索エラーチェック
        if 'errors' in soup or soup['results'] == [] or soup['total_results'] <= 0:
-              return render_template("error.html")
+              return render_template("error.html", text="")
        
        # レンダリング
        data['site_data'] = {
@@ -78,13 +79,13 @@ def search():
        # パラメータチェック
        keywords = request.args.get('keywords', '')
        if keywords == '':
-              return render_template("error.html")
+              return render_template("error.html", text="")
        page = int(request.args.get('page', 1))
        if page <= 0 or page > 500:
-              return render_template("error.html")
+              return render_template("error.html", text="")
        search_type = int(request.args.get('search_type', Search.MULTI))
        if not (1 <= search_type and search_type <= 4):
-              return render_template("error.html")
+              return render_template("error.html", text="")
        # TMDBで検索する
        if search_type == Search.MOVIES:
               soup = TMDB(api_key).search_movies(keywords, page)
@@ -110,6 +111,7 @@ def search():
 # 特集ページを取得
 @app.route("/feature/<string:path>", methods=["GET"])
 def feature(path):
+
        # 特集ページを取得
        feature_data = []
        raw_data = JSON('./static/JSON/feature.json').get_json()
@@ -118,7 +120,8 @@ def feature(path):
                      feature_data = item['contents']
                      break
        else:
-              return render_template("error.html")
+              return render_template("error.html", text="")
+       
        # ヘッダーデータを整理
        data = {
               "title": feature_data['title'],
@@ -129,11 +132,14 @@ def feature(path):
               "writer": feature_data['writer'],
               "containers": {}
        }
+
        # コンテンツデータを整理
        soup = {'results': []}
+       text = ""
        for item in feature_data['containers']:
-              if item['media_type'] == "movie" or item['media_type'] == "tv" or item['media_type'] == "person":
-                     single_soup = match_work_id(item['id'], item['name'], item['media_type'])
+              media_type = item.get('media_type')
+              if media_type == "movie" or media_type == "tv" or media_type == "person":
+                     single_soup = match_work_id(item['id'], item['name'], item['media_type'], api_key)
               else:
                      single_soup = item
               if single_soup != None:
@@ -141,25 +147,6 @@ def feature(path):
        # コンテンツをフォーマット
        data["containers"] = Search_Data(soup).search_arrange()
        return render_template("feature.html", data=data)
-
-
-# idと一致する検索結果を探す
-def match_work_id(id, name, media_type="Unknown"):
-       if media_type == "unknown" : return None
-       page = 1
-       while True:
-              if media_type == "movie":
-                     soup = TMDB(api_key).search_movies(name, page, SENSITIVE_SEARCH)
-              elif media_type == "tv":
-                     soup = TMDB(api_key).search_tvshows(name, page, SENSITIVE_SEARCH)
-              elif media_type == "person":
-                     soup = TMDB(api_key).search_person(name, page, SENSITIVE_SEARCH)
-              if soup.get("results", []) == []: return None
-              for item in soup["results"]:
-                     if item['id'] == id:
-                            item['media_type'] = media_type
-                            return item
-              page += 1
 
 
 # プロバイダー情報を取得
@@ -217,18 +204,18 @@ def favorite():
               data_type = "person"
               print_type = "人物"
        else:
-              return render_template("error.html")
+              return render_template("error.html", text="")
        page = int(request.args.get('page', 1))
        total_results = len(session['user'][data_type])
        if page <= 0:
-              return render_template("error.html")
+              return render_template("error.html", text="")
        elif page > (total_results - 1) // 20 + 1 and total_results >= 1:
               page = (total_results - 1) // 20 + 1
        # コンテンツデータを整理
        data = {}
        soup = {'results': []}
        for item in session['user'][data_type][(page - 1) * 20 : page * 20]:
-              single_soup = match_work_id(int(item[0]), item[1], data_type)
+              single_soup = match_work_id(int(item[0]), item[1], data_type, api_key)
               if single_soup != None:
                      soup['results'].append(single_soup)
        data = Search_Data(soup).search_arrange(Search.MULTI, page)
