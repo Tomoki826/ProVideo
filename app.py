@@ -5,7 +5,7 @@ from models.enum import Search
 from models.kanji import Japanese_check
 from models.json import JSON
 from models.search_data import Search_Data
-from models.match import match_work_id
+from models.match import match_work_id, match_provider_id
 
 # Flask構成開始
 app = Flask(__name__)
@@ -26,6 +26,20 @@ load_dotenv(dotenv_path)
 api_key = os.environ.get("API_KEY")
 if not api_key:
     raise RuntimeError("API_KEY not set")
+
+# 配信業者のデータを整理
+provider_movie_data = JSON('./static/JSON/movie_providers.json').get_json()
+provider_movie_li = []
+for item in provider_movie_data['results']:
+       provider_movie_li.append(item['provider_id'])
+provider_tv_data = JSON('./static/JSON/tv_providers.json').get_json()
+provider_tv_li = []
+for item in provider_tv_data['results']:
+       provider_tv_li.append(item['provider_id'])
+provider_famous_data = JSON('./static/JSON/famous_providers.json').get_json()
+provider_famous_li = []
+for item in provider_famous_data['results']:
+       provider_famous_li.append(item['provider_id'])
 
 # ホームページ
 @app.route("/", methods=["GET"])
@@ -50,7 +64,6 @@ def index():
               print_sort = "注目順"
        else:
               return render_template("error.html", text="")
-
        # 特集ページを取得
        feature = JSON('./static/JSON/feature.json').get_json()
        # 検索結果の整理
@@ -59,7 +72,7 @@ def index():
        # 検索エラーチェック
        if 'errors' in soup or soup['results'] == [] or soup['total_results'] <= 0:
               return render_template("error.html", text="")
-       
+
        # レンダリング
        data['site_data'] = {
               'discover_type' : discover_type,
@@ -121,7 +134,6 @@ def feature(path):
                      break
        else:
               return render_template("error.html", text="")
-       
        # ヘッダーデータを整理
        data = {
               "title": feature_data['title'],
@@ -132,7 +144,6 @@ def feature(path):
               "writer": feature_data['writer'],
               "containers": {}
        }
-
        # コンテンツデータを整理
        soup = {'results': []}
        text = ""
@@ -158,6 +169,12 @@ def load_provider():
        provider_search = TMDB(api_key).get_provider_info(id, data_type)
        if 'results' in provider_search:
               data = provider_search['results'].get('JP', {})
+              # プロバイダーが国内配信中か確認
+              for provider_type in ['flatrate', 'buy', 'rent']:
+                     if provider_type in data:
+                            for index, item in enumerate(data[provider_type]):
+                                   if item['provider_id'] not in provider_movie_li:
+                                          data[provider_type].pop(index)
        else:
               data = {}
        return data
@@ -182,8 +199,52 @@ def load_personal_name():
 無ければLocalStorageから、最後に呼び出したプロバイダーを表示する
 """
 @app.route('/trend', methods=["GET"])
-def trend(provider):
-       pass
+def trend():
+       # クエリパラメータを取得
+       provider_id = int(request.args.get('provider', 8))
+       media_type = request.args.get('media', "movie")
+       if media_type == "movie":
+              data_type = "movie"
+              print_type = "映画"
+              search_type = Search.DISCOVER_MOVIE
+              for item in provider_movie_data['results']:
+                     if provider_id == item['provider_id']:
+                            provider_name = item['provider_name']
+                            break
+              else:
+                     return render_template("error.html", text="")
+       elif media_type == "tv":
+              data_type = "tv"
+              print_type = "テレビ・配信番組"
+              search_type = Search.DISCOVER_TV
+              for item in provider_tv_data['results']:
+                     if provider_id == item['provider_id']:
+                            provider_name = item['provider_name']
+                            break
+              else:
+                     return render_template("error.html", text="")
+       else:
+              return render_template("error.html", text="")
+       page = int(request.args.get('page', 1))
+       if page <= 0:
+              return render_template("error.html", text="")
+       # コンテンツデータを整理
+       soup = TMDB(api_key).get_providers_works(provider_id, page, data_type, provider_id in provider_famous_li)
+       data = Search_Data(soup).search_arrange(search_type, page)
+       # レンダリング
+       data['site_data'] = {
+              'page_url': "/trend#scroll",
+              'page_tab_data' : [["media", media_type], ["provider", provider_id]],
+              'print_type' : print_type,
+              'provider_name' : provider_name,
+              'tab_data' : [],
+              'provider_links' : provider_famous_data['results'],
+       }
+       if provider_id in provider_movie_li:
+              data['site_data']['tab_data'].append(["movie", "/trend?media=movie&provider=" + str(provider_id) + "#scroll", "映画"])
+       if provider_id in provider_tv_li:
+              data['site_data']['tab_data'].append(["tv", "/trend?media=tv&provider=" + str(provider_id) + "#scroll", "テレビ・配信番組"])
+       return render_template("trend.html", data=data)
 
 
 # お気に入り情報を取得

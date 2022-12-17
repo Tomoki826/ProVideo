@@ -18,3 +18,7 @@ def match_work_id(id, name, media_type="Unknown", api_key=""):
                             item['media_type'] = media_type
                             return item
               page += 1
+
+# 国内配信中のプロバイダーか
+def match_provider_id(data):
+       pass

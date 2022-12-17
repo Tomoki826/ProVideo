@@ -36,7 +36,6 @@
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
-    -webkit-transform: translateY(-50%) translateX(-50%);
     margin: auto;
     color: #000000;
   }
@@ -93,7 +92,6 @@
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
-    -webkit-transform: translateY(-50%) translateX(-50%);
     margin: auto;
     color: #000000;
   }

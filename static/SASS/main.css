@@ -204,20 +204,20 @@ main .none-scrollbar::-webkit-scrollbar {
     font-size: 13px;
     vertical-align: middle;
   }
-  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons abbr {
+  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons .icon {
     display: inline-block;
     width: 40px;
     height: 40px;
     margin: 3px 3px 0 0px;
   }
-  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons abbr img {
+  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons .icon img {
     width: 40px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 6px;
     border: 0.5px solid #E7E7E7;
   }
-  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons abbr img:hover {
+  .contents_container .videos_container .description .pc-overflow .ajax_providers .icons .icon img:not(.none_provider):hover {
     opacity: 0.7;
   }
   .contents_container .videos_container .description .pc-overflow .overview {
@@ -587,20 +587,20 @@ main .none-scrollbar::-webkit-scrollbar {
     padding: 2px 0;
     vertical-align: middle;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr, .contents_container .videos_container .description .ajax_providers .rental .icons abbr, .contents_container .videos_container .description .ajax_providers .buy .icons abbr {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon, .contents_container .videos_container .description .ajax_providers .rental .icons .icon, .contents_container .videos_container .description .ajax_providers .buy .icons .icon {
     display: inline-block;
     width: 40px;
     height: 40px;
     margin: 3px 3px 0 0px;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon img, .contents_container .videos_container .description .ajax_providers .rental .icons .icon img, .contents_container .videos_container .description .ajax_providers .buy .icons .icon img {
     width: 40px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 6px;
     border: 0.5px solid #E7E7E7;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img:hover {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon img:not(.none_provider):hover, .contents_container .videos_container .description .ajax_providers .rental .icons .icon img:not(.none_provider):hover, .contents_container .videos_container .description .ajax_providers .buy .icons .icon img:not(.none_provider):hover {
     opacity: 0.7;
   }
   .contents_container .videos_container .description .overview {
@@ -965,20 +965,20 @@ main .none-scrollbar::-webkit-scrollbar {
     padding: 2px 0;
     vertical-align: middle;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr, .contents_container .videos_container .description .ajax_providers .rental .icons abbr, .contents_container .videos_container .description .ajax_providers .buy .icons abbr {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon, .contents_container .videos_container .description .ajax_providers .rental .icons .icon, .contents_container .videos_container .description .ajax_providers .buy .icons .icon {
     display: inline-block;
     width: 40px;
     height: 40px;
     margin: 3px 3px 0 0px;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon img, .contents_container .videos_container .description .ajax_providers .rental .icons .icon img, .contents_container .videos_container .description .ajax_providers .buy .icons .icon img {
     width: 40px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 6px;
     border: 0.5px solid #E7E7E7;
   }
-  .contents_container .videos_container .description .ajax_providers .subscription .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .rental .icons abbr img:hover, .contents_container .videos_container .description .ajax_providers .buy .icons abbr img:hover {
+  .contents_container .videos_container .description .ajax_providers .subscription .icons .icon img:not(.none_provider):hover, .contents_container .videos_container .description .ajax_providers .rental .icons .icon img:not(.none_provider):hover, .contents_container .videos_container .description .ajax_providers .buy .icons .icon img:not(.none_provider):hover {
     opacity: 0.7;
   }
   .contents_container .videos_container .description .overview {

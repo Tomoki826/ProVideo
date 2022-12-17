@@ -18,7 +18,9 @@ $('.ajax_providers').on('inview', function(event, isInView) {
             //通信失敗時の処理
             .fail( function() {
                 jQuery_element.attr('value', 'loaded,' + values[1] + ',' + values[2]);
-                replaceProviderInfo(jQuery_element, {});
+                jQuery_element.find('.subscription').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="通信エラー"><img class="none_provider" src="../static/images/disconnect_provider_image.png" alt="Error" oncontextmenu="return false;"/></abbr></div></div>');
+                jQuery_element.find('.buy').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="通信エラー"><img class="none_provider" src="../static/images/disconnect_provider_image.png" alt="Error" oncontextmenu="return false;"/></abbr></div></div>');
+                jQuery_element.find('.rental').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="通信エラー"><img class="none_provider" src="../static/images/disconnect_provider_image.png" alt="Error" oncontextmenu="return false;"/></abbr></div></div>');
             })
         }
     }
@@ -30,40 +32,43 @@ function replaceProviderInfo(element, data) {
     if ('flatrate' in data) {
         text = "";
         for (var i in data['flatrate']) {
+            text += '<div class="icon"><a href="/trend?provider=' + data['flatrate'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['flatrate'][i]['provider_name'] + '">';
             text += '<img src="https://www.themoviedb.org/t/p/w300' + data['flatrate'][i]['logo_path'] + '"' + ' alt="' + data['flatrate'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
-            text += '</abbr>';
+            text += '</abbr></a></div>';
         }
         element.find('.subscription').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
     }
     else {
-        element.find('.subscription').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
+        element.find('.subscription').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="情報なし"><img class="none_provider" src="../static/images/unfound_provider.svg" alt="Not Found" oncontextmenu="return false;"/></abbr></div></div>');
     }
     // 購入を表示
     if ('buy' in data) {
         text = "";
         for (var i in data['buy']) {
+            text += '<div class="icon"><a href="/trend?provider=' + data['buy'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['buy'][i]['provider_name'] + '">';
             text += '<img src="https://www.themoviedb.org/t/p/w300' + data['buy'][i]['logo_path'] + '"' + ' alt="' + data['buy'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
-            text += '</abbr>';
+            text += '</abbr></a></div>';
         }
-        element.find('.rental').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
+        element.find('.buy').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
     }
     else {
-        element.find('.rental').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
+        element.find('.buy').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="情報なし"><img class="none_provider" src="../static/images/unfound_provider.svg" alt="Not Found" oncontextmenu="return false;"/></abbr></div></div>');
     }
     // レンタルを表示
     if ('rent' in data) {
         text = "";
         for (var i in data['rent']) {
+            text += '<div class="icon"><a href="/trend?provider=' + data['rent'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['rent'][i]['provider_name'] + '">';
             text += '<img src="https://www.themoviedb.org/t/p/w300' + data['rent'][i]['logo_path'] + '"' + ' alt="' + data['rent'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
-            text += '</abbr>';
+            text += '</abbr></a></div>';
         }
-        element.find('.buy').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
+        element.find('.rental').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
     }
     else {
-        element.find('.buy').children('.icons').replaceWith('<div class="icons"><abbr title="情報なし"><img src="../static/images/unfound_provider.svg" alt="Not Found"/></abbr></div>');
+        element.find('.rental').children('.icons').replaceWith('<div class="icons"><div class="icon"><abbr title="情報なし"><img class="none_provider" src="../static/images/unfound_provider.svg" alt="Not Found" oncontextmenu="return false;"/></abbr></div></div>');
     }
 }
 

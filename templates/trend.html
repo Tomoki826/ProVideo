@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+トレンド
+{% endblock %}
+
+{% block content %}
+
+<!--検索ボックス-->
+{% with data = data %}
+{% include "searchform.html" %}
+{% endwith %}
+
+<!--コンテンツ部分-->
+<main>
+
+<div id="scroll" class="search_title">
+    <!--検索結果-->
+    <div class="page-tree">
+    {% if data['total_results'] <= 0 %}
+        {{data['site_data']['provider_name']}}で話題の{{data['site_data']['print_type']}} なし
+    {% else %}
+        {% with value = data['current_page'] * 20 %}
+        <div class="smartphone_newline">
+            {% if data['total_results'] <= 20 or data['current_page'] > data['max_page'] %}
+                <div>{{data['site_data']['provider_name']}}で配信中の{{data['site_data']['print_type']}}&nbsp;</div>
+                <div>(注目順 全{{ data['total_results'] }}件)</div>
+            {% elif data['total_results'] < value %}
+                <div>{{data['site_data']['provider_name']}}で配信中の{{data['site_data']['print_type']}}&nbsp;</div>
+                <div>(注目順 全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['total_results'] }}件)</div>
+            {% else %}
+                <div>{{data['site_data']['provider_name']}}で配信中の{{data['site_data']['print_type']}}&nbsp;</div>
+                <div>(注目順 全{{ data['total_results'] }}件  {{ data['current_page'] * 20 - 19 }}~{{ data['current_page'] * 20 }}件)</div>
+            {% endif %}
+        </div>
+        {% endwith %}
+    {% endif %}
+    </div>
+    <div class="story_container">
+        <div class="story_header">あらすじモード</div>
+        <label class="switch_label" value="overview">
+            <span class="switch_content"></span>
+            <span class="switch_circle"></span>
+        </label>
+    </div>
+</div>
+
+<!--プロバイダーアイコン一覧-->
+<div class="provider_fixbox">
+    <div class="provider_links">
+        <div class="provider_space">&nbsp;</div>
+        {% for item in data['site_data']['provider_links'] %}
+            <div class="provider_icon">
+                <a href="/trend?provider={{item['provider_id']}}#scroll">
+                <abbr title="{{item['provider_name']}}">
+                <img src="https://www.themoviedb.org/t/p/w300{{item['logo_path']}}" alt="{{item['provider_name']}}" oncontextmenu="return false;"/>
+                </abbr></a>
+            </div>
+        {% endfor %}
+        <div class="provider_space">&nbsp;</div>
+    </div>
+    <div class="left_white"></div>
+    <div class="right_white"></div>
+</div>
+
+{% with tab_data = data['site_data']['tab_data'] %}
+{% include "tab.html" %}
+{% endwith %}
+
+<!--ページ送り-->
+{% with data = data %}
+{% include "pagemove.html" %}
+{% endwith %}
+
+<!--映像・人物情報-->
+<div class="contents_container">
+    {% with data = data['results'] %}
+    {% include "contents.html" %}
+    {% endwith %}
+</div>
+
+<!--ページ送り-->
+{% with data = data %}
+{% include "pagemove.html" %}
+{% endwith %}
+
+</main>
+
+{% endblock %}

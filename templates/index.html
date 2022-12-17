@@ -13,6 +13,7 @@
 
 <!--コンテンツ部分-->
 <main>
+
 <div class="search_title">
     <!--検索結果-->
     <div class="page-tree">
@@ -57,12 +58,9 @@
 </div>
 </main>
 
-<!--フッター-->
-<footer id="foot_page">
-    <!--ページ送り-->
-    {% with data = data %}
-    {% include "pagemove.html" %}
-    {% endwith %}
-</footer>
+<!--ページ送り-->
+{% with data = data %}
+{% include "pagemove.html" %}
+{% endwith %}
 
 {% endblock %}
