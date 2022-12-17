@@ -60,12 +60,10 @@
   }
   #footer #foot_navigation a {
     text-decoration: none;
+    color: #E7E7E7;
   }
-  #footer #foot_navigation a:link {
-    color: #40B6F9;
-  }
-  #footer #foot_navigation a:visited {
-    color: #8728f3;
+  #footer #foot_navigation a:hover {
+    opacity: 0.7;
   }
   #footer #copyright {
     text-align: center;
@@ -74,6 +72,9 @@
   }
   #footer #copyright a {
     color: #E7E7E7;
+  }
+  #footer #copyright a:hover {
+    opacity: 0.7;
   }
 }
 @media all and (min-width: 321px) and (max-width: 768px) {
@@ -134,12 +135,10 @@
   }
   #footer #foot_navigation a {
     text-decoration: none;
+    color: #E7E7E7;
   }
-  #footer #foot_navigation a:link {
-    color: #40B6F9;
-  }
-  #footer #foot_navigation a:visited {
-    color: #8728f3;
+  #footer #foot_navigation a:hover {
+    opacity: 0.7;
   }
   #footer #copyright {
     text-align: center;
@@ -148,6 +147,9 @@
   }
   #footer #copyright a {
     color: #E7E7E7;
+  }
+  #footer #copyright a:hover {
+    opacity: 0.7;
   }
 }
 @media all and (max-width: 320px) {
@@ -206,12 +208,10 @@
   }
   #footer #foot_navigation a {
     text-decoration: none;
+    color: #E7E7E7;
   }
-  #footer #foot_navigation a:link {
-    color: #40B6F9;
-  }
-  #footer #foot_navigation a:visited {
-    color: #8728f3;
+  #footer #foot_navigation a:hover {
+    opacity: 0.7;
   }
   #footer #copyright {
     text-align: center;
@@ -220,5 +220,8 @@
   }
   #footer #copyright a {
     color: #E7E7E7;
+  }
+  #footer #copyright a:hover {
+    opacity: 0.7;
   }
 }/*# sourceMappingURL=footer.css.map */
