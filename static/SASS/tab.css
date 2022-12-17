@@ -162,7 +162,7 @@
     top: 0;
     left: 0;
     width: 10px;
-    height: 100%;
+    height: 60px;
     background-image: linear-gradient(-90deg, transparent 0%, #FFFFFF 100%);
   }
   .provider_fixbox .right_white {
@@ -170,7 +170,7 @@
     top: 0;
     right: 0;
     width: 10px;
-    height: 100%;
+    height: 60px;
     background-image: linear-gradient(90deg, transparent 0%, #FFFFFF 100%);
   }
 }/*# sourceMappingURL=tab.css.map */
