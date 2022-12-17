@@ -67,6 +67,7 @@
     overflow-x: scroll;
     justify-content: center;
     background-color: #FFFFFF;
+    padding-bottom: 5px;
   }
   .provider_links .provider_icon {
     margin: 10px 5px 0 5px;
@@ -137,6 +138,7 @@
     display: flex;
     overflow-x: scroll;
     background-color: #FFFFFF;
+    padding-bottom: 5px;
   }
   .provider_fixbox .provider_links .provider_space {
     font-size: 20px;
