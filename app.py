@@ -241,9 +241,15 @@ def trend():
               'provider_links' : provider_famous_data['results'],
        }
        if provider_id in provider_movie_li:
-              data['site_data']['tab_data'].append(["movie", "/trend?media=movie&provider=" + str(provider_id) + "#scroll", "映画"])
+              if media_type == "movie":
+                     data['site_data']['tab_data'].append(["movie", "/trend?page=" + str(page) + "&media=movie&provider=" + str(provider_id) + "#scroll", "映画"])
+              else:
+                     data['site_data']['tab_data'].append(["movie", "/trend?media=movie&provider=" + str(provider_id) + "#scroll", "映画"])
        if provider_id in provider_tv_li:
-              data['site_data']['tab_data'].append(["tv", "/trend?media=tv&provider=" + str(provider_id) + "#scroll", "テレビ・配信番組"])
+              if media_type == "tv":
+                     data['site_data']['tab_data'].append(["tv", "/trend?page=" + str(page) + "&media=tv&provider=" + str(provider_id) + "#scroll", "テレビ・配信番組"])
+              else:
+                     data['site_data']['tab_data'].append(["tv", "/trend?media=tv&provider=" + str(provider_id) + "#scroll", "テレビ・配信番組"])
        return render_template("trend.html", data=data)
 
 
@@ -254,19 +260,31 @@ def trend():
 @app.route('/favorite', methods=["GET"])
 def favorite():
        # クエリパラメータを取得
+       # ページ
+       page = int(request.args.get('page', 1))
+       # タブにページ情報を埋め込み
+       tab_data = [
+              ["movie",  "/favorite?media=movie#scroll",  "映画"],
+              ["tv",     "/favorite?media=tv#scroll",     "テレビ・配信番組"],
+              ["person", "/favorite?media=person#scroll", "人物"],
+       ]
+       # メディアタイプ
        media_type = request.args.get('media', "movie")
        if media_type == "movie":
               data_type = "movie"
               print_type = "映画"
+              tab_data[0][1] = "/favorite?page=" + str(page) + "&media=movie#scroll"
        elif media_type == "tv":
               data_type = "tv"
               print_type = "テレビ・配信番組"
+              tab_data[1][1] = "/favorite?page=" + str(page) + "&media=tv#scroll"
        elif media_type == "person":
               data_type = "person"
               print_type = "人物"
+              tab_data[2][1] = "/favorite?page=" + str(page) + "&media=person#scroll"
        else:
               return render_template("error.html", text="")
-       page = int(request.args.get('page', 1))
+       # 再びページ
        total_results = len(session['user'][data_type])
        if page <= 0:
               return render_template("error.html", text="")
@@ -285,14 +303,10 @@ def favorite():
        data['max_page'] = (total_results - 1) // 20 + 1
        # レンダリング
        data['site_data'] = {
-              'page_url': "/favorite",
+              'page_url': "/favorite#scroll",
               'page_tab_data' : [["media", media_type]],
               'print_type' : print_type,
-              'tab_data' : [
-                     ["movie",  "/favorite?media=movie",  "映画"],
-                     ["tv",     "/favorite?media=tv",     "テレビ・配信番組"],
-                     ["person", "/favorite?media=person", "人物"]
-              ]
+              'tab_data' : tab_data,
        }
        return render_template("favorite.html", data=data)
 
