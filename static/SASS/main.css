@@ -156,6 +156,9 @@ main .none-scrollbar::-webkit-scrollbar {
   .contents_container .videos_container .description .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
   }
+  .contents_container .videos_container .description .type-link:hover {
+    opacity: 0.7;
+  }
   .contents_container .videos_container .description .pc-overflow .name-block {
     width: 360px;
     margin-bottom: 5px;
@@ -512,6 +515,9 @@ main .none-scrollbar::-webkit-scrollbar {
   }
   .contents_container .videos_container .description .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
+  }
+  .contents_container .videos_container .description .type-link:hover {
+    opacity: 0.7;
   }
   .contents_container .videos_container .description .name-block {
     height: 115px;
@@ -890,6 +896,9 @@ main .none-scrollbar::-webkit-scrollbar {
   }
   .contents_container .videos_container .description .type.tv-sensitive {
     background: linear-gradient(to right, #628BF4 20%, #F471E7);
+  }
+  .contents_container .videos_container .description .type-link:hover {
+    opacity: 0.7;
   }
   .contents_container .videos_container .description .name-block {
     height: 115px;

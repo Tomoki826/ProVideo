@@ -154,6 +154,9 @@ main {
                         background: linear-gradient(to right, #628BF4 20%, #F471E7);   
                     }
                 }
+                .type-link:hover {
+                    opacity: 0.7;
+                }
                 .pc-overflow {
                     .name-block {
                         width: 360px;
@@ -519,6 +522,9 @@ main {
                     &.tv-sensitive {
                         background: linear-gradient(to right, #628BF4 20%, #F471E7);   
                     }
+                }
+                .type-link:hover {
+                    opacity: 0.7;
                 }
                 .name-block {
                     height: 115px;
@@ -902,6 +908,9 @@ main {
                     &.tv-sensitive {
                         background: linear-gradient(to right, #628BF4 20%, #F471E7);   
                     }
+                }
+                .type-link:hover {
+                    opacity: 0.7;
                 }
                 .name-block {
                     height: 115px;

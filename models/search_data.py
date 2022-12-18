@@ -12,6 +12,7 @@ class Search_Data:
               self.data = {}
               self.raw_data = raw_data
 
+
        # 情報をフォーマット
        def search_arrange(self, search_type=Search.MULTI, page=1, keywords=''):
               self.data['keywords'] = keywords
@@ -38,6 +39,7 @@ class Search_Data:
                             data = self.__video_type__(item)
                      self.data['results'].append(data)
               return self.data
+
 
        # 作品データを修正
        def __video_type__(self, item):
@@ -90,6 +92,7 @@ class Search_Data:
                      data['media_type'] = 'movie'
                      data['data_type'] = 'movie'
                      data['print_type'] = '映画'
+                     data['type_link'] = '/?media=movie#scroll'
               elif self.data['search_type'] == Search.TVSHOWS:
                      data['media_type'] = 'tv'
                      if SENSITIVE_SEARCH == False:
@@ -97,31 +100,31 @@ class Search_Data:
                      else:
                             data['data_type'] = 'tv-sensitive'
                      data['print_type'] = 'テレビ・配信番組'
+                     data['type_link'] = '/?media=tv#scroll'
               elif self.data['search_type'] == Search.DISCOVER_TV:
                      data['media_type'] = 'tv'
                      data['data_type'] = 'tv'
                      data['print_type'] = 'テレビ・配信番組'
+                     data['type_link'] = '/?media=tv#scroll'
               elif self.data['search_type'] == Search.MULTI:
-                     if 'media_type' not in item:
+                     if item.get('media_type') == 'movie':
+                            data['media_type'] = 'movie'
+                            data['data_type'] = 'movie'
+                            data['print_type'] = '映画'
+                            data['type_link'] = '/?media=movie#scroll'
+                     elif item.get('media_type') == 'tv':
+                            data['media_type'] = 'tv'
+                            if SENSITIVE_SEARCH == False:
+                                   data['data_type'] = 'tv'
+                            else:
+                                   data['data_type'] = 'tv-sensitive'
+                            data['print_type'] = 'テレビ・配信番組'
+                            data['type_link'] = '/?media=tv#scroll'
+                     else:
                             data['media_type'] = 'Unknown'
                             data['data_type'] = 'Unknown'
                             data['print_type'] = '不明'
-                     else:
-                            if item['media_type'] == 'movie':
-                                   data['media_type'] = 'movie'
-                                   data['data_type'] = 'movie'
-                                   data['print_type'] = '映画'
-                            elif item['media_type'] == 'tv':
-                                   data['media_type'] = 'tv'
-                                   if SENSITIVE_SEARCH == False:
-                                          data['data_type'] = 'tv'
-                                   else:
-                                          data['data_type'] = 'tv-sensitive'
-                                   data['print_type'] = 'テレビ・配信番組'
-                            else:
-                                   data['media_type'] = 'Unknown'
-                                   data['data_type'] = 'Unknown'
-                                   data['print_type'] = '不明'
+                            data['type_link'] = '/'
               if item.get('adult', False):
                      data['data_type'] = 'sensitive'
                      data['print_type'] = 'センシティブ'
@@ -215,6 +218,7 @@ class Search_Data:
                                    li['title'] = '(タイトル情報なし)'
                             data['known_for'].append(li)
               # 識別子
+              data['type_link'] = '/?media=person#scroll'
               data['media_type'] = 'person'
               # メディアタイプ
               if item.get('adult', False):
