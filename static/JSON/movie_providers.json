@@ -2,187 +2,188 @@
   "results": [
     {
       "display_priority": 0,
-      "logo_path": "/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/t2yyOv40HZeVlLjYsCsPHnWLk4W.jpg",
       "provider_name": "Netflix",
       "provider_id": 8
     },
     {
       "display_priority": 1,
-      "logo_path": "/zxrVdFjIjLqkfnwyghnfywTn3Lh.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/zxrVdFjIjLqkfnwyghnfywTn3Lh.jpg",
       "provider_name": "Hulu",
       "provider_id": 15
     },
     {
       "display_priority": 2,
-      "logo_path": "/g8jqHtXJsMlc8B1Gb0Rt8AvUJMn.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/g8jqHtXJsMlc8B1Gb0Rt8AvUJMn.jpg",
       "provider_name": "dTV",
       "provider_id": 85
     },
     {
       "display_priority": 3,
-      "logo_path": "/9pS9Y3xkCLJnti9pi1AyrD5KbZe.jpg",
+      "alternative_path": "https://www.themoviedb.org/t/p/w300/9pS9Y3xkCLJnti9pi1AyrD5KbZe.jpg",
+      "logo_path": "/static/images/unext.jfif",
       "provider_name": "U-NEXT",
       "provider_id": 84
     },
     {
       "display_priority": 4,
-      "logo_path": "/7rwgEs15tFwyR9NPQ5vpzxTj19Q.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/7rwgEs15tFwyR9NPQ5vpzxTj19Q.jpg",
       "provider_name": "Disney Plus",
       "provider_id": 337
     },
     {
       "display_priority": 5,
-      "logo_path": "/emthp39XA2YScoYL1p0sdbAH2WA.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/emthp39XA2YScoYL1p0sdbAH2WA.jpg",
       "provider_name": "Amazon Prime Video",
       "provider_id": 9
     },
     {
       "display_priority": 6,
-      "logo_path": "/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/5NyLm42TmCqCMOZFvH4fcoSNKEW.jpg",
       "provider_name": "Amazon Video",
       "provider_id": 10
     },
     {
       "display_priority": 7,
-      "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
       "provider_name": "Apple iTunes",
       "provider_id": 2
     },
     {
       "display_priority": 8,
-      "logo_path": "/shq88b09gTBYC4hA7K7MUL8Q4zP.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/shq88b09gTBYC4hA7K7MUL8Q4zP.jpg",
       "provider_name": "Microsoft Store",
       "provider_id": 68
     },
     {
       "display_priority": 9,
-      "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
       "provider_name": "Google Play Movies",
       "provider_id": 3
     },
     {
       "display_priority": 10,
-      "logo_path": "/bVR4Z1LCHY7gidXAJF5pMa4QrDS.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/bVR4Z1LCHY7gidXAJF5pMa4QrDS.jpg",
       "provider_name": "MUBI",
       "provider_id": 11
     },
     {
       "display_priority": 11,
-      "logo_path": "/6uhKBfmtzFqOcLousHwZuzcrScK.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/6uhKBfmtzFqOcLousHwZuzcrScK.jpg",
       "provider_name": "Apple TV Plus",
       "provider_id": 350
     },
     {
       "display_priority": 12,
-      "logo_path": "/67Ee4E6qOkQGHeUTArdJ1qRxzR2.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/67Ee4E6qOkQGHeUTArdJ1qRxzR2.jpg",
       "provider_name": "Curiosity Stream",
       "provider_id": 190
     },
     {
       "display_priority": 13,
-      "logo_path": "/xN97FFkFAdY1JvHhS4zyPD4URgD.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/xN97FFkFAdY1JvHhS4zyPD4URgD.jpg",
       "provider_name": "Spamflix",
       "provider_id": 521
     },
     {
       "display_priority": 14,
-      "logo_path": "/bvcdVO7SDHKEa6D40g1jntXKNj.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/bvcdVO7SDHKEa6D40g1jntXKNj.jpg",
       "provider_name": "DOCSVILLE",
       "provider_id": 475
     },
     {
       "display_priority": 15,
-      "logo_path": "/x36C6aseF5l4uX99Kpse9dbPwBo.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/x36C6aseF5l4uX99Kpse9dbPwBo.jpg",
       "provider_name": "Starz Play Amazon Channel",
       "provider_id": 194
     },
     {
       "display_priority": 16,
-      "logo_path": "/mgD0T960hnYU4gBxbPPBrcDfgWg.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/mgD0T960hnYU4gBxbPPBrcDfgWg.jpg",
       "provider_name": "WOW Presents Plus",
       "provider_id": 546
     },
     {
       "display_priority": 17,
-      "logo_path": "/gekkP93StjYdiMAInViVmrnldNY.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/gekkP93StjYdiMAInViVmrnldNY.jpg",
       "provider_name": "Magellan TV",
       "provider_id": 551
     },
     {
       "display_priority": 18,
-      "logo_path": "/xLu1rkZNOKuNnRNr70wySosfTBf.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/xLu1rkZNOKuNnRNr70wySosfTBf.jpg",
       "provider_name": "BroadwayHD",
       "provider_id": 554
     },
     {
       "display_priority": 19,
-      "logo_path": "/olmH7t5tEng8Yuq33KmvpvaaVIg.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/olmH7t5tEng8Yuq33KmvpvaaVIg.jpg",
       "provider_name": "Filmzie",
       "provider_id": 559
     },
     {
       "display_priority": 20,
-      "logo_path": "/u2H29LCxRzjZVUoZUQAHKm5P8Zc.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/u2H29LCxRzjZVUoZUQAHKm5P8Zc.jpg",
       "provider_name": "Dekkoo",
       "provider_id": 444
     },
     {
       "display_priority": 21,
-      "logo_path": "/osREemsc9uUB2J8VTkQeAVk2fu9.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/osREemsc9uUB2J8VTkQeAVk2fu9.jpg",
       "provider_name": "True Story",
       "provider_id": 567
     },
     {
       "display_priority": 22,
-      "logo_path": "/aQ1ritN00jXc7RAFfUoQKGAAfp7.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/aQ1ritN00jXc7RAFfUoQKGAAfp7.jpg",
       "provider_name": "DocAlliance Films",
       "provider_id": 569
     },
     {
       "display_priority": 23,
-      "logo_path": "/d4vHcXY9rwnr763wQns2XJThclt.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/d4vHcXY9rwnr763wQns2XJThclt.jpg",
       "provider_name": "Hoichoi",
       "provider_id": 315
     },
     {
       "display_priority": 24,
-      "logo_path": "/fadQYOyKL0tqfyj012nYJxm3N2I.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/fadQYOyKL0tqfyj012nYJxm3N2I.jpg",
       "provider_name": "Eventive",
       "provider_id": 677
     },
     {
       "display_priority": 25,
-      "logo_path": "/59azlQKUgFdYq6QI5QEAxIeecyL.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/59azlQKUgFdYq6QI5QEAxIeecyL.jpg",
       "provider_name": "Cultpix",
       "provider_id": 692
     },
     {
       "display_priority": 26,
-      "logo_path": "/4FqTBYsUSZgS9z9UGKgxSDBbtc8.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/4FqTBYsUSZgS9z9UGKgxSDBbtc8.jpg",
       "provider_name": "FilmBox+",
       "provider_id": 701
     },
     {
       "display_priority": 27,
-      "logo_path": "/cnIHBy3uLWhHRR7VeWQhK3ZsYP0.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/cnIHBy3uLWhHRR7VeWQhK3ZsYP0.jpg",
       "provider_name": "Takflix",
       "provider_id": 1771
     },
     {
       "display_priority": 28,
-      "logo_path": "/uW4dPCcbXaaFTyfL5HwhuDt5akK.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/uW4dPCcbXaaFTyfL5HwhuDt5akK.jpg",
       "provider_name": "Sun Nxt",
       "provider_id": 309
     },
     {
       "display_priority": 29,
-      "logo_path": "/iaMw6nOyxUzXSacrLQ0Au6CfZkc.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/iaMw6nOyxUzXSacrLQ0Au6CfZkc.jpg",
       "provider_name": "Classix",
       "provider_id": 445
     },
     {
       "display_priority": 30,
-      "logo_path": "/mShqQVDhHoK7VUbfYG3Un6xE8Mv.jpg",
+      "logo_path": "https://www.themoviedb.org/t/p/w300/mShqQVDhHoK7VUbfYG3Un6xE8Mv.jpg",
       "provider_name": "Netflix basic with Ads",
       "provider_id": 1796
     }

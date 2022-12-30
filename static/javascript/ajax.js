@@ -34,7 +34,7 @@ function replaceProviderInfo(element, data) {
         for (var i in data['flatrate']) {
             text += '<div class="icon"><a href="/trend?provider=' + data['flatrate'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['flatrate'][i]['provider_name'] + '">';
-            text += '<img src="https://www.themoviedb.org/t/p/w300' + data['flatrate'][i]['logo_path'] + '"' + ' alt="' + data['flatrate'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
+            text += '<img src="' + data['flatrate'][i]['logo_path'] + '"' + ' alt="' + data['flatrate'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
             text += '</abbr></a></div>';
         }
         element.find('.subscription').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
@@ -48,7 +48,7 @@ function replaceProviderInfo(element, data) {
         for (var i in data['buy']) {
             text += '<div class="icon"><a href="/trend?provider=' + data['buy'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['buy'][i]['provider_name'] + '">';
-            text += '<img src="https://www.themoviedb.org/t/p/w300' + data['buy'][i]['logo_path'] + '"' + ' alt="' + data['buy'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
+            text += '<img src="' + data['buy'][i]['logo_path'] + '"' + ' alt="' + data['buy'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
             text += '</abbr></a></div>';
         }
         element.find('.buy').children('.icons').replaceWith('<div class="icons">' + text + "</div>");
@@ -62,7 +62,7 @@ function replaceProviderInfo(element, data) {
         for (var i in data['rent']) {
             text += '<div class="icon"><a href="/trend?provider=' + data['rent'][i]['provider_id'] + '">';
             text += '<abbr title="' + data['rent'][i]['provider_name'] + '">';
-            text += '<img src="https://www.themoviedb.org/t/p/w300' + data['rent'][i]['logo_path'] + '"' + ' alt="' + data['rent'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
+            text += '<img src="' + data['rent'][i]['logo_path'] + '"' + ' alt="' + data['rent'][i]['provider_name'] + '"' + ' oncontextmenu="return false;">';
             text += '</abbr></a></div>';
         }
         element.find('.rental').children('.icons').replaceWith('<div class="icons">' + text + "</div>");

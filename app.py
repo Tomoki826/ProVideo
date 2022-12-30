@@ -4,6 +4,7 @@ from models.TMDB import TMDB
 from models.enum import Search
 from models.kanji import Japanese_check
 from models.json import JSON
+from models.icon import Icon
 from models.search_data import Search_Data
 from models.match import match_work_id, match_provider_id
 
@@ -40,6 +41,9 @@ provider_famous_data = JSON('./static/JSON/famous_providers.json').get_json()
 provider_famous_li = []
 for item in provider_famous_data['results']:
        provider_famous_li.append(item['provider_id'])
+
+# インスタンスを作成
+icon_data = Icon()
 
 # ホームページ
 @app.route("/", methods=["GET"])
@@ -168,13 +172,16 @@ def load_provider():
        if data_type == 'tv-sensitive': data_type = 'tv'
        provider_search = TMDB(api_key).get_provider_info(id, data_type)
        if 'results' in provider_search:
-              data = provider_search['results'].get('JP', {})
               # プロバイダーが国内配信中か確認
+              data = provider_search['results'].get('JP', {})
               for provider_type in ['flatrate', 'buy', 'rent']:
                      if provider_type in data:
                             for index, item in enumerate(data[provider_type]):
                                    if item['provider_id'] not in provider_movie_li:
                                           data[provider_type].pop(index)
+                                   else:
+                                          # アイコンを修正
+                                          data[provider_type][index]['logo_path'] = icon_data.path_check("https://www.themoviedb.org/t/p/w300" + data[provider_type][index]['logo_path'])
        else:
               data = {}
        return data
